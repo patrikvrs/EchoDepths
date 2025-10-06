@@ -1,4 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmrg07u7o77iv"]
+[gd_scene load_steps=7 format=3 uid="uid://cmrg07u7o77iv"]
+
+[ext_resource type="PackedScene" uid="uid://bhm2jdmks8a7i" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://dm3nvf65lc74g" path="res://scenes/enemy.tscn" id="2_0wfyh"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_sgp6g"]
 vertices = PackedVector3Array(-49.5, 0.900303, -49.5, -49.5, 0.900303, 49.5, 49.5, 0.900303, 49.5, 49.5, 0.900303, -49.5)
@@ -7,16 +10,35 @@ cell_height = 0.5
 
 [sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wfyh"]
+albedo_color = Color(0.066738896, 0.24979484, 0.031399876, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_o5qli"]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D"]
 navigation_mesh = SubResource("NavigationMesh_sgp6g")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 0.1, 0, 0, 0, 100, 0, -0.049696982, 0)
 mesh = SubResource("BoxMesh_sgp6g")
+surface_material_override/0 = SubResource("StandardMaterial3D_0wfyh")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_o5qli")
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_0wfyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1955442, 0.50000095, -18.204247)
+target = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.531744, 0.5178871, -11.330663)
+size = Vector3(8.2048645, 1, 5.9501953)

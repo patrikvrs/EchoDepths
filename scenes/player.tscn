@@ -9,8 +9,9 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onrkg"]
 albedo_color = Color(0.2254278, 0.14588588, 0.83270985, 1)
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Camera")]
 script = ExtResource("1_3vyb7")
+Camera = NodePath("Camera3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_sh265")
@@ -18,3 +19,6 @@ shape = SubResource("CapsuleShape3D_sh265")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_4flbx")
 surface_material_override/0 = SubResource("StandardMaterial3D_onrkg")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.76604444, 0.32139382, -0.5566704, 0, 0.8660254, 0.5, 0.64278764, 0.38302222, -0.66341394, -20, 15, -25)
