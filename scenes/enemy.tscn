@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dm3nvf65lc74g"]
 
-[ext_resource type="Script" uid="uid://c7skkcrrvwf5h" path="res://scenes/EnemyPathFind.cs" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://c7skkcrrvwf5h" path="res://scripts/EnemyPathFind.cs" id="1_7p1mj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7xaro"]
 
