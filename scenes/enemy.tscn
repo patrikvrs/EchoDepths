@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm3nvf65lc74g"]
+
+[ext_resource type="Script" uid="uid://c7skkcrrvwf5h" path="res://scenes/EnemyPathFind.cs" id="1_7p1mj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7xaro"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7k104"]
+albedo_color = Color(0.7262233, 3.4172833e-06, 5.7756904e-07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4gyqm"]
+material = SubResource("StandardMaterial3D_7k104")
+
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("agent")]
+script = ExtResource("1_7p1mj")
+agent = NodePath("NavigationAgent3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_7xaro")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_4gyqm")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
