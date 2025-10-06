@@ -4,9 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://dm3nvf65lc74g" path="res://scenes/enemy.tscn" id="2_0wfyh"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_sgp6g"]
-vertices = PackedVector3Array(-49.5, 0.900303, -49.5, -49.5, 0.900303, 49.5, 49.5, 0.900303, 49.5, 49.5, 0.900303, -49.5)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+vertices = PackedVector3Array(-6, 0.900303, -15.427322, -4.5, 0.900303, -15.427322, -4.75, 0.900303, -49.177322, -6.75, 0.900303, -14.677322, -49, 0.900303, -49.177322, -49, 0.900303, -13.427322, -6.75, 0.900303, -13.177322, 1.5, 0.900303, -15.427322, 1.75, 0.900303, -49.177322, 3, 0.900303, -15.427322, 3.75, 0.900303, -14.677322, 49, 0.900303, -13.427322, 49, 0.900303, -49.177322, 3.75, 0.900303, -13.177322, -49, 0.900303, -9.177322, -6.75, 0.900303, -9.427322, -4.75, 1.900303, -13.427322, -4.75, 1.900303, -9.177322, 1.75, 1.900303, -9.177322, 1.75, 1.900303, -13.427322, 3.75, 0.900303, -9.427322, 49, 0.900303, -9.177322, -6.75, 0.900303, -7.9273224, -6, 0.900303, -7.1773224, -49, 0.900303, 49.072678, -4.75, 0.900303, 49.072678, -4.5, 0.900303, -7.1773224, 3.75, 0.900303, -7.9273224, 3, 0.900303, -7.1773224, 1.75, 0.900303, 49.072678, 49, 0.900303, 49.072678, 1.5, 0.900303, -7.1773224)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 4), PackedInt32Array(4, 3, 5), PackedInt32Array(3, 6, 5), PackedInt32Array(1, 2, 7), PackedInt32Array(7, 2, 8), PackedInt32Array(9, 7, 8), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 12), PackedInt32Array(10, 12, 11), PackedInt32Array(11, 13, 10), PackedInt32Array(15, 14, 6), PackedInt32Array(6, 14, 5), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17), PackedInt32Array(13, 11, 20), PackedInt32Array(20, 11, 21), PackedInt32Array(14, 15, 22), PackedInt32Array(22, 23, 14), PackedInt32Array(14, 23, 24), PackedInt32Array(24, 23, 25), PackedInt32Array(23, 26, 25), PackedInt32Array(27, 20, 21), PackedInt32Array(27, 21, 28), PackedInt32Array(28, 21, 30), PackedInt32Array(28, 30, 29), PackedInt32Array(29, 31, 28), PackedInt32Array(26, 31, 25), PackedInt32Array(25, 31, 29)]
 cell_height = 0.5
+agent_radius = 1.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
 
@@ -32,13 +33,14 @@ surface_material_override/0 = SubResource("StandardMaterial3D_0wfyh")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_o5qli")
 
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.531744, 0.5178871, -11.330663)
+use_collision = true
+size = Vector3(8.2048645, 1, 5.9501953)
+
 [node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_0wfyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1955442, 0.50000095, -18.204247)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.5, -25)
 target = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.531744, 0.5178871, -11.330663)
-size = Vector3(8.2048645, 1, 5.9501953)

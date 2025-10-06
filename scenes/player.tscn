@@ -21,4 +21,4 @@ mesh = SubResource("CapsuleMesh_4flbx")
 surface_material_override/0 = SubResource("StandardMaterial3D_onrkg")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.76604444, 0.32139382, -0.5566704, 0, 0.8660254, 0.5, 0.64278764, 0.38302222, -0.66341394, -20, 15, -25)
+transform = Transform3D(-0.7071068, -0.54167515, 0.45451945, 0, 0.64278764, 0.76604444, -0.7071067, 0.54167527, -0.45451954, 10, 20, -10)
