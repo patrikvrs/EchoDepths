@@ -2,7 +2,11 @@ using Godot;
 
 public partial class PlayerMovement : CharacterBody3D
 {
-	public const float Speed = 5.0f;
+	[Export]
+	public PlayerStats playerStats;
+
+	public float Speed => playerStats.GetStat("MovementSpeed");
+
 	public const float JumpVelocity = 4.5f;
 
 	[Export]
