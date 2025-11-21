@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class EnemyPathFind : CharacterBody3D
+public partial class EnemyPathfinder : CharacterBody3D
 {
     public const float Speed = 4.0f;
     

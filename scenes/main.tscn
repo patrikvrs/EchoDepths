@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmrg07u7o77iv"]
+[gd_scene load_steps=8 format=3 uid="uid://cmrg07u7o77iv"]
 
 [ext_resource type="PackedScene" uid="uid://bhm2jdmks8a7i" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://u7dwpxk44kty" path="res://scripts/CameraFollow.cs" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dm3nvf65lc74g" path="res://scenes/enemy.tscn" id="2_0wfyh"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_sgp6g"]
@@ -18,6 +19,11 @@ albedo_color = Color(0.066738896, 0.24979484, 0.031399876, 1)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D"]
 navigation_mesh = SubResource("NavigationMesh_sgp6g")
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("Target")]
+transform = Transform3D(-0.70710677, -0.5416752, 0.45451948, 0, 0.64278764, 0.76604444, -0.70710677, 0.5416752, -0.45451948, 10, 20, -10)
+script = ExtResource("1_sugp2")
+Target = NodePath("../Player")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -42,5 +48,6 @@ size = Vector3(8.2048645, 1, 5.9501953)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.5, -25)
 target = NodePath("../Player")
 
-[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+[node name="Player" parent="." node_paths=PackedStringArray("Camera") instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+Camera = NodePath("../Camera3D")

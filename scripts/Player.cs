@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class PlayerMovement : CharacterBody3D
+public partial class Player : CharacterBody3D
 {
 	[Export]
 	public PlayerStats playerStats;
@@ -16,7 +16,6 @@ public partial class PlayerMovement : CharacterBody3D
 	{
 		Vector3 velocity = Velocity;
 
-
 		if (!IsOnFloor())
 		{
 			velocity += GetGravity() * (float)delta;
@@ -25,6 +24,11 @@ public partial class PlayerMovement : CharacterBody3D
 		if (Input.IsActionJustPressed("jump") && IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
+		}
+
+		if (Input.IsActionJustPressed("attack"))
+		{
+			GD.Print("Player Attack with damage: " + playerStats.GetStat("AttackDamage"));
 		}
 
 		Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_up", "move_down");
@@ -49,7 +53,24 @@ public partial class PlayerMovement : CharacterBody3D
 			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
 		}
 
+		if (velocity.X != 0 || velocity.Z != 0)
+		{
+			LookAt(GlobalPosition + new Vector3(velocity.X, 0, velocity.Z), Vector3.Up);
+		}	
+
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	private void AttackMeelee()
+	{
+		// Melee attack logic here
+		GD.Print("Player performs a melee attack!");
+	}
+
+	private void AttackRanged()
+	{
+		// Ranged attack logic here
+		GD.Print("Player performs a ranged attack!");
 	}
 }
