@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhm2jdmks8a7i"]
+[gd_scene load_steps=7 format=3 uid="uid://bhm2jdmks8a7i"]
 
 [ext_resource type="Script" uid="uid://cbjcfxl7c27hj" path="res://scripts/Player.cs" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dqmqq0b5hjndd" path="res://scripts/PlayerStats.cs" id="2_g2els"]
@@ -10,10 +10,11 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onrkg"]
 albedo_color = Color(0.2254278, 0.14588588, 0.83270985, 1)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("playerStats", "Camera")]
+[sub_resource type="BoxMesh" id="BoxMesh_g2els"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("playerStats")]
 script = ExtResource("1_3vyb7")
 playerStats = NodePath("PlayerStats")
-Camera = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_sh265")
@@ -24,3 +25,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_onrkg")
 
 [node name="PlayerStats" type="Node" parent="."]
 script = ExtResource("2_g2els")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6558064, 0, 0, 0, 0.35660762, 0, 0, 0, 0.2557056, 0, 0.45305914, -0.43972015)
+mesh = SubResource("BoxMesh_g2els")

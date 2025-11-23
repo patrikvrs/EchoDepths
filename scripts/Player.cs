@@ -47,6 +47,11 @@ public partial class Player : CharacterBody3D
 			newVelocity.X = direction.X * Speed;
 			newVelocity.Z = direction.Z * Speed;
 		}
+		else
+		{
+			newVelocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+			newVelocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
+		}
 
 		if (newVelocity.X != 0 || newVelocity.Z != 0)
 		{
@@ -65,12 +70,12 @@ public partial class Player : CharacterBody3D
 
 	private void AttackRanged()
 	{
-		//TODO: Create a raycast from the player to the cursor's direction (to max range) and send an object flying to it. 
 		GD.Print("Player performs a ranged attack!");
 	}
 
 	private void GetMousePositionInWorld()
     {
-        
+        //TODO: Implement method to get mouse position in world space.
+		
     }
 }

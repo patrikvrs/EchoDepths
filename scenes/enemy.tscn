@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dm3nvf65lc74g"]
+[gd_scene load_steps=6 format=3 uid="uid://dm3nvf65lc74g"]
 
 [ext_resource type="Script" uid="uid://c7skkcrrvwf5h" path="res://scripts/EnemyPathfinder.cs" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://duwoyy0n6tg8" path="res://scripts/EnemyStats.cs" id="2_md0e3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7xaro"]
 
@@ -21,3 +22,6 @@ shape = SubResource("BoxShape3D_7xaro")
 mesh = SubResource("BoxMesh_4gyqm")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="EnemyStats" type="Node" parent="."]
+script = ExtResource("2_md0e3")
