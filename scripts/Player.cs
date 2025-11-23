@@ -14,21 +14,21 @@ public partial class Player : CharacterBody3D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector3 velocity = Velocity;
+		Vector3 newVelocity = Velocity;
 
 		if (!IsOnFloor())
 		{
-			velocity += GetGravity() * (float)delta;
+			newVelocity += GetGravity() * (float)delta;
 		}
 
 		if (Input.IsActionJustPressed("jump") && IsOnFloor())
 		{
-			velocity.Y = JumpVelocity;
+			newVelocity.Y = JumpVelocity;
 		}
 
 		if (Input.IsActionJustPressed("attack"))
 		{
-			GD.Print("Player Attack with damage: " + playerStats.GetStat("AttackDamage"));
+			AttackMeelee();
 		}
 
 		Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_up", "move_down");
@@ -44,33 +44,33 @@ public partial class Player : CharacterBody3D
 
 			Vector3 direction = (camDir * inputDir.Y + camRight * inputDir.X).Normalized();
 
-			velocity.X = direction.X * Speed;
-			velocity.Z = direction.Z * Speed;
-		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
+			newVelocity.X = direction.X * Speed;
+			newVelocity.Z = direction.Z * Speed;
 		}
 
-		if (velocity.X != 0 || velocity.Z != 0)
+		if (newVelocity.X != 0 || newVelocity.Z != 0)
 		{
-			LookAt(GlobalPosition + new Vector3(velocity.X, 0, velocity.Z), Vector3.Up);
+			LookAt(GlobalPosition + new Vector3(newVelocity.X, 0, newVelocity.Z), Vector3.Up);
 		}	
 
-		Velocity = velocity;
+		Velocity = newVelocity;
 		MoveAndSlide();
 	}
 
 	private void AttackMeelee()
 	{
-		// Melee attack logic here
+		//TODO: Create a hitbox in the cursor's direction thats checking for enemies hit.
 		GD.Print("Player performs a melee attack!");
 	}
 
 	private void AttackRanged()
 	{
-		// Ranged attack logic here
+		//TODO: Create a raycast from the player to the cursor's direction (to max range) and send an object flying to it. 
 		GD.Print("Player performs a ranged attack!");
 	}
+
+	private void GetMousePositionInWorld()
+    {
+        
+    }
 }
