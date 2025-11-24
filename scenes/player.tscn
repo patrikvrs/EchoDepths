@@ -13,19 +13,21 @@ albedo_color = Color(0.2254278, 0.14588588, 0.83270985, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_g2els"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("playerStats")]
+collision_layer = 2
 script = ExtResource("1_3vyb7")
 playerStats = NodePath("PlayerStats")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Hurtbox" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_sh265")
+debug_color = Color(0.99168676, 0, 0.26836914, 0.41960785)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="PlayerModel" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_4flbx")
 surface_material_override/0 = SubResource("StandardMaterial3D_onrkg")
 
 [node name="PlayerStats" type="Node" parent="."]
 script = ExtResource("2_g2els")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="Eyes" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.6558064, 0, 0, 0, 0.35660762, 0, 0, 0, 0.2557056, 0, 0.45305914, -0.43972015)
 mesh = SubResource("BoxMesh_g2els")

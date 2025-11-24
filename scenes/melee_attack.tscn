@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpra74oxdnsma"]
+
+[ext_resource type="Script" uid="uid://htm36p43e5gf" path="res://scripts/CheckForHit.cs" id="1_bd5lp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vyoqx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xtaw4"]
+
+[node name="meleeAttack" type="Area3D"]
+collision_mask = 4
+script = ExtResource("1_bd5lp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_vyoqx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_xtaw4")

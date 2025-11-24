@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmrg07u7o77iv"]
+[gd_scene load_steps=9 format=3 uid="uid://cmrg07u7o77iv"]
 
 [ext_resource type="PackedScene" uid="uid://bhm2jdmks8a7i" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://u7dwpxk44kty" path="res://scripts/CameraFollow.cs" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dm3nvf65lc74g" path="res://scenes/enemy.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bpra74oxdnsma" path="res://scenes/melee_attack.tscn" id="4_jyhfs"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_sgp6g"]
 vertices = PackedVector3Array(-6, 0.900303, -15.427322, -4.5, 0.900303, -15.427322, -4.75, 0.900303, -49.177322, -6.75, 0.900303, -14.677322, -49, 0.900303, -49.177322, -49, 0.900303, -13.427322, -6.75, 0.900303, -13.177322, 1.5, 0.900303, -15.427322, 1.75, 0.900303, -49.177322, 3, 0.900303, -15.427322, 3.75, 0.900303, -14.677322, 49, 0.900303, -13.427322, 49, 0.900303, -49.177322, 3.75, 0.900303, -13.177322, -49, 0.900303, -9.177322, -6.75, 0.900303, -9.427322, -4.75, 1.900303, -13.427322, -4.75, 1.900303, -9.177322, 1.75, 1.900303, -9.177322, 1.75, 1.900303, -13.427322, 3.75, 0.900303, -9.427322, 49, 0.900303, -9.177322, -6.75, 0.900303, -7.9273224, -6, 0.900303, -7.1773224, -49, 0.900303, 49.072678, -4.75, 0.900303, 49.072678, -4.5, 0.900303, -7.1773224, 3.75, 0.900303, -7.9273224, 3, 0.900303, -7.1773224, 1.75, 0.900303, 49.072678, 49, 0.900303, 49.072678, 1.5, 0.900303, -7.1773224)
@@ -50,4 +51,5 @@ target = NodePath("../Player")
 
 [node name="Player" parent="." node_paths=PackedStringArray("Camera") instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+MeleeAttackArea = ExtResource("4_jyhfs")
 Camera = NodePath("../Camera3D")

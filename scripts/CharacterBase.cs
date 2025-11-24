@@ -33,16 +33,7 @@ public partial class CharacterBase : Node
         Stats[statName] = value;
     }
 
-    public void ApplyDamage(float damage)
-    {
-        Stats["CurrentHealth"] -= damage;
-        if (Stats["CurrentHealth"] < 0)
-        {
-            Stats["CurrentHealth"] = 0;
-        }
-    }
-
-    public void ModifyStat(string statName, float delta) //Not for health
+    public void ModifyStat(string statName, float delta)
     {
         if (Stats.ContainsKey(statName))
         {

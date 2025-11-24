@@ -12,17 +12,5 @@ public partial class EnemyStats : CharacterBase
         Stats["AttackRange"] = 1.5f;
         Stats["AttackSpeed"] = 1.0f;
         Stats["MovementSpeed"] = 4.0f;
-        PrintStats();
-    }
-
-    public void PrintStats()
-    {
-        GD.Print("Enemy Stats:");
-        GD.Print($"Level: {Level}");
-        GD.Print($"Health: {GetStat("CurrentHealth")}/{GetStat("MaxHealth")}");
-        GD.Print($"Attack Damage: {GetStat("AttackDamage")}");
-        GD.Print($"Attack Range: {GetStat("AttackRange")}");
-        GD.Print($"Attack Speed: {GetStat("AttackSpeed")}");
-        GD.Print($"Movement Speed: {GetStat("MovementSpeed")}");
     }
 }
