@@ -8,7 +8,7 @@ public partial class PlayerStats : CharacterBase
         Stats["MaxHealth"] = 150 + (Level - 1) * 30;
         Stats["CurrentHealth"] = Stats["MaxHealth"];
         Stats["AttackDamage"] = 15 + (Level - 1) * 3;
-        Stats["AttackRange"] = 2.0f;
+        Stats["AttackRange"] = 4.0f;
         Stats["AttackSpeed"] = 1.2f;
         Stats["MovementSpeed"] = 6.0f;
         PrintStats();

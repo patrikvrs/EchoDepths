@@ -77,17 +77,26 @@ public partial class Player : CharacterBody3D, IDamagable
         }
     }
 
-    private void AttackMelee() // renamed from AttackMeelee
+    private void AttackMelee()
     {
-        Vector3 AttackDirection = (Camera.GetMousePositionInWorld() - GlobalPosition).Normalized();
-        AttackDirection.Y = 0;
+        Vector3 mousePos = Camera.GetMousePositionInWorld();
+        Vector3 attackDir = mousePos - GlobalPosition;
+        attackDir.Y = 0;
+
+        if (attackDir.Length() < 0.01f)
+            attackDir = Transform.Basis.Z;
+
+        attackDir = attackDir.Normalized();
 
         Area3D meleeAreaInstance = MeleeAttackArea.Instantiate<Area3D>();
-
         AddChild(meleeAreaInstance);
 
-        meleeAreaInstance.GlobalPosition = GlobalPosition + AttackDirection * playerStats.GetStat("AttackRange");
-        meleeAreaInstance.Rotation = new Vector3(0, Mathf.Atan2(AttackDirection.X, AttackDirection.Z), 0);
+        float attackRange = playerStats.GetStat("AttackRange");
+        meleeAreaInstance.Scale = new Vector3(1, meleeAreaInstance.Scale.Y, attackRange);
+
+        Vector3 areaPos = GlobalPosition + attackDir * (attackRange / 2);
+        meleeAreaInstance.GlobalPosition = areaPos;
+        meleeAreaInstance.GlobalRotation = new Vector3(0, Mathf.Atan2(attackDir.X, attackDir.Z), 0);
 
         Timer attackDurationTimer = new Timer();
         attackDurationTimer.WaitTime = 0.2f;
