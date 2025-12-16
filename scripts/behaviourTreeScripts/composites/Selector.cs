@@ -14,8 +14,11 @@ public partial class Selector : BehaviourTree
     {
         foreach (var child in children)
         {
-            if (child.Execute() == NodeStatus.Success)
+            var result = child.Execute();
+            if (result == NodeStatus.Success)
                 return NodeStatus.Success;
+            if (result == NodeStatus.Running)
+                return NodeStatus.Running;
         }
         return NodeStatus.Failure;
     }
