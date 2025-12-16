@@ -1,6 +1,5 @@
 using Godot;
 
-
 public partial class CameraFollow : Camera3D
 {
     [Export]

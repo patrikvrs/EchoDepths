@@ -1,6 +1,3 @@
-using Godot;
-using System;
-
 public partial class EnemyStats : CharacterBase
 {
     protected override void InitStats()
