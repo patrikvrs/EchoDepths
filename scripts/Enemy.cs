@@ -2,7 +2,6 @@ using Godot;
 
 public partial class Enemy : CharacterBody3D, IDamagable
 {
-    public const float Speed = 4.0f;
     
     [Export]
     public NavigationAgent3D agent;
@@ -12,6 +11,8 @@ public partial class Enemy : CharacterBody3D, IDamagable
 
     [Export]
     public EnemyStats stats;
+
+    public float Speed => stats.GetStat("MovementSpeed");
 
     // added flag to avoid multiple death runs
     private bool isDead = false;
