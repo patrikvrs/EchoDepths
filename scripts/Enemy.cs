@@ -12,14 +12,26 @@ public partial class Enemy : CharacterBody3D, IDamagable
     [Export]
     public EnemyStats stats;
 
-    public float Speed => stats.GetStat("MovementSpeed");
+    private IBlackboard _blackboard;
+    private MoveToTarget _moveToTarget;
 
-    // added flag to avoid multiple death runs
     private bool isDead = false;
 
     public override void _Ready()
     {
-        agent.TargetPosition = target.GlobalTransform.Origin;
+        _blackboard = new DictionaryBlackboard();
+        _blackboard.Set("Target", target);
+        _blackboard.Set("MoveSpeed", stats.GetStat("MovementSpeed"));
+
+        _moveToTarget = new MoveToTarget
+        {
+            Agent = agent,
+            Owner = this,
+            BB = _blackboard,
+            TargetKey = "Target",
+            MoveSpeedKey = "MoveSpeed",
+            StopDistance = 1.5f
+        };
     }
 
     public override void _PhysicsProcess(double delta)
@@ -27,19 +39,10 @@ public partial class Enemy : CharacterBody3D, IDamagable
         if (target == null || agent == null) return;
         if (isDead) return;
 
-        agent.TargetPosition = target.GlobalTransform.Origin;
+        _blackboard.Set("Target", target);
+        _blackboard.Set("MoveSpeed", stats.GetStat("MovementSpeed"));
 
-        if (agent.IsNavigationFinished()) return;
-
-        Vector3 nextPathPosition = agent.GetNextPathPosition();
-        Vector3 direction = (nextPathPosition - GlobalTransform.Origin).Normalized();
-
-        Vector3 velocity = Velocity;
-        velocity.X = direction.X * Speed;
-        velocity.Z = direction.Z * Speed;
-        Velocity = velocity;
-
-        MoveAndSlide();
+        _moveToTarget.Execute();
     }
 
     public void ApplyDamage(float damage)
@@ -63,11 +66,9 @@ public partial class Enemy : CharacterBody3D, IDamagable
 
         GD.Print("Enemy died.");
 
-        // stop movement/physics
         Velocity = Vector3.Zero;
         SetPhysicsProcess(false);
 
-        // TODO: play death animation, emit a 'died' signal, drop loot, notify manager, or delay QueueFree()
         QueueFree();
     }
 }
