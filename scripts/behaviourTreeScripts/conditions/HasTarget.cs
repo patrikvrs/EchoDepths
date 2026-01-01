@@ -8,8 +8,7 @@ public partial class HasTarget : BehaviourTree
 
     public override NodeStatus Execute()
     {
-        if (Owner == null || BB == null || string.IsNullOrEmpty(TargetKey))
-            return NodeStatus.Failure;
+        if (Owner == null || BB == null || string.IsNullOrEmpty(TargetKey)) return NodeStatus.Failure;
 
         BB.TryGet<Node3D>(TargetKey, out var target);
 

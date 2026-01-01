@@ -15,10 +15,8 @@ public partial class ReactiveSequence : BehaviourTree
         foreach (var child in children)
         {
             var status = child.Execute();
-            if (status == NodeStatus.Failure)
-                return NodeStatus.Failure;
-            if (status == NodeStatus.Running)
-                return NodeStatus.Running;
+            if (status == NodeStatus.Failure) return NodeStatus.Failure;
+            if (status == NodeStatus.Running) return NodeStatus.Running;
         }
 
         return NodeStatus.Success;
