@@ -6,8 +6,7 @@ public partial class Enemy : CharacterBody3D, IDamagable
     [Export]
     public NavigationAgent3D agent;
 
-    [Export]
-    public Label3D DebugLabel;
+    [Export] public Label3D DebugLabel;
 
     [Export]
     public Node3D target;
@@ -17,6 +16,7 @@ public partial class Enemy : CharacterBody3D, IDamagable
 
     private IBlackboard _blackboard;
 
+    private BehaviourTree _root;
  
     private bool isDead = false;
     public override void _Ready()
@@ -24,17 +24,20 @@ public partial class Enemy : CharacterBody3D, IDamagable
         _blackboard = new DictionaryBlackboard();
         _blackboard.Set("Target", target);
         _blackboard.Set("MoveSpeed", stats.GetStat("MovementSpeed"));
-
+        BuildBehaviourTree();
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        if (target == null || agent == null) return;
         if (isDead) return;
 
         _blackboard.Set("Target", target);
         _blackboard.Set("MoveSpeed", stats.GetStat("MovementSpeed"));
 
+        var status = _root?.Execute() ?? BehaviourTree.NodeStatus.Failure;
+
+        if (DebugLabel != null && _root != null)
+            DebugLabel.Text = $"BT: {_root.GetType().Name} -> {status}";
     }
 
     public void ApplyDamage(float damage)
@@ -62,5 +65,19 @@ public partial class Enemy : CharacterBody3D, IDamagable
         SetPhysicsProcess(false);
 
         QueueFree();
+    }
+
+    private void BuildBehaviourTree()
+    {
+        var hasTarget = new HasTarget { Owner = this, BB = _blackboard, TargetKey = "Target" };
+        var setNav = new SetNavigationTarget { Owner = this, BB = _blackboard, TargetKey = "Target", NavAgent = agent };
+        var move = new MoveAlongPath { Owner = this, NavAgent = agent, BB = _blackboard };
+
+        var chase = new ReactiveSequence();
+        chase.AddChild(hasTarget);
+        chase.AddChild(setNav);
+        chase.AddChild(move);
+
+        _root = chase;
     }
 }
