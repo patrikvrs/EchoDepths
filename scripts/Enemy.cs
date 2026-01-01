@@ -70,11 +70,14 @@ public partial class Enemy : CharacterBody3D, IDamagable
     private void BuildBehaviourTree()
     {
         var hasTarget = new HasTarget { Owner = this, BB = _blackboard, TargetKey = "Target" };
+        _blackboard.TryGet("Target", out Node3D targetNode);
+        var isWithinDistance = new IsWithinDistance { Owner = this, Target = targetNode, Distance = 10f };
         var setNav = new SetNavigationTarget { Owner = this, BB = _blackboard, TargetKey = "Target", NavAgent = agent };
         var move = new MoveAlongPath { Owner = this, NavAgent = agent, BB = _blackboard };
 
         var chase = new ReactiveSequence();
         chase.AddChild(hasTarget);
+        chase.AddChild(isWithinDistance);
         chase.AddChild(setNav);
         chase.AddChild(move);
 
