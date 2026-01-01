@@ -7,31 +7,24 @@ public partial class Enemy : CharacterBody3D, IDamagable
     public NavigationAgent3D agent;
 
     [Export]
+    public Label3D DebugLabel;
+
+    [Export]
     public Node3D target;
 
     [Export]
     public EnemyStats stats;
 
     private IBlackboard _blackboard;
-    private MoveToTarget _moveToTarget;
 
+ 
     private bool isDead = false;
-
     public override void _Ready()
     {
         _blackboard = new DictionaryBlackboard();
         _blackboard.Set("Target", target);
         _blackboard.Set("MoveSpeed", stats.GetStat("MovementSpeed"));
 
-        _moveToTarget = new MoveToTarget
-        {
-            Agent = agent,
-            Owner = this,
-            BB = _blackboard,
-            TargetKey = "Target",
-            MoveSpeedKey = "MoveSpeed",
-            StopDistance = 1.5f
-        };
     }
 
     public override void _PhysicsProcess(double delta)
@@ -42,7 +35,6 @@ public partial class Enemy : CharacterBody3D, IDamagable
         _blackboard.Set("Target", target);
         _blackboard.Set("MoveSpeed", stats.GetStat("MovementSpeed"));
 
-        _moveToTarget.Execute();
     }
 
     public void ApplyDamage(float damage)
