@@ -17,6 +17,7 @@ public partial class MoveAlongPath : BehaviourTree
         if (Owner is not CharacterBody3D body)
             return NodeStatus.Failure;
 
+
         var nextPos = NavAgent.GetNextPathPosition();
         var dir = nextPos - body.GlobalPosition;
         dir.Y = 0f;

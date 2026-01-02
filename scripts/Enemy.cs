@@ -1,4 +1,5 @@
 using Godot;
+using System.Collections.Generic;
 
 public partial class Enemy : CharacterBody3D, IDamagable
 {
@@ -13,6 +14,14 @@ public partial class Enemy : CharacterBody3D, IDamagable
 
     [Export]
     public EnemyStats stats;
+
+    [Export]
+    public Vector3[] patrolPoints = new Vector3[] 
+    { 
+        new Vector3(-10, 0.5f, -20), 
+        new Vector3(10, 0.5f, 0),
+        new Vector3(-10, 0.5f, 0)
+    };
 
     private IBlackboard _blackboard;
 
@@ -70,16 +79,27 @@ public partial class Enemy : CharacterBody3D, IDamagable
     private void BuildBehaviourTree()
     {
         var hasTarget = new HasTarget { Owner = this, BB = _blackboard, TargetKey = "Target" };
-        var isWithinDistance = new IsWithinDistance { Owner = this, BB = _blackboard, TargetKey = "Target", Distance = 10f };
-        var setNav = new SetNavigationTarget { Owner = this, BB = _blackboard, TargetKey = "Target", NavAgent = agent };
-        var move = new MoveAlongPath { Owner = this, NavAgent = agent, BB = _blackboard };
+        var isWithinChaseDistance = new IsWithinDistance { Owner = this, BB = _blackboard, TargetKey = "Target", Distance = 15f };
+        var setNavToTarget = new SetNavigationTarget { Owner = this, BB = _blackboard, TargetKey = "Target", NavAgent = agent };
+        var moveToTarget = new MoveAlongPath { Owner = this, NavAgent = agent, BB = _blackboard };
 
-        var chase = new ReactiveSequence();
-        chase.AddChild(hasTarget);
-        chase.AddChild(isWithinDistance);
-        chase.AddChild(setNav);
-        chase.AddChild(move);
+        var chaseSequence = new ReactiveSequence();
+        chaseSequence.AddChild(hasTarget);
+        chaseSequence.AddChild(isWithinChaseDistance);
+        chaseSequence.AddChild(setNavToTarget);
+        chaseSequence.AddChild(moveToTarget);
 
-        _root = chase;
+        var setPatrolTarget = new SetPatrolTarget { Owner = this, BB = _blackboard, NavAgent = agent, PatrolPoints = new List<Vector3>(patrolPoints) };
+        var moveAlongPatrol = new MoveAlongPath { Owner = this, NavAgent = agent, BB = _blackboard };
+        
+        var patrolSequence = new Sequence();
+        patrolSequence.AddChild(setPatrolTarget);
+        patrolSequence.AddChild(moveAlongPatrol);
+
+        var root = new ReactiveSelector();
+        root.AddChild(chaseSequence);
+        root.AddChild(patrolSequence);
+
+        _root = root;
     }
 }

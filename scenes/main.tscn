@@ -46,7 +46,7 @@ use_collision = true
 size = Vector3(8.2048645, 1, 5.9501953)
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("DebugLabel", "target") instance=ExtResource("2_0wfyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.5, -25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.5, -20)
 DebugLabel = NodePath("DebugStatus")
 target = NodePath("../Player")
 
