@@ -90,7 +90,6 @@ public partial class Enemy : CharacterBody3D, IDamagable
         var chaseSequence = new ReactiveSequence();
         chaseSequence.AddChild(hasTarget);
         chaseSequence.AddChild(isWithinChaseDistance);
-        chaseSequence.AddChild(invertAttackDistance);
         chaseSequence.AddChild(setNavToTarget);
         chaseSequence.AddChild(moveToTarget);
 
