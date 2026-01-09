@@ -42,6 +42,7 @@ public partial class Enemy : CharacterBody3D, IDamagable
 
         _blackboard.Set("Target", target);
         _blackboard.Set("MoveSpeed", stats.GetStat("MovementSpeed"));
+        _blackboard.Set("AttackRange", stats.GetStat("AttackRange"));
 
         var status = _root?.Execute() ?? BehaviourTree.NodeStatus.Failure;
 
@@ -80,12 +81,16 @@ public partial class Enemy : CharacterBody3D, IDamagable
     {
         var hasTarget = new HasTarget { Owner = this, BB = _blackboard, TargetKey = "Target" };
         var isWithinChaseDistance = new IsWithinDistance { Owner = this, BB = _blackboard, TargetKey = "Target", Distance = 15f };
+        var isNotWithinAttackDistance = new IsWithinDistance { Owner = this, BB = _blackboard, TargetKey = "Target", Distance = _blackboard.TryGet("AttackRange", out float range) ? range : 2f };
+        var invertAttackDistance = new Inverter();
+        invertAttackDistance.AddChild(isNotWithinAttackDistance);
         var setNavToTarget = new SetNavigationTarget { Owner = this, BB = _blackboard, TargetKey = "Target", NavAgent = agent };
         var moveToTarget = new MoveAlongPath { Owner = this, NavAgent = agent, BB = _blackboard };
 
         var chaseSequence = new ReactiveSequence();
         chaseSequence.AddChild(hasTarget);
         chaseSequence.AddChild(isWithinChaseDistance);
+        chaseSequence.AddChild(invertAttackDistance);
         chaseSequence.AddChild(setNavToTarget);
         chaseSequence.AddChild(moveToTarget);
 
