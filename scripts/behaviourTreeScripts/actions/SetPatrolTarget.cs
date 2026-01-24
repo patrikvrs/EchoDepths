@@ -14,7 +14,7 @@ public partial class SetPatrolTarget : BehaviourTree
         if (Owner == null || BB == null || NavAgent == null || PatrolPoints == null || PatrolPoints.Count == 0)
             return NodeStatus.Failure;
 
-        if (!BB.TryGet<int>(CurrentPatrolIndexKey, out var currentIndex))
+        if (!BB.TryGet(CurrentPatrolIndexKey, out int currentIndex))
         {
             currentIndex = 0;
             BB.Set(CurrentPatrolIndexKey, currentIndex);

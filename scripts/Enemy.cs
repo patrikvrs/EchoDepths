@@ -87,11 +87,18 @@ public partial class Enemy : CharacterBody3D, IDamagable
         var setNavToTarget = new SetNavigationTarget { Owner = this, BB = _blackboard, TargetKey = "Target", NavAgent = agent };
         var moveToTarget = new MoveAlongPath { Owner = this, NavAgent = agent, BB = _blackboard };
 
+        var attackTarget = new AttackTarget { Owner = this, BB = _blackboard };
+
+        var attackSequence = new Sequence();
+        attackSequence.AddChild(hasTarget);
+        attackSequence.AddChild(attackTarget);
+
         var chaseSequence = new ReactiveSequence();
         chaseSequence.AddChild(hasTarget);
         chaseSequence.AddChild(isWithinChaseDistance);
         chaseSequence.AddChild(setNavToTarget);
         chaseSequence.AddChild(moveToTarget);
+        chaseSequence.AddChild(attackTarget);
 
         var setPatrolTarget = new SetPatrolTarget { Owner = this, BB = _blackboard, NavAgent = agent, PatrolPoints = new List<Vector3>(patrolPoints) };
         var moveAlongPatrol = new MoveAlongPath { Owner = this, NavAgent = agent, BB = _blackboard };
@@ -99,6 +106,7 @@ public partial class Enemy : CharacterBody3D, IDamagable
         var patrolSequence = new Sequence();
         patrolSequence.AddChild(setPatrolTarget);
         patrolSequence.AddChild(moveAlongPatrol);
+        //patrolSequence.AddChild(WaitAction);
 
         var root = new ReactiveSelector();
         root.AddChild(chaseSequence);
