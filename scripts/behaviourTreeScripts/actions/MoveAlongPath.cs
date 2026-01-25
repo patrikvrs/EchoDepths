@@ -8,6 +8,9 @@ public partial class MoveAlongPath : BehaviourTree
 
     public override NodeStatus Execute(double delta)
     {
+
+        BB.Set("LastActionName", "Moving Along Path");
+
         if (Owner == null || NavAgent == null || BB == null)
             return NodeStatus.Failure;
 

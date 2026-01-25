@@ -9,6 +9,8 @@ public partial class SetNavigationTarget : BehaviourTree
 
     public override NodeStatus Execute(double delta)
     {
+        BB.Set("LastActionName", "Setting Navigation Target");
+
         if (Owner == null || BB == null || string.IsNullOrEmpty(TargetKey) || NavAgent == null)
             return NodeStatus.Failure;
 

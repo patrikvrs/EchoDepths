@@ -41,8 +41,8 @@ public partial class EnemyAI : BehaviourTree
 
         var status = _root.Execute(delta);
 
-        if (_debugLabel != null)
-            _debugLabel.Text = $"BT: {_root.GetType().Name} -> {status}";
+        if (_debugLabel != null && (_blackboard.TryGet("LastActionName", out string lastActionName) ? lastActionName : "None") != "")
+            _debugLabel.Text = $"BT: {lastActionName} -> {status}";
     }
 
     public void Stop()
@@ -72,6 +72,8 @@ public partial class EnemyAI : BehaviourTree
         var setNavToTarget = new SetNavigationTarget { Owner = _host, BB = _blackboard, TargetKey = "Target", NavAgent = _agent };
         var moveToTarget = new MoveAlongPath { Owner = _host, NavAgent = _agent, BB = _blackboard };
 
+        var isWithinAttackRange = new IsWithinDistance{Owner = _host, BB = _blackboard, TargetKey = "Target", Distance = _blackboard.TryGet("AttackRange", out float attackRange) ? attackRange + 5f : 0f };
+
         var attackTarget = new AttackTarget { Owner = _host, BB = _blackboard };
 
         var chaseSequence = new ReactiveSequence();
@@ -79,15 +81,18 @@ public partial class EnemyAI : BehaviourTree
         chaseSequence.AddChild(isWithinChaseDistance);
         chaseSequence.AddChild(setNavToTarget);
         chaseSequence.AddChild(moveToTarget);
+        chaseSequence.AddChild(isWithinAttackRange);
         chaseSequence.AddChild(attackTarget);
 
         var patrolPoints = new List<Vector3>(_patrolPoints);
         var setPatrolTarget = new SetPatrolTarget { Owner = _host, BB = _blackboard, NavAgent = _agent, PatrolPoints = patrolPoints };
         var moveAlongPatrol = new MoveAlongPath { Owner = _host, NavAgent = _agent, BB = _blackboard };
+        var waitBetweenPoints = new Wait { WaitTime = 2.0f , BB = _blackboard };
 
         var patrolSequence = new Sequence();
         patrolSequence.AddChild(setPatrolTarget);
         patrolSequence.AddChild(moveAlongPatrol);
+        patrolSequence.AddChild(waitBetweenPoints);
 
         var root = new ReactiveSelector();
         root.AddChild(chaseSequence);

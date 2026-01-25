@@ -48,14 +48,12 @@ public partial class Enemy : CharacterBody3D, IDamagable
 
     public override void _PhysicsProcess(double delta)
     {
-        if (isDead) return;
-
         _ai?.Tick(delta);
     }
 
     public void ApplyDamage(float damage)
     {
-        if (stats != null && !isDead)
+        if (stats != null)
         {
             stats.ModifyStat("CurrentHealth", -damage);
             float current = stats.GetStat("CurrentHealth");
