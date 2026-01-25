@@ -38,4 +38,13 @@ public partial class Sequence : BehaviourTree
         _currentIndex = 0;
         return NodeStatus.Success;
     }
+    
+    public override void Reset()
+    {
+        _currentIndex = 0;
+        foreach (var child in children)
+        {
+            child.Reset();
+        }
+    }
 }

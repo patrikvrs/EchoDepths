@@ -12,16 +12,38 @@ public partial class ReactiveSelector : BehaviourTree
 
     public override NodeStatus Execute(double delta)
     {
+        if (_children.Count == 0) return NodeStatus.Failure;
+
+        bool isActive = false;
+        NodeStatus finalStatus = NodeStatus.Failure;
+
         foreach (var child in _children)
         {
-            var status = child.Execute(delta);
-            
-            if (status == NodeStatus.Success || status == NodeStatus.Running)
+            if (!isActive)
             {
-                return status;
+                var status = child.Execute(delta);
+
+                if (status == NodeStatus.Success || status == NodeStatus.Running)
+                {
+                    finalStatus = status;
+                    isActive = true;
+
+                }
+            }
+            else
+            {
+                child.Reset();
             }
         }
-        
-        return NodeStatus.Failure;
+
+        return finalStatus;
+    }
+
+    public override void Reset()
+    {
+        foreach (var child in _children)
+        {
+            child.Reset();
+        }
     }
 }

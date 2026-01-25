@@ -36,4 +36,13 @@ public partial class Selector : BehaviourTree
         _currentIndex = 0;
         return NodeStatus.Failure;
     }
+
+    public override void Reset()
+    {
+        _currentIndex = 0;
+        foreach (var child in children)
+        {
+            child.Reset();
+        }
+    }
 }
