@@ -6,7 +6,7 @@ public partial class MoveAlongPath : BehaviourTree
     public NavigationAgent3D NavAgent;
     public IBlackboard BB;
 
-    public override NodeStatus Execute()
+    public override NodeStatus Execute(double delta)
     {
         if (Owner == null || NavAgent == null || BB == null)
             return NodeStatus.Failure;

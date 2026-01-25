@@ -7,7 +7,7 @@ public partial class IsWithinDistance : BehaviourTree
     public string TargetKey;
     public float Distance;
 
-    public override NodeStatus Execute()
+    public override NodeStatus Execute(double delta)
     {
         if (Owner == null || BB == null || string.IsNullOrEmpty(TargetKey)) return NodeStatus.Failure;
 

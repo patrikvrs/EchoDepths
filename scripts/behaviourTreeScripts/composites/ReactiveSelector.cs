@@ -10,11 +10,11 @@ public partial class ReactiveSelector : BehaviourTree
         _children.Add(child);
     }
 
-    public override NodeStatus Execute()
+    public override NodeStatus Execute(double delta)
     {
         foreach (var child in _children)
         {
-            var status = child.Execute();
+            var status = child.Execute(delta);
             
             if (status == NodeStatus.Success || status == NodeStatus.Running)
             {

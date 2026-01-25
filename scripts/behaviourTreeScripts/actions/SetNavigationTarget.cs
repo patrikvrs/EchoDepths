@@ -7,7 +7,7 @@ public partial class SetNavigationTarget : BehaviourTree
     public string TargetKey;
     public NavigationAgent3D NavAgent;
 
-    public override NodeStatus Execute()
+    public override NodeStatus Execute(double delta)
     {
         if (Owner == null || BB == null || string.IsNullOrEmpty(TargetKey) || NavAgent == null)
             return NodeStatus.Failure;

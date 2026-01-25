@@ -9,7 +9,7 @@ public partial class SetPatrolTarget : BehaviourTree
     public List<Vector3> PatrolPoints;
     public string CurrentPatrolIndexKey = "CurrentPatrolIndex";
 
-    public override NodeStatus Execute()
+    public override NodeStatus Execute(double delta)
     {
         if (Owner == null || BB == null || NavAgent == null || PatrolPoints == null || PatrolPoints.Count == 0)
             return NodeStatus.Failure;

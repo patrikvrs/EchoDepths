@@ -6,7 +6,7 @@ public partial class HasTarget : BehaviourTree
     public IBlackboard BB;
     public string TargetKey;
 
-    public override NodeStatus Execute()
+    public override NodeStatus Execute(double delta)
     {
         if (Owner == null || BB == null || string.IsNullOrEmpty(TargetKey)) return NodeStatus.Failure;
 

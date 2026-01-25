@@ -9,7 +9,7 @@ public partial class BehaviourTree : Node
         Running
     }
 
-    public virtual NodeStatus Execute()
+    public virtual NodeStatus Execute(double delta)
     {
         return NodeStatus.Failure;
     }

@@ -11,7 +11,7 @@ public partial class Limiter : BehaviourTree
         MaxExecutions = maxExecutions;
     }
 
-    public override NodeStatus Execute()
+    public override NodeStatus Execute(double delta)
     {
         if (Child == null)
             return NodeStatus.Failure;
@@ -19,7 +19,7 @@ public partial class Limiter : BehaviourTree
         if (_executionCount >= MaxExecutions)
             return NodeStatus.Failure;
 
-        NodeStatus status = Child.Execute();
+        NodeStatus status = Child.Execute(delta);
 
         if (status == NodeStatus.Success || status == NodeStatus.Failure)
         {

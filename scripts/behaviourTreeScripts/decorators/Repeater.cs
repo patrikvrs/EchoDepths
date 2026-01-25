@@ -4,12 +4,12 @@ public partial class Repeater : BehaviourTree
 {
     public BehaviourTree Child;
 
-    public override NodeStatus Execute()
+    public override NodeStatus Execute(double delta)
     {
         if (Child == null)
             return NodeStatus.Failure;
 
-        NodeStatus status = Child.Execute();
+        NodeStatus status = Child.Execute(delta);
 
         if (status == NodeStatus.Success || status == NodeStatus.Failure)
         {

@@ -11,13 +11,13 @@ public partial class Selector : BehaviourTree
         children.Add(child);
     }
 
-    public override NodeStatus Execute()
+    public override NodeStatus Execute(double delta)
     {
         if (children.Count == 0) return NodeStatus.Failure;
 
         while (_currentIndex < children.Count)
         {
-            var status = children[_currentIndex].Execute();
+            var status = children[_currentIndex].Execute(delta);
 
             if (status == NodeStatus.Success)
             {

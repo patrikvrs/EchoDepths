@@ -11,14 +11,14 @@ public partial class Sequence : BehaviourTree
         children.Add(child);
     }
 
-    public override NodeStatus Execute()
+    public override NodeStatus Execute(double delta)
     {
         if (children.Count == 0)
             return NodeStatus.Success;
 
         while (_currentIndex < children.Count)
         {
-            var status = children[_currentIndex].Execute();
+            var status = children[_currentIndex].Execute(delta);
 
             if (status == NodeStatus.Success)
             {

@@ -1,5 +1,4 @@
 using Godot;
-using System.Collections.Generic;
 
 public partial class Enemy : CharacterBody3D, IDamagable
 {
@@ -23,31 +22,35 @@ public partial class Enemy : CharacterBody3D, IDamagable
         new Vector3(-10, 0.5f, 0)
     };
 
-    private IBlackboard _blackboard;
-
-    private BehaviourTree _root;
+    private EnemyAI _ai;
  
     private bool isDead = false;
     public override void _Ready()
     {
-        _blackboard = new DictionaryBlackboard();
-        _blackboard.Set("Target", target);
-        _blackboard.Set("MoveSpeed", stats.GetStat("MovementSpeed"));
-        BuildBehaviourTree();
+        foreach (Node child in GetChildren())
+        {
+            if (child is EnemyAI existing)
+            {
+                _ai = existing;
+                break;
+            }
+        }
+
+        if (_ai == null)
+        {
+            _ai = new EnemyAI();
+            _ai.Name = nameof(EnemyAI);
+            AddChild(_ai);
+        }
+
+        _ai.Setup(this, agent, target, stats, patrolPoints, DebugLabel);
     }
 
     public override void _PhysicsProcess(double delta)
     {
         if (isDead) return;
 
-        _blackboard.Set("Target", target);
-        _blackboard.Set("MoveSpeed", stats.GetStat("MovementSpeed"));
-        _blackboard.Set("AttackRange", stats.GetStat("AttackRange"));
-
-        var status = _root?.Execute() ?? BehaviourTree.NodeStatus.Failure;
-
-        if (DebugLabel != null && _root != null)
-            DebugLabel.Text = $"BT: {_root.GetType().Name} -> {status}";
+        _ai?.Tick(delta);
     }
 
     public void ApplyDamage(float damage)
@@ -71,47 +74,10 @@ public partial class Enemy : CharacterBody3D, IDamagable
 
         GD.Print("Enemy died.");
 
+        _ai?.Stop();
         Velocity = Vector3.Zero;
         SetPhysicsProcess(false);
 
         QueueFree();
-    }
-
-    private void BuildBehaviourTree()
-    {
-        var hasTarget = new HasTarget { Owner = this, BB = _blackboard, TargetKey = "Target" };
-        var isWithinChaseDistance = new IsWithinDistance { Owner = this, BB = _blackboard, TargetKey = "Target", Distance = 15f };
-        var isNotWithinAttackDistance = new IsWithinDistance { Owner = this, BB = _blackboard, TargetKey = "Target", Distance = _blackboard.TryGet("AttackRange", out float range) ? range : 2f };
-        var invertAttackDistance = new Inverter();
-        invertAttackDistance.AddChild(isNotWithinAttackDistance);
-        var setNavToTarget = new SetNavigationTarget { Owner = this, BB = _blackboard, TargetKey = "Target", NavAgent = agent };
-        var moveToTarget = new MoveAlongPath { Owner = this, NavAgent = agent, BB = _blackboard };
-
-        var attackTarget = new AttackTarget { Owner = this, BB = _blackboard };
-
-        var attackSequence = new Sequence();
-        attackSequence.AddChild(hasTarget);
-        attackSequence.AddChild(attackTarget);
-
-        var chaseSequence = new ReactiveSequence();
-        chaseSequence.AddChild(hasTarget);
-        chaseSequence.AddChild(isWithinChaseDistance);
-        chaseSequence.AddChild(setNavToTarget);
-        chaseSequence.AddChild(moveToTarget);
-        chaseSequence.AddChild(attackTarget);
-
-        var setPatrolTarget = new SetPatrolTarget { Owner = this, BB = _blackboard, NavAgent = agent, PatrolPoints = new List<Vector3>(patrolPoints) };
-        var moveAlongPatrol = new MoveAlongPath { Owner = this, NavAgent = agent, BB = _blackboard };
-        
-        var patrolSequence = new Sequence();
-        patrolSequence.AddChild(setPatrolTarget);
-        patrolSequence.AddChild(moveAlongPatrol);
-        //patrolSequence.AddChild(WaitAction);
-
-        var root = new ReactiveSelector();
-        root.AddChild(chaseSequence);
-        root.AddChild(patrolSequence);
-
-        _root = root;
     }
 }
