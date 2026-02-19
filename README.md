@@ -7,3 +7,9 @@
 - Utility AI
 
 The list of AI models ***may*** be expanded in the future.
+
+## License and Academic Note
+
+This project was developed as a Bachelor's Thesis at J. Selye University. All rights regarding the academic submission belong to the University, while the source code is licensed under the **MIT License**. 
+
+See the [LICENSE](LICENSE) file for the full license text.
