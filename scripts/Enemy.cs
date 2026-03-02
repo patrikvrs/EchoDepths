@@ -2,7 +2,7 @@ using Godot;
 
 public partial class Enemy : CharacterBody3D, IDamagable
 {
-    
+
     [Export]
     public NavigationAgent3D agent;
 
@@ -15,15 +15,15 @@ public partial class Enemy : CharacterBody3D, IDamagable
     public EnemyStats stats;
 
     [Export]
-    public Vector3[] patrolPoints = new Vector3[] 
-    { 
-        new Vector3(-10, 0.5f, -20), 
+    public Vector3[] patrolPoints = new Vector3[]
+    {
+        new Vector3(-10, 0.5f, -20),
         new Vector3(10, 0.5f, 0),
         new Vector3(-10, 0.5f, 0)
     };
 
     private EnemyAI _ai;
- 
+
     private bool isDead = false;
     public override void _Ready()
     {

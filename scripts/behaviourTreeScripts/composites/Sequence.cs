@@ -22,13 +22,13 @@ public partial class Sequence : BehaviourTree
 
             if (status == NodeStatus.Success)
             {
-                _currentIndex++; 
+                _currentIndex++;
                 continue;
             }
 
             if (status == NodeStatus.Running)
             {
-                return NodeStatus.Running; 
+                return NodeStatus.Running;
             }
 
             _currentIndex = 0;
@@ -38,7 +38,7 @@ public partial class Sequence : BehaviourTree
         _currentIndex = 0;
         return NodeStatus.Success;
     }
-    
+
     public override void Reset()
     {
         _currentIndex = 0;

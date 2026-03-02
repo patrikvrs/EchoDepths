@@ -16,6 +16,6 @@ public partial class BehaviourTree : Node
 
     public virtual void Reset()
     {
-       
+
     }
 }

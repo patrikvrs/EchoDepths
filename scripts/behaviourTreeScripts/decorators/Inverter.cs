@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Inverter: BehaviourTree
+public partial class Inverter : BehaviourTree
 {
     public BehaviourTree Child;
 

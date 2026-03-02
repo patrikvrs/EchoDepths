@@ -61,7 +61,7 @@ public partial class Player : CharacterBody3D, IDamagable
         if (newVelocity.X != 0 || newVelocity.Z != 0)
         {
             LookAt(GlobalPosition + new Vector3(newVelocity.X, 0, newVelocity.Z), Vector3.Up);
-        }	
+        }
 
         Velocity = newVelocity;
         MoveAndSlide();

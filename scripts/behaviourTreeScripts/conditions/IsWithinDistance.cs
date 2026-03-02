@@ -3,7 +3,7 @@ using Godot;
 public partial class IsWithinDistance : BehaviourTree
 {
     public new Node3D Owner;
-     public IBlackboard BB;
+    public IBlackboard BB;
     public string TargetKey;
     public float Distance;
 
@@ -17,4 +17,4 @@ public partial class IsWithinDistance : BehaviourTree
 
         return currentDistance <= Distance ? NodeStatus.Success : NodeStatus.Failure;
     }
-}   
+}
