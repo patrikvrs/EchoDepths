@@ -69,8 +69,15 @@ public partial class EnemyAI : BehaviourTree
         chaseSequence.AddChild(isWithinChaseDistance);
         chaseSequence.AddChild(setNavToTarget);
         chaseSequence.AddChild(moveToTarget);
-        chaseSequence.AddChild(isWithinAttackRange);
-        chaseSequence.AddChild(attackTarget);
+
+        var attackSequence = new ReactiveSequence();
+        attackSequence.AddChild(hasTarget);
+        attackSequence.AddChild(isWithinAttackRange);
+        attackSequence.AddChild(attackTarget);
+
+        var engageTarget = new ReactiveSelector();
+        engageTarget.AddChild(attackSequence);
+        engageTarget.AddChild(chaseSequence);
 
         var patrolPoints = new List<Vector3>(_patrolPoints);
         var setPatrolTarget = new SetPatrolTarget { Owner = _host, BB = _blackboard, NavAgent = _agent, PatrolPoints = patrolPoints };
@@ -83,7 +90,7 @@ public partial class EnemyAI : BehaviourTree
         patrolSequence.AddChild(waitBetweenPoints);
 
         var root = new ReactiveSelector();
-        root.AddChild(chaseSequence);
+        root.AddChild(engageTarget);
         root.AddChild(patrolSequence);
 
         _root = root;

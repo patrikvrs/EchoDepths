@@ -13,7 +13,7 @@
             "request": "launch",
             "mode": "executable",
             "preLaunchTask": "build",
-            "executable": "C:\\Users\\patri\\Documents\\Godot\\Godot_v4.5-stable_mono_win64.exe",
+            "executable": "C:\\Users\\patri\\Documents\\Godot\\Godot_v4.5.1-stable_mono_win64.exe",
             // See which arguments are available here:
             // https://docs.godotengine.org/en/stable/getting_started/editor/command_line_tutorial.html
             "executableArguments": [
@@ -27,7 +27,7 @@
             "request": "launch",
             "mode": "executable",
             "preLaunchTask": "build",
-            "executable": "C:\\Users\\patri\\Documents\\Godot\\Godot_v4.5-stable_mono_win64.exe",
+            "executable": "C:\\Users\\patri\\Documents\\Godot\\Godot_v4.5.1-stable_mono_win64.exe",
             // See which arguments are available here:
             // https://docs.godotengine.org/en/stable/getting_started/editor/command_line_tutorial.html
             "executableArguments": [

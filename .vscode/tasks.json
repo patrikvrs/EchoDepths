@@ -3,7 +3,7 @@
     "tasks": [
         {
             "label": "build",
-            "command": "C:\\Users\\patri\\Documents\\Godot\\Godot_v4.5-stable_mono_win64.exe",
+            "command": "C:\\Users\\patri\\Documents\\Godot\\Godot_v4.5.1-stable_mono_win64.exe",
             "type": "process",
             "args": [
                 "--build-solutions",
