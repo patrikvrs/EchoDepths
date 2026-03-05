@@ -11,7 +11,7 @@ public partial class SetPatrolTarget : BehaviourTree
 
     public override NodeStatus Execute(double delta)
     {
-        BB.Set("LastActionName", "Setting Patrol Target");
+        BB?.Set("LastActionName", "Setting Patrol Target");
 
         if (Owner == null || BB == null || NavAgent == null || PatrolPoints == null || PatrolPoints.Count == 0)
             return NodeStatus.Failure;

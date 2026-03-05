@@ -4,7 +4,18 @@ using System.Collections.Generic;
 public partial class CharacterBase : Node
 {
     public int Level { get; protected set; } = 1;
-    protected Dictionary<string, float> Stats = new Dictionary<string, float>();
+
+    public enum StatsID
+    {
+        MaxHealth,
+        CurrentHealth,
+        AttackDamage,
+        AttackRange,
+        AttackSpeed,
+        MovementSpeed
+    }
+
+    private Dictionary<StatsID, float> Stats = new Dictionary<StatsID, float>();
 
     public override void _Ready()
     {
@@ -15,33 +26,29 @@ public partial class CharacterBase : Node
     {
         GD.Print("Warning: CharacterBase InitStats not overridden in derived class. Using default stats.");
 
-        Stats["MaxHealth"] = 100 + (Level - 1) * 20;
-        Stats["CurrentHealth"] = Stats["MaxHealth"];
-        Stats["AttackDamage"] = 10 + (Level - 1) * 2;
-        Stats["AttackRange"] = 1.5f;
-        Stats["AttackSpeed"] = 1.0f;
-        Stats["MovementSpeed"] = 5.0f;
+        Stats[StatsID.MaxHealth] = 100 + (Level - 1) * 20;
+        Stats[StatsID.CurrentHealth] = Stats[StatsID.MaxHealth];
+        Stats[StatsID.AttackDamage] = 10 + (Level - 1) * 2;
+        Stats[StatsID.AttackRange] = 1.5f;
+        Stats[StatsID.AttackSpeed] = 1.0f;
+        Stats[StatsID.MovementSpeed] = 5.0f;
     }
 
-    public float GetStat(string statName)
+    public float GetStat(StatsID statName)
     {
-        return Stats.ContainsKey(statName) ? Stats[statName] : 0f;
+        return Stats.TryGetValue(statName, out float value) ? value : 0f;
     }
 
-    public void SetStat(string statName, float value)
+    public void SetStat(StatsID statName, float value)
     {
         Stats[statName] = value;
     }
 
-    public void ModifyStat(string statName, float delta)
+    public void ModifyStat(StatsID statName, float delta)
     {
-        if (Stats.ContainsKey(statName))
+        if (Stats.TryGetValue(statName, out float value))
         {
-            Stats[statName] += delta;
-        }
-        else
-        {
-            GD.PrintErr($"Stat '{statName}' does not exist.");
+            Stats[statName] = value + delta;
         }
     }
 }

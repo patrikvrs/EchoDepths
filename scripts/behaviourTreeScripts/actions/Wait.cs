@@ -8,7 +8,7 @@ public partial class Wait : BehaviourTree
 
     public override NodeStatus Execute(double delta)
     {
-        BB.Set("LastActionName", "Waiting");
+        BB?.Set("LastActionName", "Waiting");
 
         _elapsedTime += (float)delta;
 

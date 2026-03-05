@@ -13,6 +13,8 @@ public partial class IsWithinDistance : BehaviourTree
 
         BB.TryGet<Node3D>(TargetKey, out var target);
 
+        if (target == null) return NodeStatus.Failure;
+
         float currentDistance = Owner.GlobalPosition.DistanceTo(target.GlobalPosition);
 
         return currentDistance <= Distance ? NodeStatus.Success : NodeStatus.Failure;

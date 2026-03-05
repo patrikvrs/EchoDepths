@@ -55,10 +55,9 @@ public partial class Enemy : CharacterBody3D, IDamagable
     {
         if (stats != null)
         {
-            stats.ModifyStat("CurrentHealth", -damage);
-            float current = stats.GetStat("CurrentHealth");
-            GD.Print($"Enemy took {damage} damage. Current Health: {current}");
-            if (current <= 0f)
+            stats.ModifyStat(EnemyStats.StatsID.CurrentHealth, -damage);
+            GD.Print($"Enemy took {damage} damage. Current Health: {stats.GetStat(EnemyStats.StatsID.CurrentHealth)}/{stats.GetStat(EnemyStats.StatsID.MaxHealth)}");
+            if (stats.GetStat(EnemyStats.StatsID.CurrentHealth) <= 0f)
             {
                 Die();
             }

@@ -6,10 +6,12 @@ public partial class MoveAlongPath : BehaviourTree
     public NavigationAgent3D NavAgent;
     public IBlackboard BB;
 
+    public float movementSpeed;
+
     public override NodeStatus Execute(double delta)
     {
 
-        BB.Set("LastActionName", "Moving Along Path");
+        BB?.Set("LastActionName", "Moving Along Path");
 
         if (Owner == null || NavAgent == null || BB == null)
             return NodeStatus.Failure;
@@ -28,8 +30,7 @@ public partial class MoveAlongPath : BehaviourTree
         if (dir.Length() < 0.1f)
             return NodeStatus.Running;
 
-        if (BB.TryGet<float>("MoveSpeed", out var speed))
-            body.Velocity = dir.Normalized() * speed;
+        body.Velocity = dir.Normalized() * movementSpeed;
 
         body.LookAt(body.GlobalPosition + dir, Vector3.Up);
         body.MoveAndSlide();

@@ -4,14 +4,13 @@ public partial class AttackTarget : BehaviourTree
 {
     public new Node3D Owner;
     public IBlackboard BB;
+    public float AttackDamage = 0f;
     public override NodeStatus Execute(double delta)
     {
-        BB.Set("LastActionName", "Attacking Target");
+        BB?.Set("LastActionName", "Attacking Target");
 
         if (Owner == null || BB == null)
             return NodeStatus.Failure;
-
-        float _attackDamage = BB.TryGet("AttackDamage", out float attackDamage) ? attackDamage : 0f;
 
         if (!BB.TryGet("Target", out Node3D target) || target == null)
             return NodeStatus.Failure;
@@ -19,7 +18,7 @@ public partial class AttackTarget : BehaviourTree
         if (target is not IDamagable damageable)
             return NodeStatus.Failure;
 
-        damageable.ApplyDamage(_attackDamage);
+        damageable.ApplyDamage(AttackDamage);
         return NodeStatus.Success;
     }
 }

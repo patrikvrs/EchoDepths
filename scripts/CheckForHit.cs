@@ -1,8 +1,8 @@
 using Godot;
-//using Godot.Collections;
 
 public partial class CheckForHit : Area3D
 {
+    public float DamageAmount { get; set; }
     public override void _Ready()
     {
         Monitoring = true;
@@ -22,8 +22,7 @@ public partial class CheckForHit : Area3D
                 GD.Print("Hit detected on: " + body.Name);
                 if (body is IDamagable damagable)
                 {
-                    float damageAmount = 10f;
-                    damagable.ApplyDamage(damageAmount);
+                    damagable.ApplyDamage(DamageAmount);
                 }
             }
         }

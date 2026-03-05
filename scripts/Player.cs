@@ -8,7 +8,7 @@ public partial class Player : CharacterBody3D, IDamagable
     [Export]
     public PackedScene MeleeAttackArea;
 
-    public float Speed => playerStats.GetStat("MovementSpeed");
+    public float Speed => playerStats.GetStat(PlayerStats.StatsID.MovementSpeed);
 
     private const float JumpVelocity = 4.5f;
     private float Deceleration = 16f;
@@ -69,9 +69,9 @@ public partial class Player : CharacterBody3D, IDamagable
 
     public void ApplyDamage(float damage)
     {
-        playerStats.ModifyStat("CurrentHealth", -damage);
-        GD.Print($"Player took {damage} damage. Current Health: {playerStats.GetStat("CurrentHealth")}/{playerStats.GetStat("MaxHealth")}");
-        if (playerStats.GetStat("CurrentHealth") <= 0)
+        playerStats.ModifyStat(PlayerStats.StatsID.CurrentHealth, -damage);
+        GD.Print($"Player took {damage} damage. Current Health: {playerStats.GetStat(PlayerStats.StatsID.CurrentHealth)}/{playerStats.GetStat(PlayerStats.StatsID.MaxHealth)}");
+        if (playerStats.GetStat(PlayerStats.StatsID.CurrentHealth) <= 0)
         {
             GD.Print("Player has been defeated!");
         }
@@ -88,10 +88,11 @@ public partial class Player : CharacterBody3D, IDamagable
 
         attackDir = attackDir.Normalized();
 
-        Area3D meleeAreaInstance = MeleeAttackArea.Instantiate<Area3D>();
+        CheckForHit meleeAreaInstance = MeleeAttackArea.Instantiate<CheckForHit>();
+        meleeAreaInstance.DamageAmount = playerStats.GetStat(PlayerStats.StatsID.AttackDamage);
         AddChild(meleeAreaInstance);
 
-        float attackRange = playerStats.GetStat("AttackRange");
+        float attackRange = playerStats.GetStat(PlayerStats.StatsID.AttackRange);
         meleeAreaInstance.Scale = new Vector3(1, meleeAreaInstance.Scale.Y, attackRange);
 
         Vector3 areaPos = GlobalPosition + attackDir * (attackRange / 2);
