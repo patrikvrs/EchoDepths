@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public partial class EnemyAI : BehaviourTree
+public partial class EnemyAI_BT : BehaviourTree
 {
     private Enemy _host;
     private NavigationAgent3D _agent;
@@ -23,7 +23,7 @@ public partial class EnemyAI : BehaviourTree
         _patrolPoints = patrolPoints ?? Array.Empty<Vector3>();
         _debugLabel = debugLabel;
 
-        _blackboard = new DictionaryBlackboard();
+        _blackboard = new Blackboard();
         _blackboard.Set("Target", _target);
 
         BuildBehaviourTree();
@@ -58,11 +58,11 @@ public partial class EnemyAI : BehaviourTree
         var isWithinChaseDistance = new IsWithinDistance { Owner = _host, BB = _blackboard, TargetKey = "Target", Distance = 15f };
 
         var setNavToTarget = new SetNavigationTarget { Owner = _host, BB = _blackboard, TargetKey = "Target", NavAgent = _agent };
-        var moveToTarget = new MoveAlongPath { Owner = _host, movementSpeed = _stats.GetStat(EnemyStats.StatsID.MovementSpeed), NavAgent = _agent, BB = _blackboard };
+        var moveToTarget = new MoveAlongPath { Owner = _host, movementSpeed = _stats.GetStat(CharacterBase.StatsID.MovementSpeed), NavAgent = _agent, BB = _blackboard };
 
-        var isWithinAttackRange = new IsWithinDistance { Owner = _host, BB = _blackboard, TargetKey = "Target", Distance = _stats.GetStat(EnemyStats.StatsID.AttackRange) };
+        var isWithinAttackRange = new IsWithinDistance { Owner = _host, BB = _blackboard, TargetKey = "Target", Distance = _stats.GetStat(CharacterBase.StatsID.AttackRange) };
 
-        var attackTarget = new AttackTarget { Owner = _host, BB = _blackboard, AttackDamage = _stats.GetStat(EnemyStats.StatsID.AttackDamage) };
+        var attackTarget = new AttackTarget { Owner = _host, BB = _blackboard, AttackDamage = _stats.GetStat(CharacterBase.StatsID.AttackDamage) };
 
         var chaseSequence = new ReactiveSequence();
         chaseSequence.AddChild(hasTarget);
@@ -81,7 +81,7 @@ public partial class EnemyAI : BehaviourTree
 
         var patrolPoints = new List<Vector3>(_patrolPoints);
         var setPatrolTarget = new SetPatrolTarget { Owner = _host, BB = _blackboard, NavAgent = _agent, PatrolPoints = patrolPoints };
-        var moveAlongPatrol = new MoveAlongPath { Owner = _host, movementSpeed = _stats.GetStat(EnemyStats.StatsID.MovementSpeed), NavAgent = _agent, BB = _blackboard };
+        var moveAlongPatrol = new MoveAlongPath { Owner = _host, movementSpeed = _stats.GetStat(CharacterBase.StatsID.MovementSpeed), NavAgent = _agent, BB = _blackboard };
         var waitBetweenPoints = new Wait { WaitTime = 2.0f, BB = _blackboard };
 
         var patrolSequence = new Sequence();

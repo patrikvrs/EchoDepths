@@ -3,14 +3,14 @@ using Godot;
 public partial class CheckForHit : Area3D
 {
     public float DamageAmount { get; set; }
-    public override void _Ready()
+    public async override void _Ready()
     {
         Monitoring = true;
         CollisionMask = 4;
         CallDeferred(nameof(DealDamage));
     }
 
-    private async void DealDamage() // Await one physics frame to ensure overlaps are detected
+    private async void DealDamage()
     {
         await ToSignal(GetTree(), "physics_frame");
 
@@ -20,11 +20,13 @@ public partial class CheckForHit : Area3D
             if (obj is CharacterBody3D body)
             {
                 GD.Print("Hit detected on: " + body.Name);
-                if (body is IDamagable damagable)
+                if (body is IDamageable damageable)
                 {
-                    damagable.ApplyDamage(DamageAmount);
+                    damageable.TakeDamage(DamageAmount);
                 }
             }
         }
+
+        Monitoring = false;
     }
 }

@@ -4,9 +4,9 @@ public partial class PlayerStats : CharacterBase
 {
     protected override void InitStats()
     {
-        Level = 2;
-        SetStat(StatsID.MaxHealth, 120);
-        SetStat(StatsID.CurrentHealth, 120);
+        Level = 1;
+        SetStat(StatsID.MaxHealth, 100);
+        SetStat(StatsID.CurrentHealth, 100);
         SetStat(StatsID.AttackDamage, 15);
         SetStat(StatsID.AttackRange, 2.0f);
         SetStat(StatsID.AttackSpeed, 1.2f);

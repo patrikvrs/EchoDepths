@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Player : CharacterBody3D, IDamagable
+public partial class Player : CharacterBody3D, IDamageable
 {
     [Export]
     public PlayerStats playerStats;
@@ -67,13 +67,12 @@ public partial class Player : CharacterBody3D, IDamagable
         MoveAndSlide();
     }
 
-    public void ApplyDamage(float damage)
+    public void TakeDamage(float damage)
     {
-        playerStats.ModifyStat(PlayerStats.StatsID.CurrentHealth, -damage);
-        GD.Print($"Player took {damage} damage. Current Health: {playerStats.GetStat(PlayerStats.StatsID.CurrentHealth)}/{playerStats.GetStat(PlayerStats.StatsID.MaxHealth)}");
-        if (playerStats.GetStat(PlayerStats.StatsID.CurrentHealth) <= 0)
+        playerStats.ApplyDamage(damage);
+        if (playerStats.IsDead())
         {
-            GD.Print("Player has been defeated!");
+            GD.Print("Player has been defeated!"); //For debugging purposes, replace with death handling logic later
         }
     }
 

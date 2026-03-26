@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Enemy : CharacterBody3D, IDamagable
+public partial class Enemy : CharacterBody3D, IDamageable
 {
 
     [Export]
@@ -22,59 +22,15 @@ public partial class Enemy : CharacterBody3D, IDamagable
         new Vector3(-10, 0.5f, 0)
     };
 
-    private EnemyAI _ai;
-
-    private bool isDead = false;
-    public override void _Ready()
+    public void TakeDamage(float damage)
     {
-        foreach (Node child in GetChildren())
+        stats.ApplyDamage(damage);
+
+        if (stats.IsDead())
         {
-            if (child is EnemyAI existing)
-            {
-                _ai = existing;
-                break;
-            }
-        }
-
-        if (_ai == null)
-        {
-            _ai = new EnemyAI();
-            _ai.Name = nameof(EnemyAI);
-            AddChild(_ai);
-        }
-
-        _ai.Setup(this, agent, target, stats, patrolPoints, DebugLabel);
-    }
-
-    public override void _PhysicsProcess(double delta)
-    {
-        _ai?.Tick(delta);
-    }
-
-    public void ApplyDamage(float damage)
-    {
-        if (stats != null)
-        {
-            stats.ModifyStat(EnemyStats.StatsID.CurrentHealth, -damage);
-            GD.Print($"Enemy took {damage} damage. Current Health: {stats.GetStat(EnemyStats.StatsID.CurrentHealth)}/{stats.GetStat(EnemyStats.StatsID.MaxHealth)}");
-            if (stats.GetStat(EnemyStats.StatsID.CurrentHealth) <= 0f)
-            {
-                Die();
-            }
+            GD.Print("Enemy has been defeated!");
+            QueueFree();
         }
     }
 
-    private void Die()
-    {
-        if (isDead) return;
-        isDead = true;
-
-        GD.Print("Enemy died.");
-
-        _ai?.Stop();
-        Velocity = Vector3.Zero;
-        SetPhysicsProcess(false);
-
-        QueueFree();
-    }
 }

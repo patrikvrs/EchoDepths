@@ -15,10 +15,10 @@ public partial class AttackTarget : BehaviourTree
         if (!BB.TryGet("Target", out Node3D target) || target == null)
             return NodeStatus.Failure;
 
-        if (target is not IDamagable damageable)
+        if (target is not IDamageable damageable)
             return NodeStatus.Failure;
 
-        damageable.ApplyDamage(AttackDamage);
+        damageable.TakeDamage(AttackDamage);
         return NodeStatus.Success;
     }
 }

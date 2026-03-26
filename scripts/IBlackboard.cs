@@ -6,7 +6,7 @@ public interface IBlackboard
     void Set<T>(string key, T value);
 }
 
-public sealed class DictionaryBlackboard : IBlackboard
+public sealed class Blackboard : IBlackboard
 {
     private readonly Dictionary<string, object> _data = new();
 

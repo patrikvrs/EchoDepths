@@ -12,7 +12,6 @@ public partial class CameraFollow : Camera3D
     {
         if (Target != null)
         {
-            //Lerp to the target position for smooth camera movement
             GlobalPosition = GlobalPosition.Lerp(Target.GlobalPosition + Offset, 0.1f);
         }
     }

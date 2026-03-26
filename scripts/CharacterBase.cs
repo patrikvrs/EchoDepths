@@ -41,14 +41,45 @@ public partial class CharacterBase : Node
 
     public void SetStat(StatsID statName, float value)
     {
-        Stats[statName] = value;
+        if (!(statName == StatsID.CurrentHealth))
+        {
+            Stats[statName] = value;
+        }
+        else
+        {
+            Stats[StatsID.CurrentHealth] = Mathf.Clamp(value, 0, Stats[StatsID.MaxHealth]);
+        }
+
+
     }
 
     public void ModifyStat(StatsID statName, float delta)
     {
         if (Stats.TryGetValue(statName, out float value))
         {
-            Stats[statName] = value + delta;
+            Stats[statName] = Mathf.Max(value + delta, 0);
+
+            if (statName == StatsID.MaxHealth)
+            {
+                Stats[StatsID.CurrentHealth] = Mathf.Clamp(Stats[StatsID.CurrentHealth], 0, Stats[StatsID.MaxHealth]);
+            }
+
+            if (statName == StatsID.CurrentHealth)
+            {
+                Stats[StatsID.CurrentHealth] = Mathf.Clamp(Stats[StatsID.CurrentHealth], 0, Stats[StatsID.MaxHealth]);
+            }
         }
+    }
+
+    public virtual void ApplyDamage(float damage)
+    {
+        if (damage <= 0) return;
+        ModifyStat(StatsID.CurrentHealth, -damage);
+        GD.Print($"Character took {damage} damage. Current Health: {GetStat(StatsID.CurrentHealth)}/{GetStat(StatsID.MaxHealth)}");
+    }
+
+    public bool IsDead()
+    {
+        return GetStat(StatsID.CurrentHealth) <= 0;
     }
 }
