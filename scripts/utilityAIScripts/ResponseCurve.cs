@@ -6,6 +6,12 @@ public partial class ResponseCurve : Resource
 
     public float Evaluate(float input)
     {
-        return CurveData.SampleBaked(input);
+        if(CurveData == null)
+        {
+            GD.PrintErr("CurveData is missing. Zero will be returned.");
+            return 0.0f;
+        }
+
+        return CurveData.SampleBaked(Mathf.Clamp(input, 0.0f, 1.0f));
     }
 }
