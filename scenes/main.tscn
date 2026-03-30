@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmrg07u7o77iv"]
+[gd_scene load_steps=10 format=3 uid="uid://cmrg07u7o77iv"]
 
 [ext_resource type="PackedScene" uid="uid://bhm2jdmks8a7i" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://u7dwpxk44kty" path="res://scripts/CameraFollow.cs" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dm3nvf65lc74g" path="res://scenes/enemy.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://bpra74oxdnsma" path="res://scenes/melee_attack.tscn" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://dfeab3n5ufoks" path="res://scripts/utilityAIScripts/UtilityAI.cs" id="5_tbgi4"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_sgp6g"]
 vertices = PackedVector3Array(-6, 0.900303, -15.427322, -4.5, 0.900303, -15.427322, -4.75, 0.900303, -49.177322, -6.75, 0.900303, -14.677322, -49, 0.900303, -49.177322, -49, 0.900303, -13.427322, -6.75, 0.900303, -13.177322, 1.5, 0.900303, -15.427322, 1.75, 0.900303, -49.177322, 3, 0.900303, -15.427322, 3.75, 0.900303, -14.677322, 49, 0.900303, -13.427322, 49, 0.900303, -49.177322, 3.75, 0.900303, -13.177322, -49, 0.900303, -9.177322, -6.75, 0.900303, -9.427322, -4.75, 1.900303, -13.427322, -4.75, 1.900303, -9.177322, 1.75, 1.900303, -9.177322, 1.75, 1.900303, -13.427322, 3.75, 0.900303, -9.427322, 49, 0.900303, -9.177322, -6.75, 0.900303, -7.9273224, -6, 0.900303, -7.1773224, -49, 0.900303, 49.072678, -4.75, 0.900303, 49.072678, -4.5, 0.900303, -7.1773224, 3.75, 0.900303, -7.9273224, 3, 0.900303, -7.1773224, 1.75, 0.900303, 49.072678, 49, 0.900303, 49.072678, 1.5, 0.900303, -7.1773224)
@@ -50,10 +51,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 MeleeAttackArea = ExtResource("4_jyhfs")
 Camera = NodePath("../Camera3D")
 
-[node name="EnemyBT" parent="." node_paths=PackedStringArray("DebugLabel", "target") instance=ExtResource("2_0wfyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.999738, 0.50030303, -18.60925)
-DebugLabel = NodePath("BTDebugLabel")
-target = NodePath("../Player")
+[node name="Enemy" parent="." instance=ExtResource("2_0wfyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.555441, 0.50030303, -10.4559555)
 
-[node name="BTDebugLabel" type="Label3D" parent="EnemyBT"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2062938, 0)
+[node name="AIChooser" parent="Enemy" index="4" node_paths=PackedStringArray("utilityAIControllerNode")]
+mode = 1
+utilityAIControllerNode = NodePath("UAI")
+
+[node name="UAI" type="Node" parent="Enemy/AIChooser" index="0"]
+script = ExtResource("5_tbgi4")
+
+[editable path="Enemy"]

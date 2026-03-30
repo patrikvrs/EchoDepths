@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Enemy : CharacterBody3D, IDamageable
+public partial class Enemy : CharacterBody3D, IDamageable, IAIHost
 {
 
     [Export]
@@ -14,13 +14,15 @@ public partial class Enemy : CharacterBody3D, IDamageable
     [Export]
     public EnemyStats stats;
 
-    [Export]
-    public Vector3[] patrolPoints = new Vector3[]
+    public Node3D Self => this;
+    public NavigationAgent3D NavigationAgent => agent;
+    public Node3D Target => target;
+    public bool IsDead => stats == null || stats.IsDead();
+
+    public float GetStat(CharacterBase.StatsID stat)
     {
-        new Vector3(-10, 0.5f, -20),
-        new Vector3(10, 0.5f, 0),
-        new Vector3(-10, 0.5f, 0)
-    };
+        return stats?.GetStat(stat) ?? 0f;
+    }
 
     public void TakeDamage(float damage)
     {

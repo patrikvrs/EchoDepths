@@ -11,9 +11,9 @@ public partial class AIControllerChooser : Node
 
     [Export] private AIMode mode = AIMode.BehaviorTree;
 
-    [Export] private NodePath behaviorTreeControllerPath;
-    [Export] private NodePath utilityAIControllerPath;
-    [Export] private NodePath hybridAIControllerPath;
+    [Export] private Node behaviorTreeControllerNode;
+    [Export] private Node utilityAIControllerNode;
+    [Export] private Node hybridAIControllerNode;
 
     private IAIHost _host;
     private IAIController _activeController;
@@ -22,7 +22,62 @@ public partial class AIControllerChooser : Node
     public override void _Ready()
     {
         _host = GetParent() as IAIHost;
+
+        if (_host == null)
+        {
+            GD.PushError("AIControllerChooser parent must implement IAIHost.");
+            return;
+        }
+
         _blackboard = new Blackboard();
+        SwitchMode(mode);
     }
-    //TODO: Add logic to switch between controllers based on the selected mode
+
+    public override void _PhysicsProcess(double delta)
+    {
+        _activeController?.Tick(delta);
+    }
+
+    public void SwitchMode(AIMode newMode)
+    {
+        _activeController?.Stop();
+
+        mode = newMode;
+        _activeController = ResolveControllerForMode(mode);
+
+        if (_activeController == null)
+        {
+            GD.PushWarning($"AI controller is not set correctly for mode {mode}.");
+            return;
+        }
+
+        _activeController.Setup(_host, _blackboard);
+    }
+
+    private IAIController ResolveControllerForMode(AIMode aiMode)
+    {
+        return aiMode switch
+        {
+            AIMode.BehaviorTree => ValidateController(behaviorTreeControllerNode, nameof(behaviorTreeControllerNode)),
+            AIMode.UtilityAI => ValidateController(utilityAIControllerNode, nameof(utilityAIControllerNode)),
+            AIMode.Hybrid => ValidateController(hybridAIControllerNode, nameof(hybridAIControllerNode)),
+            _ => null
+        };
+    }
+
+    private IAIController ValidateController(Node controllerNode, string fieldName)
+    {
+        if (controllerNode == null)
+        {
+            GD.PushWarning($"{fieldName} is not assigned on {Name}.");
+            return null;
+        }
+
+        if (controllerNode is IAIController controller)
+            return controller;
+
+        GD.PushWarning($"{fieldName} must reference a node that implements IAIController.");
+
+        return null;
+    }
 }
