@@ -5,7 +5,7 @@
 ## The following models will be used:
 - Behavior Tree
 - Utility AI
-- Utility-based Behavior Tree 
+- Utility-based Behavior Tree (hybrid)
 
 The list of AI models ***may*** be expanded in the future.
 
