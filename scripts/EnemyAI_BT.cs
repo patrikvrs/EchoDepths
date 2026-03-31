@@ -12,9 +12,6 @@ public partial class EnemyAI_BT : BehaviourTree, IAIController
         new Vector3(-10, 0.5f, 0)
     };
 
-    [Export]
-    private Label3D debugLabel;
-
     private IAIHost _host;
     private NavigationAgent3D _agent;
     private Node3D _target;
@@ -51,10 +48,7 @@ public partial class EnemyAI_BT : BehaviourTree, IAIController
         _target = _host.Target;
         _blackboard.Set("Target", _target);
 
-        var status = _root.Execute(delta);
-
-        if (debugLabel != null && (_blackboard.TryGet("LastActionName", out string lastActionName) ? lastActionName : "None") != "")
-            debugLabel.Text = $"BT: {lastActionName} -> {status}";
+        _root.Execute(delta);
     }
 
     public void Stop()

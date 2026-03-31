@@ -6,7 +6,7 @@ public partial class ResponseCurve : Resource
 
     public float Evaluate(float input)
     {
-        if(CurveData == null)
+        if (CurveData == null)
         {
             GD.PrintErr("CurveData is missing. Zero will be returned.");
             return 0.0f;

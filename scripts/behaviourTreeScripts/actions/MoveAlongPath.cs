@@ -13,15 +13,14 @@ public partial class MoveAlongPath : BehaviourTree
 
         BB?.Set("LastActionName", "Moving Along Path");
 
-        if (Owner == null || NavAgent == null || BB == null)
+        if (Owner == null || Owner is not CharacterBody3D body || NavAgent == null || BB == null)
             return NodeStatus.Failure;
 
         if (NavAgent.IsNavigationFinished())
+        {
+            body.Velocity = Vector3.Zero;
             return NodeStatus.Success;
-
-        if (Owner is not CharacterBody3D body)
-            return NodeStatus.Failure;
-
+        }
 
         var nextPos = NavAgent.GetNextPathPosition();
         var dir = nextPos - body.GlobalPosition;
@@ -31,9 +30,6 @@ public partial class MoveAlongPath : BehaviourTree
             return NodeStatus.Running;
 
         body.Velocity = dir.Normalized() * movementSpeed;
-
-        body.LookAt(body.GlobalPosition + dir, Vector3.Up);
-        body.MoveAndSlide();
 
         return NodeStatus.Running;
     }

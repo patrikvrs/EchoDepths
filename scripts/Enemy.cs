@@ -19,6 +19,17 @@ public partial class Enemy : CharacterBody3D, IDamageable, IAIHost
     public Node3D Target => target;
     public bool IsDead => stats == null || stats.IsDead();
 
+    public override void _PhysicsProcess(double delta)
+    {
+        if(Velocity.LengthSquared() > 0f)
+        {
+            LookAt(GlobalPosition + Velocity, Vector3.Up);
+        }
+        
+        MoveAndSlide();
+    }
+
+
     public float GetStat(CharacterBase.StatsID stat)
     {
         return stats?.GetStat(stat) ?? 0f;

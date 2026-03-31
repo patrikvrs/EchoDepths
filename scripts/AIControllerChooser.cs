@@ -9,8 +9,9 @@ public partial class AIControllerChooser : Node
         Hybrid
     }
 
+    [Export]
+    private Label3D debugLabel;
     [Export] private AIMode mode = AIMode.BehaviorTree;
-
     [Export] private Node behaviorTreeControllerNode;
     [Export] private Node utilityAIControllerNode;
     [Export] private Node hybridAIControllerNode;
@@ -18,6 +19,9 @@ public partial class AIControllerChooser : Node
     private IAIHost _host;
     private IAIController _activeController;
     private IBlackboard _blackboard;
+
+    private double _timer;
+    private const double TickRate = 0.1f; //10 times per second
 
     public override void _Ready()
     {
@@ -35,7 +39,12 @@ public partial class AIControllerChooser : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        _activeController?.Tick(delta);
+        _timer += delta;
+        while(_timer >= TickRate)
+        {
+            _timer -= TickRate;
+            _activeController?.Tick(TickRate);
+        }
     }
 
     public void SwitchMode(AIMode newMode)
