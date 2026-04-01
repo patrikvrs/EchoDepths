@@ -3,7 +3,7 @@ using Godot;
 public partial class AttackTarget : BehaviourTree
 {
     public new Node3D Owner;
-    public IBlackboard BB;
+    public Blackboard BB;
     public float AttackDamage = 0f;
     public override NodeStatus Execute(double delta)
     {

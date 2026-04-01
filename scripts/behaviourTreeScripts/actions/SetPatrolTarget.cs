@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public partial class SetPatrolTarget : BehaviourTree
 {
     public new Node3D Owner;
-    public IBlackboard BB;
+    public Blackboard BB;
     public NavigationAgent3D NavAgent;
     public List<Vector3> PatrolPoints;
     public string CurrentPatrolIndexKey = "CurrentPatrolIndex";

@@ -4,7 +4,7 @@ public partial class UtilityAI : Node, IAIController
 {
 	private bool _isActive;
 
-	public void Setup(IAIHost host, IBlackboard blackboard)
+	public void Setup(IAIHost host, Blackboard blackboard)
 	{
 		_isActive = true;
 	}

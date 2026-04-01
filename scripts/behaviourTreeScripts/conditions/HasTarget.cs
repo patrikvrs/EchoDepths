@@ -3,7 +3,7 @@ using Godot;
 public partial class HasTarget : BehaviourTree
 {
     public new Node3D Owner;
-    public IBlackboard BB;
+    public Blackboard BB;
     public string TargetKey;
 
     public override NodeStatus Execute(double delta)

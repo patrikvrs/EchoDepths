@@ -19,11 +19,11 @@ public partial class EnemyAI_BT : BehaviourTree, IAIController
     private float _attackRange;
     private float _attackDamage;
     private Vector3[] _patrolPoints = Array.Empty<Vector3>();
-    private IBlackboard _blackboard;
+    private Blackboard _blackboard;
     private BehaviourTree _root;
     private bool _isActive;
 
-    public void Setup(IAIHost host, IBlackboard blackboard)
+    public void Setup(IAIHost host, Blackboard blackboard)
     {
         _host = host;
         _agent = host?.NavigationAgent;

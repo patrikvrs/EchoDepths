@@ -18,7 +18,7 @@ public partial class AIControllerChooser : Node
 
     private IAIHost _host;
     private IAIController _activeController;
-    private IBlackboard _blackboard;
+    private Blackboard _blackboard;
 
     private double _timer;
     private const double TickRate = 0.1f; //10 times per second

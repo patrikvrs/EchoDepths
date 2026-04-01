@@ -4,7 +4,7 @@ public partial class MoveAlongPath : BehaviourTree
 {
     public new Node3D Owner;
     public NavigationAgent3D NavAgent;
-    public IBlackboard BB;
+    public Blackboard BB;
 
     public float movementSpeed;
 
