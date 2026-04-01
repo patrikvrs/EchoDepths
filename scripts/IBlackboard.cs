@@ -1,12 +1,6 @@
 using System.Collections.Generic;
 
-public interface IBlackboard
-{
-    bool TryGet<T>(string key, out T value);
-    void Set<T>(string key, T value);
-}
-
-public sealed class Blackboard : IBlackboard
+public sealed class Blackboard
 {
     private readonly Dictionary<string, object> _data = new();
 
