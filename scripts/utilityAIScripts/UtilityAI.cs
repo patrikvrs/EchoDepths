@@ -15,11 +15,6 @@ public partial class UtilityAI : Node, IAIController
 			return;
 	}
 
-	private void MakeDecision()
-	{
-		
-	}
-
 	public void Stop()
 	{
 		_isActive = false;

@@ -33,10 +33,4 @@ public partial class MoveAlongPath : BehaviourTree
 
         return NodeStatus.Running;
     }
-
-    public override void Reset()
-    {
-        if (Owner is CharacterBody3D body)
-            body.Velocity = Vector3.Zero;
-    }
 }

@@ -12,11 +12,12 @@ albedo_color = Color(0.7262233, 3.4172833e-06, 5.7756904e-07, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_4gyqm"]
 material = SubResource("StandardMaterial3D_7k104")
 
-[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("agent", "stats")]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("agent", "DebugLabel", "stats")]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_md0e3")
 agent = NodePath("NavigationAgent3D")
+DebugLabel = NodePath("")
 stats = NodePath("EnemyStats")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

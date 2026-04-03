@@ -40,10 +40,20 @@ public partial class AIControllerChooser : Node
     public override void _PhysicsProcess(double delta)
     {
         _timer += delta;
-        while(_timer >= TickRate)
+        while (_timer >= TickRate)
         {
             _timer -= TickRate;
             _activeController?.Tick(TickRate);
+        }
+
+        // Update debug label if assigned
+        if (debugLabel != null)
+        {
+            string btStatus = _blackboard.TryGet("BTStatus", out BehaviourTree.NodeStatus status)
+                ? status.ToString()
+                : "None";
+
+            debugLabel.Text = $"Mode: {mode}\nActive Controller: {_activeController?.GetType().Name ?? "None"}\nAction: {(_blackboard.TryGet("LastActionName", out string lastAction) ? lastAction : "None")}\nBT Status: {btStatus}";
         }
     }
 

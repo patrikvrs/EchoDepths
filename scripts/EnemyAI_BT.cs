@@ -48,7 +48,8 @@ public partial class EnemyAI_BT : BehaviourTree, IAIController
         _target = _host.Target;
         _blackboard.Set("Target", _target);
 
-        _root.Execute(delta);
+        var status = _root.Execute(delta);
+        _blackboard.Set("BTStatus", status);
     }
 
     public void Stop()

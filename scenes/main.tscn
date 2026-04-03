@@ -55,10 +55,16 @@ Camera = NodePath("../Camera3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.555441, 0.50030303, -10.4559555)
 target = NodePath("../Player")
 
-[node name="AIChooser" parent="Enemy" index="4" node_paths=PackedStringArray("behaviorTreeControllerNode")]
+[node name="AIChooser" parent="Enemy" index="4" node_paths=PackedStringArray("debugLabel", "behaviorTreeControllerNode")]
+debugLabel = NodePath("../DebugLabel")
 behaviorTreeControllerNode = NodePath("Brain")
 
 [node name="Brain" type="Node" parent="Enemy/AIChooser" index="0"]
 script = ExtResource("5_tbgi4")
+
+[node name="DebugLabel" type="Label3D" parent="Enemy"]
+billboard = 1
+text = "Igen"
+font_size = 128
 
 [editable path="Enemy"]

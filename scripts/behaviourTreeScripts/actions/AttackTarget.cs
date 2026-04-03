@@ -12,6 +12,9 @@ public partial class AttackTarget : BehaviourTree
         if (Owner == null || BB == null)
             return NodeStatus.Failure;
 
+        if (Owner is CharacterBody3D body)
+            body.Velocity = Vector3.Zero;
+
         if (!BB.TryGet("Target", out Node3D target) || target == null)
             return NodeStatus.Failure;
 
