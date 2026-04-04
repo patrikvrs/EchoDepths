@@ -3,17 +3,18 @@ using Godot;
 public partial class CheckForHit : Area3D
 {
     public float DamageAmount { get; set; }
+
     public async override void _Ready()
     {
         Monitoring = true;
         CollisionMask = 4;
-        CallDeferred(nameof(DealDamage));
+
+        await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
+        DealDamage();
     }
 
-    private async void DealDamage()
+    private void DealDamage()
     {
-        await ToSignal(GetTree(), "physics_frame");
-
         var bodies = GetOverlappingBodies();
         foreach (var obj in bodies)
         {
@@ -28,5 +29,6 @@ public partial class CheckForHit : Area3D
         }
 
         Monitoring = false;
+        QueueFree();
     }
 }

@@ -59,12 +59,7 @@ public partial class CharacterBase : Node
         {
             Stats[statName] = Mathf.Max(value + delta, 0);
 
-            if (statName == StatsID.MaxHealth)
-            {
-                Stats[StatsID.CurrentHealth] = Mathf.Clamp(Stats[StatsID.CurrentHealth], 0, Stats[StatsID.MaxHealth]);
-            }
-
-            if (statName == StatsID.CurrentHealth)
+            if (statName == StatsID.MaxHealth || statName == StatsID.CurrentHealth)
             {
                 Stats[StatsID.CurrentHealth] = Mathf.Clamp(Stats[StatsID.CurrentHealth], 0, Stats[StatsID.MaxHealth]);
             }

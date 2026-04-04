@@ -69,6 +69,12 @@ public partial class Player : CharacterBody3D, IDamageable
 
     public void TakeDamage(float damage)
     {
+        if(playerStats == null)
+        {
+            GD.PrintErr("PlayerStats is null. Cannot take damage.");
+            return;
+        }
+        
         playerStats.ApplyDamage(damage);
         if (playerStats.IsDead())
         {
@@ -78,6 +84,18 @@ public partial class Player : CharacterBody3D, IDamageable
 
     private void AttackMelee()
     {
+        if (Camera == null)
+        {
+            GD.PushWarning("Player Camera is not assigned. Melee attack skipped.");
+            return;
+        }
+
+        if (MeleeAttackArea == null)
+        {
+            GD.PushWarning("Player MeleeAttackArea is not assigned. Melee attack skipped.");
+            return;
+        }
+
         Vector3 mousePos = Camera.GetMousePositionInWorld();
         Vector3 attackDir = mousePos - GlobalPosition;
         attackDir.Y = 0;
@@ -97,16 +115,5 @@ public partial class Player : CharacterBody3D, IDamageable
         Vector3 areaPos = GlobalPosition + attackDir * (attackRange / 2);
         meleeAreaInstance.GlobalPosition = areaPos;
         meleeAreaInstance.GlobalRotation = new Vector3(0, Mathf.Atan2(attackDir.X, attackDir.Z), 0);
-
-        Timer attackDurationTimer = new Timer();
-        attackDurationTimer.WaitTime = 0.2f;
-        attackDurationTimer.OneShot = true;
-        attackDurationTimer.Timeout += () =>
-        {
-            meleeAreaInstance.QueueFree();
-            attackDurationTimer.QueueFree();
-        };
-        AddChild(attackDurationTimer);
-        attackDurationTimer.Start();
     }
 }

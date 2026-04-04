@@ -33,6 +33,12 @@ public partial class CameraFollow : Camera3D
             Vector3 position = (Vector3)result["position"];
             return position;
         }
+
+        if (Target != null)
+        {
+            return Target.GlobalPosition + Offset;
+        }
+
         return Vector3.Zero;
     }
 }

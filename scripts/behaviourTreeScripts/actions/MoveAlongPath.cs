@@ -23,13 +23,13 @@ public partial class MoveAlongPath : BehaviourTree
         }
 
         var nextPos = NavAgent.GetNextPathPosition();
-        var dir = nextPos - body.GlobalPosition;
+        var dir = (nextPos - body.GlobalPosition).Normalized();
         dir.Y = 0f;
 
         if (dir.Length() < 0.1f)
             return NodeStatus.Running;
 
-        body.Velocity = dir.Normalized() * movementSpeed;
+        body.Velocity = dir * movementSpeed;
 
         return NodeStatus.Running;
     }
