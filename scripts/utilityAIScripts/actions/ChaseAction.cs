@@ -30,7 +30,7 @@ public partial class ChaseAction : UtilityAction
             Vector3 direction = (nextPosition - body.GlobalPosition).Normalized();
             if (body.GlobalPosition.DistanceTo(nextPosition) > 0.1f)
             {
-                body.Velocity = direction * _host.GetStat(CharacterBase.StatsID.MovementSpeed);
+                body.Velocity = direction * _host.GetStat(StatsID.MovementSpeed);
             }
             else
             {

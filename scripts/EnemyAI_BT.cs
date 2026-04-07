@@ -15,9 +15,6 @@ public partial class EnemyAI_BT : BehaviourTree, IAIController
     private IAIHost _host;
     private NavigationAgent3D _agent;
     private Node3D _target;
-    private float _movementSpeed;
-    private float _attackRange;
-    private float _attackDamage;
     private Vector3[] _patrolPoints = Array.Empty<Vector3>();
     private Blackboard _blackboard;
     private BehaviourTree _root;
@@ -28,13 +25,9 @@ public partial class EnemyAI_BT : BehaviourTree, IAIController
         _host = host;
         _agent = host?.NavigationAgent;
         _target = host?.Target;
-        _movementSpeed = host?.GetStat(CharacterBase.StatsID.MovementSpeed) ?? 0f;
-        _attackRange = host?.GetStat(CharacterBase.StatsID.AttackRange) ?? 0f;
-        _attackDamage = host?.GetStat(CharacterBase.StatsID.AttackDamage) ?? 0f;
         _patrolPoints = patrolPoints ?? Array.Empty<Vector3>();
 
         _blackboard = blackboard ?? new Blackboard();
-        _blackboard.Set("Target", _target);
 
         BuildBehaviourTree();
         _isActive = _root != null;
@@ -48,7 +41,7 @@ public partial class EnemyAI_BT : BehaviourTree, IAIController
         _target = _host.Target;
         _blackboard.Set("Target", _target);
 
-        var status = _root.Execute(delta);
+        NodeStatus status = _root.Execute(delta);
         _blackboard.Set("BTStatus", status);
     }
 
@@ -67,11 +60,11 @@ public partial class EnemyAI_BT : BehaviourTree, IAIController
         var isWithinChaseDistance = new IsWithinDistance { Owner = _host.Self, BB = _blackboard, TargetKey = "Target", Distance = 15f };
 
         var setNavToTarget = new SetNavigationTarget { Owner = _host.Self, BB = _blackboard, TargetKey = "Target", NavAgent = _agent };
-        var moveToTarget = new MoveAlongPath { Owner = _host.Self, movementSpeed = _movementSpeed, NavAgent = _agent, BB = _blackboard };
+        var moveToTarget = new MoveAlongPath { Owner = _host.Self, movementSpeed = _host.GetStat(StatsID.MovementSpeed), NavAgent = _agent, BB = _blackboard };
 
-        var isWithinAttackRange = new IsWithinDistance { Owner = _host.Self, BB = _blackboard, TargetKey = "Target", Distance = _attackRange };
+        var isWithinAttackRange = new IsWithinDistance { Owner = _host.Self, BB = _blackboard, TargetKey = "Target", Distance = _host.GetStat(StatsID.AttackRange) };
 
-        var attackTarget = new AttackTarget { Owner = _host.Self, BB = _blackboard, AttackDamage = _attackDamage };
+        var attackTarget = new AttackTarget { Owner = _host.Self, BB = _blackboard, AttackDamage = _host.GetStat(StatsID.AttackDamage) };
 
         var chaseSequence = new ReactiveSequence();
         chaseSequence.AddChild(hasTarget);
@@ -90,7 +83,7 @@ public partial class EnemyAI_BT : BehaviourTree, IAIController
 
         var patrolPoints = new List<Vector3>(_patrolPoints);
         var setPatrolTarget = new SetPatrolTarget { Owner = _host.Self, BB = _blackboard, NavAgent = _agent, PatrolPoints = patrolPoints };
-        var moveAlongPatrol = new MoveAlongPath { Owner = _host.Self, movementSpeed = _movementSpeed, NavAgent = _agent, BB = _blackboard };
+        var moveAlongPatrol = new MoveAlongPath { Owner = _host.Self, movementSpeed = _host.GetStat(StatsID.MovementSpeed), NavAgent = _agent, BB = _blackboard };
         var waitBetweenPoints = new Wait { WaitTime = 2.0f, BB = _blackboard };
 
         var patrolSequence = new Sequence();

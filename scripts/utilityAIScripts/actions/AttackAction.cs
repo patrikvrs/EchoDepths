@@ -32,7 +32,7 @@ public partial class AttackAction : UtilityAction
             body.Velocity = Vector3.Zero;
         }
 
-        float attackDamage = _host.GetStat(CharacterBase.StatsID.AttackDamage);
+        float attackDamage = _host.GetStat(StatsID.AttackDamage);
         damageable.TakeDamage(attackDamage);
 
         if (_blackboard != null)

@@ -6,6 +6,8 @@ public partial class IsWithinDistance : BehaviourTree
     public Blackboard BB;
     public string TargetKey;
     public float Distance;
+    public bool UseOwnerStatDistance;
+    public StatsID DistanceStat = StatsID.AttackRange;
 
     public override NodeStatus Execute(double delta)
     {
@@ -16,7 +18,11 @@ public partial class IsWithinDistance : BehaviourTree
         if (target == null) return NodeStatus.Failure;
 
         float currentDistance = Owner.GlobalPosition.DistanceTo(target.GlobalPosition);
+        float thresholdDistance = Distance;
 
-        return currentDistance <= Distance ? NodeStatus.Success : NodeStatus.Failure;
+        if (UseOwnerStatDistance && Owner is IAIHost host)
+            thresholdDistance = host.GetStat(DistanceStat);
+
+        return currentDistance <= thresholdDistance ? NodeStatus.Success : NodeStatus.Failure;
     }
 }

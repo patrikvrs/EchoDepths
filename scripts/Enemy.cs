@@ -35,7 +35,7 @@ public partial class Enemy : CharacterBody3D, IDamageable, IAIHost
     }
 
 
-    public float GetStat(CharacterBase.StatsID stat)
+    public float GetStat(StatsID stat)
     {
         return stats?.GetStat(stat) ?? 0f;
     }

@@ -21,7 +21,7 @@ public partial class AIControllerChooser : Node
     private Blackboard _blackboard;
 
     private double _timer;
-    private const double TickRate = 0.1f; //10 times per second
+    private const double TickRate = 0.1f;
 
     public override void _Ready()
     {

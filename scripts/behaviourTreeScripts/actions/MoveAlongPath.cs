@@ -22,14 +22,19 @@ public partial class MoveAlongPath : BehaviourTree
             return NodeStatus.Success;
         }
 
-        var nextPos = NavAgent.GetNextPathPosition();
-        var dir = (nextPos - body.GlobalPosition).Normalized();
+        Vector3 nextPos = NavAgent.GetNextPathPosition();
+        Vector3 dir = nextPos - body.GlobalPosition;
         dir.Y = 0f;
 
-        if (dir.Length() < 0.1f)
-            return NodeStatus.Running;
+        if (dir.Length() < 0.1f) return NodeStatus.Running;
 
-        body.Velocity = dir * movementSpeed;
+        dir = dir.Normalized();
+
+        float currentSpeed = movementSpeed;
+        if (Owner is IAIHost host)
+            currentSpeed = host.GetStat(StatsID.MovementSpeed);
+
+        body.Velocity = dir * currentSpeed;
 
         return NodeStatus.Running;
     }

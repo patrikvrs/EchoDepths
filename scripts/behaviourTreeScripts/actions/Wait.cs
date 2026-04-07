@@ -14,10 +14,16 @@ public partial class Wait : BehaviourTree
 
         if (_elapsedTime >= WaitTime)
         {
-            _elapsedTime = 0.0f;
+            Reset();
             return NodeStatus.Success;
         }
 
         return NodeStatus.Running;
+    }
+
+
+    public override void Reset()
+    {
+        _elapsedTime = 0.0f;
     }
 }

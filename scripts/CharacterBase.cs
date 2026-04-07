@@ -5,16 +5,6 @@ public partial class CharacterBase : Node
 {
     public int Level { get; protected set; } = 1;
 
-    public enum StatsID
-    {
-        MaxHealth,
-        CurrentHealth,
-        AttackDamage,
-        AttackRange,
-        AttackSpeed,
-        MovementSpeed
-    }
-
     private Dictionary<StatsID, float> Stats = new Dictionary<StatsID, float>();
 
     public override void _Ready()
