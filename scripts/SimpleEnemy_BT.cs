@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public partial class EnemyAI_BT : BehaviourTree, IAIController
+public partial class SimpleEnemy_BT : BehaviourTree, IAIController
 {
     [Export]
     private Vector3[] patrolPoints =

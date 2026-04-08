@@ -8,7 +8,7 @@ public partial class Player : CharacterBody3D, IDamageable
     [Export]
     public PackedScene MeleeAttackArea;
 
-    public float Speed => playerStats.GetStat(PlayerStats.StatsID.MovementSpeed);
+    public float Speed => playerStats.GetStat(StatsID.MovementSpeed);
 
     private const float JumpVelocity = 4.5f;
     private float Deceleration = 16f;
@@ -69,12 +69,12 @@ public partial class Player : CharacterBody3D, IDamageable
 
     public void TakeDamage(float damage)
     {
-        if(playerStats == null)
+        if (playerStats == null)
         {
             GD.PrintErr("PlayerStats is null. Cannot take damage.");
             return;
         }
-        
+
         playerStats.ApplyDamage(damage);
         if (playerStats.IsDead())
         {
@@ -106,10 +106,10 @@ public partial class Player : CharacterBody3D, IDamageable
         attackDir = attackDir.Normalized();
 
         CheckForHit meleeAreaInstance = MeleeAttackArea.Instantiate<CheckForHit>();
-        meleeAreaInstance.DamageAmount = playerStats.GetStat(PlayerStats.StatsID.AttackDamage);
+        meleeAreaInstance.DamageAmount = playerStats.GetStat(StatsID.AttackDamage);
         AddChild(meleeAreaInstance);
 
-        float attackRange = playerStats.GetStat(PlayerStats.StatsID.AttackRange);
+        float attackRange = playerStats.GetStat(StatsID.AttackRange);
         meleeAreaInstance.Scale = new Vector3(1, meleeAreaInstance.Scale.Y, attackRange);
 
         Vector3 areaPos = GlobalPosition + attackDir * (attackRange / 2);

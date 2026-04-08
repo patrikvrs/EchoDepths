@@ -14,12 +14,9 @@ public partial class SetNavigationTarget : BehaviourTree
         if (Owner == null || BB == null || string.IsNullOrEmpty(TargetKey) || NavAgent == null)
             return NodeStatus.Failure;
 
-        if (BB.TryGet<Node3D>(TargetKey, out var target) && target != null)
-        {
-            NavAgent.TargetPosition = target.GlobalPosition;
-            return NodeStatus.Success;
-        }
+        BB.TryGet(TargetKey, out Node3D target);
+        NavAgent.TargetPosition = target.GlobalPosition;
 
-        return NodeStatus.Failure;
+        return NodeStatus.Success;
     }
 }

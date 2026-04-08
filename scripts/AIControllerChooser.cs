@@ -46,7 +46,6 @@ public partial class AIControllerChooser : Node
             _activeController?.Tick(TickRate);
         }
 
-        // Update debug label if assigned
         if (debugLabel != null)
         {
             string btStatus = _blackboard.TryGet("BTStatus", out BehaviourTree.NodeStatus status)

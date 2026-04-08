@@ -42,12 +42,12 @@ public partial class Enemy : CharacterBody3D, IDamageable, IAIHost
 
     public void TakeDamage(float damage)
     {
-        if(stats == null)
+        if (stats == null)
         {
             GD.PrintErr("Stats is null. Cannot take damage.");
             return;
         }
-        
+
         stats.ApplyDamage(damage);
 
         if (stats.IsDead())

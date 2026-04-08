@@ -5,7 +5,6 @@ public partial class MoveAlongPath : BehaviourTree
     public new Node3D Owner;
     public NavigationAgent3D NavAgent;
     public Blackboard BB;
-
     public float movementSpeed;
 
     public override NodeStatus Execute(double delta)
@@ -29,12 +28,7 @@ public partial class MoveAlongPath : BehaviourTree
         if (dir.Length() < 0.1f) return NodeStatus.Running;
 
         dir = dir.Normalized();
-
-        float currentSpeed = movementSpeed;
-        if (Owner is IAIHost host)
-            currentSpeed = host.GetStat(StatsID.MovementSpeed);
-
-        body.Velocity = dir * currentSpeed;
+        body.Velocity = dir * movementSpeed;
 
         return NodeStatus.Running;
     }

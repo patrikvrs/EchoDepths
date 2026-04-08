@@ -1,5 +1,3 @@
-using Godot;
-
 public partial class Wait : BehaviourTree
 {
     public Blackboard BB;

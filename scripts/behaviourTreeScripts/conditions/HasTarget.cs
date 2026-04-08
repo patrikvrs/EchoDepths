@@ -10,8 +10,6 @@ public partial class HasTarget : BehaviourTree
     {
         if (Owner == null || BB == null || string.IsNullOrEmpty(TargetKey)) return NodeStatus.Failure;
 
-        BB.TryGet<Node3D>(TargetKey, out var target);
-
-        return target != null ? NodeStatus.Success : NodeStatus.Failure;
+        return BB.TryGet(TargetKey, out Node3D target) && target != null ? NodeStatus.Success : NodeStatus.Failure;
     }
 }
