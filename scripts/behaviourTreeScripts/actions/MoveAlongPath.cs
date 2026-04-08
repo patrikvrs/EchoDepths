@@ -2,14 +2,12 @@ using Godot;
 
 public partial class MoveAlongPath : BehaviourTree
 {
-    public new Node3D Owner;
+    public new IAIHost Owner;
     public NavigationAgent3D NavAgent;
     public Blackboard BB;
-    public float movementSpeed;
 
     public override NodeStatus Execute(double delta)
     {
-
         BB?.Set("LastActionName", "Moving Along Path");
 
         if (Owner == null || Owner is not CharacterBody3D body || NavAgent == null || BB == null)
@@ -28,7 +26,7 @@ public partial class MoveAlongPath : BehaviourTree
         if (dir.Length() < 0.1f) return NodeStatus.Running;
 
         dir = dir.Normalized();
-        body.Velocity = dir * movementSpeed;
+        body.Velocity = dir * Owner.GetStat(StatsID.MovementSpeed);
 
         return NodeStatus.Running;
     }

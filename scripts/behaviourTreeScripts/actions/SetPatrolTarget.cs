@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public partial class SetPatrolTarget : BehaviourTree
 {
-    public new Node3D Owner;
+    public new IAIHost Owner;
     public Blackboard BB;
     public NavigationAgent3D NavAgent;
     public List<Vector3> PatrolPoints;
@@ -24,7 +24,7 @@ public partial class SetPatrolTarget : BehaviourTree
 
         var targetPoint = PatrolPoints[currentPatrolPoint];
 
-        if (Owner.GlobalPosition.DistanceTo(targetPoint) < 1.5f)
+        if (Owner.Self.GlobalPosition.DistanceTo(targetPoint) < 1.5f)
         {
             currentPatrolPoint = (currentPatrolPoint + 1) % PatrolPoints.Count;
             BB.Set(currentPatrolPointKey, currentPatrolPoint);
