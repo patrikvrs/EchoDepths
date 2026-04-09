@@ -1,22 +1,11 @@
 using Godot;
 
+[GlobalClass]
 public partial class PatrolAction : UtilityAction
 {
     private IAIHost _host;
     private Blackboard _blackboard;
     private NavigationAgent3D _navigationAgent;
-
-    public PatrolAction(string actionName, float utilityScore, IAIHost host, Blackboard blackboard)
-        : base(actionName, utilityScore)
-    {
-        _host = host;
-        _blackboard = blackboard;
-
-        if (_host != null)
-        {
-            _navigationAgent = _host.NavigationAgent;
-        }
-    }
 
     public override void Execute()
     {

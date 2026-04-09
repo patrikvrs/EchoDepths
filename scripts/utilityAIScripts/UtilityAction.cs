@@ -1,14 +1,20 @@
 using Godot;
 
+[GlobalClass]
 public partial class UtilityAction : Node
 {
+    [Export]
     public string ActionName { get; set; }
+    [Export]
     public float UtilityScore { get; set; }
 
-    public UtilityAction(string actionName, float utilityScore)
+    private IAIHost _host;
+    private Blackboard _blackboard;
+
+    public void SetContext(IAIHost host, Blackboard blackboard)
     {
-        ActionName = actionName;
-        UtilityScore = utilityScore;
+        _host = host;
+        _blackboard = blackboard;
     }
 
     public virtual void Execute()

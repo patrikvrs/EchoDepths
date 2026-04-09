@@ -1,10 +1,13 @@
-using System.Collections.Generic;
 using Godot;
 
+[GlobalClass]
 public partial class UtilityDecision : Node
 {
+    [Export]
     public string DecisionName { get; set; }
-    public List<UtilityConsideration> Considerations { get; set; } = new List<UtilityConsideration>();
+    [Export]
+    public Godot.Collections.Array<UtilityConsideration> Considerations { get; set; } = new Godot.Collections.Array<UtilityConsideration>();
+    [Export]
     public UtilityAction Action { get; set; }
 
     public UtilityDecision(string decisionName, UtilityAction action)

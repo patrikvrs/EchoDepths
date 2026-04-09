@@ -1,18 +1,11 @@
 using Godot;
 
+[GlobalClass]
 public partial class ChaseAction : UtilityAction
 {
     private IAIHost _host;
     private NavigationAgent3D _navigationAgent;
     private Blackboard _blackboard;
-
-    public ChaseAction(string actionName, float utilityScore, IAIHost host, Blackboard blackboard)
-        : base(actionName, utilityScore)
-    {
-        _host = host;
-        _blackboard = blackboard;
-        _navigationAgent = _host.NavigationAgent;
-    }
 
     public override void Execute()
     {
