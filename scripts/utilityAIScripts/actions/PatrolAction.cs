@@ -6,7 +6,7 @@ public partial class PatrolAction : UtilityAction
     private Blackboard _blackboard;
     private NavigationAgent3D _navigationAgent;
 
-    public PatrolAction(string actionName, float utilityScore, IAIHost host, Blackboard blackboard) 
+    public PatrolAction(string actionName, float utilityScore, IAIHost host, Blackboard blackboard)
         : base(actionName, utilityScore)
     {
         _host = host;
@@ -20,7 +20,7 @@ public partial class PatrolAction : UtilityAction
 
     public override void Execute()
     {
-        if(_host == null || _navigationAgent == null)
+        if (_host == null || _navigationAgent == null)
         {
             GD.PrintErr("Host or navigation agent is null. Cannot execute action.");
             return;
@@ -29,8 +29,8 @@ public partial class PatrolAction : UtilityAction
         if (_navigationAgent.IsNavigationFinished())
         {
             Vector3 randomDirection = new Vector3(
-                (float)(GD.Randf() * 2 - 1), 
-                0, 
+                (float)(GD.Randf() * 2 - 1),
+                0,
                 (float)(GD.Randf() * 2 - 1)
             ).Normalized();
 
@@ -39,7 +39,7 @@ public partial class PatrolAction : UtilityAction
             _navigationAgent.TargetPosition = patrolPoint;
         }
 
-        if(_host.Self is CharacterBody3D body)
+        if (_host.Self is CharacterBody3D body)
         {
             Vector3 nextPosition = _navigationAgent.GetNextPathPosition();
             Vector3 direction = (nextPosition - body.GlobalPosition).Normalized();

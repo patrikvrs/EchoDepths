@@ -5,7 +5,7 @@ public partial class AttackAction : UtilityAction
     private IAIHost _host;
     private Blackboard _blackboard;
 
-    public AttackAction(string actionName, float utilityScore, IAIHost host, Blackboard blackboard) 
+    public AttackAction(string actionName, float utilityScore, IAIHost host, Blackboard blackboard)
         : base(actionName, utilityScore)
     {
         _host = host;

@@ -6,7 +6,7 @@ public partial class ChaseAction : UtilityAction
     private NavigationAgent3D _navigationAgent;
     private Blackboard _blackboard;
 
-    public ChaseAction(string actionName, float utilityScore, IAIHost host, Blackboard blackboard) 
+    public ChaseAction(string actionName, float utilityScore, IAIHost host, Blackboard blackboard)
         : base(actionName, utilityScore)
     {
         _host = host;
@@ -16,14 +16,14 @@ public partial class ChaseAction : UtilityAction
 
     public override void Execute()
     {
-        if(_host == null || _host.Target == null || _navigationAgent == null)
+        if (_host == null || _host.Target == null || _navigationAgent == null)
         {
             GD.PrintErr("Host, target, or navigation agent is null. Cannot execute action.");
             return;
         }
 
         Node3D target = _host.Target;
-        if(_host.Self is CharacterBody3D body)
+        if (_host.Self is CharacterBody3D body)
         {
             _navigationAgent.TargetPosition = target.GlobalPosition;
             Vector3 nextPosition = _navigationAgent.GetNextPathPosition();
