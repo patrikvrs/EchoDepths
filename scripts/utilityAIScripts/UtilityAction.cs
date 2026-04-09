@@ -1,15 +1,15 @@
 using Godot;
 
 [GlobalClass]
-public partial class UtilityAction : Node
+public partial class UtilityAction : Resource
 {
     [Export]
     public string ActionName { get; set; }
     [Export]
     public float UtilityScore { get; set; }
 
-    private IAIHost _host;
-    private Blackboard _blackboard;
+    protected IAIHost _host;
+    protected Blackboard _blackboard;
 
     public void SetContext(IAIHost host, Blackboard blackboard)
     {

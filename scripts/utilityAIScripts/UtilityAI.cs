@@ -20,6 +20,9 @@ public partial class UtilityAI : Node, IAIController
 		if (!_isActive || _host == null || _blackboard == null)
 			return;
 
+		float hasTarget = _host.Target != null ? 1.0f : 0.0f;
+		_blackboard.Set("HasTarget", hasTarget);
+
 		UtilityDecision bestDecision = null;
 		float bestScore = -1f;
 		foreach (UtilityDecision decision in Decisions)
@@ -27,7 +30,7 @@ public partial class UtilityAI : Node, IAIController
 			if (decision == null || decision.Action == null)
 				continue;
 
-			float score = decision.Evaluate(_blackboard);
+			float score = decision.Evaluate(_host, _blackboard);
 			if (score > bestScore)
 			{
 				bestScore = score;

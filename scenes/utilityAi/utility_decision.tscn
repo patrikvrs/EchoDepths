@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://byqcwmmjwpdw7"]
+
+[ext_resource type="Script" uid="uid://dyq0fll7if185" path="res://scripts/utilityAIScripts/UtilityDecision.cs" id="1_ypvv1"]
+
+[node name="UtilityDecision" type="Node"]
+script = ExtResource("1_ypvv1")

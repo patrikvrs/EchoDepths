@@ -3,8 +3,6 @@ using Godot;
 [GlobalClass]
 public partial class PatrolAction : UtilityAction
 {
-    private IAIHost _host;
-    private Blackboard _blackboard;
     private NavigationAgent3D _navigationAgent;
 
     public override void Execute()

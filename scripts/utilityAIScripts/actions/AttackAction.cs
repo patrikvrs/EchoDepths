@@ -3,9 +3,6 @@ using Godot;
 [GlobalClass]
 public partial class AttackAction : UtilityAction
 {
-    private IAIHost _host;
-    private Blackboard _blackboard;
-
     public override void Execute()
     {
         if (_host == null || _host.Target == null)

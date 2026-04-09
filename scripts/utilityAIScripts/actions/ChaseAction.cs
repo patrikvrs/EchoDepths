@@ -3,9 +3,7 @@ using Godot;
 [GlobalClass]
 public partial class ChaseAction : UtilityAction
 {
-    private IAIHost _host;
     private NavigationAgent3D _navigationAgent;
-    private Blackboard _blackboard;
 
     public override void Execute()
     {
