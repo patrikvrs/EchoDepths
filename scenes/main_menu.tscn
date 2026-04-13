@@ -1,0 +1,214 @@
+[gd_scene load_steps=17 format=3 uid="uid://bsoe6uaalhhy5"]
+
+[ext_resource type="Script" uid="uid://dx4xf6cr80btl" path="res://scripts/MainMenu.cs" id="1_ekxnf"]
+[ext_resource type="PackedScene" uid="uid://cmrg07u7o77iv" path="res://scenes/main.tscn" id="2_bqqt6"]
+
+[sub_resource type="Gradient" id="Gradient_vue75"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0031746032, 0.9968254, 1)
+colors = PackedColorArray(0.018744528, 0.01874453, 0.018744528, 1, 0, 0, 0, 1, 0.45452422, 0.45452428, 0.45452422, 1, 0.44153783, 0.44153786, 0.44153783, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l6cm7"]
+gradient = SubResource("Gradient_vue75")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ekxnf"]
+texture = SubResource("GradientTexture2D_l6cm7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 2
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vue75"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6cm7"]
+bg_color = Color(0.66245234, 0.66245234, 0.6624523, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 2
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l6cm7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekxnf"]
+bg_color = Color(0.7121294, 0.7121294, 0.71212935, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 2
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ekxnf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bqqt6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wu84c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ln24"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtw2f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oa1go"]
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("_startButton", "_quitButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 6.0
+offset_right = 1.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ekxnf")
+_gameScene = ExtResource("2_bqqt6")
+_startButton = NodePath("ButtonContainer/StartButton")
+_quitButton = NodePath("ButtonContainer/QuitButton")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ekxnf")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -286.0
+offset_top = -222.0
+offset_right = 286.0
+offset_bottom = -117.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Echo Depths"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.0
+offset_top = -59.0
+offset_right = 162.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="StartButton" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vue75")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_l6cm7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_ekxnf")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_bqqt6")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_wu84c")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8ln24")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_rtw2f")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_oa1go")
+text = "Start"
+
+[node name="TutorialButton" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vue75")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_l6cm7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_ekxnf")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_bqqt6")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_wu84c")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8ln24")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_rtw2f")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_oa1go")
+text = "Tutorial"
+
+[node name="OptionsButton" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vue75")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_l6cm7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_ekxnf")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_bqqt6")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_wu84c")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8ln24")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_rtw2f")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_oa1go")
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vue75")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_l6cm7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_ekxnf")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_bqqt6")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_wu84c")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8ln24")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_rtw2f")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_oa1go")
+text = "Quit"

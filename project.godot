@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="EchoDepths"
-run/main_scene="uid://cmrg07u7o77iv"
+run/main_scene="uid://bsoe6uaalhhy5"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://assets/icon.svg"
 
