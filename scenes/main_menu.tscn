@@ -4,18 +4,16 @@
 [ext_resource type="PackedScene" uid="uid://cmrg07u7o77iv" path="res://scenes/main.tscn" id="2_bqqt6"]
 [ext_resource type="FontFile" uid="uid://dhqm1rf4r1ppn" path="res://assets/fonts/PublicPixel.ttf" id="3_bqqt6"]
 
-[sub_resource type="Gradient" id="Gradient_vue75"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.0031746032, 0.9968254, 1)
-colors = PackedColorArray(0.018744528, 0.01874453, 0.018744528, 1, 0, 0, 0, 1, 0.45452422, 0.45452428, 0.45452422, 1, 0.44153783, 0.44153786, 0.44153783, 1)
+[sub_resource type="Gradient" id="Gradient_bqqt6"]
+offsets = PackedFloat32Array(0.13015874, 0.584127, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.34366435, 0.0012479341, 0.78105885, 1, 3.080368e-06, 0.7555749, 0.9628379, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_l6cm7"]
-gradient = SubResource("Gradient_vue75")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wu84c"]
+gradient = SubResource("Gradient_bqqt6")
 fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ekxnf"]
-texture = SubResource("GradientTexture2D_l6cm7")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ln24"]
+texture = SubResource("GradientTexture2D_wu84c")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
 bg_color = Color(1, 1, 1, 1)
@@ -90,7 +88,7 @@ anchor_bottom = 1.0
 offset_top = -8.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_ekxnf")
+theme_override_styles/panel = SubResource("StyleBoxTexture_8ln24")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
@@ -105,6 +103,7 @@ offset_right = 286.0
 offset_bottom = -117.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_bqqt6")
 theme_override_font_sizes/font_size = 64
 text = "Echo Depths"
 horizontal_alignment = 1
@@ -135,6 +134,7 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_bqqt6")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vue75")
@@ -159,6 +159,7 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_bqqt6")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vue75")
@@ -183,6 +184,7 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_bqqt6")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vue75")
@@ -207,6 +209,7 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_bqqt6")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vue75")
@@ -222,6 +225,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_oa1go")
 text = "Quit"
 
 [node name="OptionsPanel" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -244,6 +248,7 @@ offset_top = 3.0
 offset_right = -2.0
 offset_bottom = 58.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_bqqt6")
 theme_override_font_sizes/font_size = 32
 text = "Options"
 horizontal_alignment = 1
@@ -263,6 +268,7 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_bqqt6")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vue75")
@@ -291,8 +297,9 @@ value = 50.0
 [node name="MasterVolLabel" type="Label" parent="OptionsPanel/MasterVolSlider"]
 layout_mode = 0
 offset_left = -225.0
+offset_top = -2.0
 offset_right = -1.0
-offset_bottom = 28.0
+offset_bottom = 26.0
 theme_override_fonts/font = ExtResource("3_bqqt6")
 theme_override_font_sizes/font_size = 16
 text = "Master Volume:"
@@ -301,9 +308,9 @@ vertical_alignment = 1
 
 [node name="SFXVolSlider" type="HSlider" parent="OptionsPanel"]
 layout_mode = 0
-offset_left = 235.0
+offset_left = 265.0
 offset_top = 120.0
-offset_right = 447.0
+offset_right = 477.0
 offset_bottom = 150.0
 theme_override_styles/slider = SubResource("StyleBoxLine_ekxnf")
 theme_override_styles/grabber_area = SubResource("StyleBoxLine_bqqt6")
@@ -312,19 +319,21 @@ value = 50.0
 
 [node name="SFXVolLabel" type="Label" parent="OptionsPanel/SFXVolSlider"]
 layout_mode = 0
-offset_left = -175.0
-offset_right = -22.0
-offset_bottom = 28.0
-theme_override_font_sizes/font_size = 20
+offset_left = -225.0
+offset_top = -2.0
+offset_right = -1.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("3_bqqt6")
+theme_override_font_sizes/font_size = 16
 text = "Sound Effects:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MusicVolSlider" type="HSlider" parent="OptionsPanel"]
 layout_mode = 0
-offset_left = 235.0
+offset_left = 265.0
 offset_top = 160.0
-offset_right = 447.0
+offset_right = 477.0
 offset_bottom = 190.0
 theme_override_styles/slider = SubResource("StyleBoxLine_ekxnf")
 theme_override_styles/grabber_area = SubResource("StyleBoxLine_bqqt6")
@@ -333,28 +342,32 @@ value = 50.0
 
 [node name="MusicVolSlider" type="Label" parent="OptionsPanel/MusicVolSlider"]
 layout_mode = 0
-offset_left = -175.0
-offset_right = -22.0
-offset_bottom = 28.0
-theme_override_font_sizes/font_size = 20
+offset_left = -155.0
+offset_top = -2.0
+offset_right = -2.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("3_bqqt6")
+theme_override_font_sizes/font_size = 16
 text = "Music:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="FullScreenSwitch" type="CheckButton" parent="OptionsPanel"]
 layout_mode = 0
-offset_left = 100.0
+offset_left = 25.0
 offset_top = 200.0
-offset_right = 259.0
+offset_right = 265.0
 offset_bottom = 236.0
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("3_bqqt6")
+theme_override_font_sizes/font_size = 16
 text = "Full Screen:"
 
 [node name="DebugSwitch" type="CheckButton" parent="OptionsPanel"]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 240.0
-offset_right = 257.0
-offset_bottom = 276.0
-theme_override_font_sizes/font_size = 20
+offset_left = 280.0
+offset_top = 200.0
+offset_right = 504.0
+offset_bottom = 236.0
+theme_override_fonts/font = ExtResource("3_bqqt6")
+theme_override_font_sizes/font_size = 16
 text = "Debug mode:"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cmrg07u7o77iv"]
+[gd_scene load_steps=13 format=3 uid="uid://cmrg07u7o77iv"]
 
 [ext_resource type="PackedScene" uid="uid://bhm2jdmks8a7i" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://u7dwpxk44kty" path="res://scripts/CameraFollow.cs" id="1_sugp2"]
@@ -6,12 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bpra74oxdnsma" path="res://scenes/melee_attack.tscn" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://8cnggllpaqum" path="res://scripts/SimpleEnemy_BT.cs" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://dfeab3n5ufoks" path="res://scripts/utilityAIScripts/UtilityAI.cs" id="6_tefeu"]
-[ext_resource type="Script" uid="uid://dyq0fll7if185" path="res://scripts/utilityAIScripts/UtilityDecision.cs" id="7_ya4ey"]
-[ext_resource type="Script" uid="uid://n5ynfnbt1k5v" path="res://scripts/utilityAIScripts/UtilityConsideration.cs" id="8_choun"]
-[ext_resource type="Script" uid="uid://ckb5miia2ly45" path="res://scripts/utilityAIScripts/ResponseCurve.cs" id="9_ya4ey"]
-[ext_resource type="Script" uid="uid://b5lvib4l4413v" path="res://scripts/utilityAIScripts/UtilityConsiderationFromStat.cs" id="10_choun"]
-[ext_resource type="Script" uid="uid://bfwgyiwiugibh" path="res://scripts/utilityAIScripts/actions/AttackAction.cs" id="11_ya4ey"]
-
 [sub_resource type="NavigationMesh" id="NavigationMesh_sgp6g"]
 vertices = PackedVector3Array(-6, 0.900303, -15.427322, -4.5, 0.900303, -15.427322, -4.75, 0.900303, -49.177322, -6.75, 0.900303, -14.677322, -49, 0.900303, -49.177322, -49, 0.900303, -13.427322, -6.75, 0.900303, -13.177322, 1.5, 0.900303, -15.427322, 1.75, 0.900303, -49.177322, 3, 0.900303, -15.427322, 3.75, 0.900303, -14.677322, 49, 0.900303, -13.427322, 49, 0.900303, -49.177322, 3.75, 0.900303, -13.177322, -49, 0.900303, -9.177322, -6.75, 0.900303, -9.427322, -4.75, 1.900303, -13.427322, -4.75, 1.900303, -9.177322, 1.75, 1.900303, -9.177322, 1.75, 1.900303, -13.427322, 3.75, 0.900303, -9.427322, 49, 0.900303, -9.177322, -6.75, 0.900303, -7.9273224, -6, 0.900303, -7.1773224, -49, 0.900303, 49.072678, -4.75, 0.900303, 49.072678, -4.5, 0.900303, -7.1773224, 3.75, 0.900303, -7.9273224, 3, 0.900303, -7.1773224, 1.75, 0.900303, 49.072678, 49, 0.900303, 49.072678, 1.5, 0.900303, -7.1773224)
 polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 4), PackedInt32Array(4, 3, 5), PackedInt32Array(3, 6, 5), PackedInt32Array(1, 2, 7), PackedInt32Array(7, 2, 8), PackedInt32Array(9, 7, 8), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 12), PackedInt32Array(10, 12, 11), PackedInt32Array(11, 13, 10), PackedInt32Array(15, 14, 6), PackedInt32Array(6, 14, 5), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17), PackedInt32Array(13, 11, 20), PackedInt32Array(20, 11, 21), PackedInt32Array(14, 15, 22), PackedInt32Array(22, 23, 14), PackedInt32Array(14, 23, 24), PackedInt32Array(24, 23, 25), PackedInt32Array(23, 26, 25), PackedInt32Array(27, 20, 21), PackedInt32Array(27, 21, 28), PackedInt32Array(28, 21, 30), PackedInt32Array(28, 30, 29), PackedInt32Array(29, 31, 28), PackedInt32Array(26, 31, 25), PackedInt32Array(25, 31, 29)]
@@ -24,36 +18,6 @@ agent_radius = 1.0
 albedo_color = Color(0.066738896, 0.24979484, 0.031399876, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o5qli"]
-
-[sub_resource type="Curve" id="Curve_ya4ey"]
-_data = [Vector2(0.7542662, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Resource" id="Resource_eb6dy"]
-script = ExtResource("9_ya4ey")
-CurveData = SubResource("Curve_ya4ey")
-
-[sub_resource type="Resource" id="Resource_trceg"]
-script = ExtResource("8_choun")
-BlackboardKey = "HasTarget"
-metadata/_custom_type_script = "uid://n5ynfnbt1k5v"
-
-[sub_resource type="Curve" id="Curve_trceg"]
-_data = [Vector2(0.67576796, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Resource" id="Resource_jkv2x"]
-script = ExtResource("9_ya4ey")
-CurveData = SubResource("Curve_trceg")
-
-[sub_resource type="Resource" id="Resource_a8y0u"]
-script = ExtResource("10_choun")
-StatID = 3
-metadata/_custom_type_script = "uid://b5lvib4l4413v"
-
-[sub_resource type="Resource" id="Resource_jbj1t"]
-script = ExtResource("11_ya4ey")
-metadata/_custom_type_script = "uid://bfwgyiwiugibh"
 
 [node name="NavigationRegion3D" type="NavigationRegion3D"]
 navigation_mesh = SubResource("NavigationMesh_sgp6g")
@@ -100,16 +64,8 @@ utilityAIControllerNode = NodePath("UtilityBrain")
 [node name="Brain" type="Node" parent="Enemy/AIChooser" index="0"]
 script = ExtResource("5_tbgi4")
 
-[node name="UtilityBrain" type="Node" parent="Enemy/AIChooser" index="1" node_paths=PackedStringArray("Decisions")]
+[node name="UtilityBrain" type="Node" parent="Enemy/AIChooser" index="1"]
 script = ExtResource("6_tefeu")
-Decisions = [null]
-
-[node name="Teszt" type="Node" parent="Enemy/AIChooser/UtilityBrain"]
-script = ExtResource("7_ya4ey")
-DecisionName = "Teszt"
-Considerations = Array[ExtResource("8_choun")]([SubResource("Resource_trceg")])
-ConsiderationsFromStats = Array[ExtResource("10_choun")]([SubResource("Resource_a8y0u")])
-Action = SubResource("Resource_jbj1t")
 
 [node name="DebugLabel" type="Label3D" parent="Enemy"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4787464, 0)

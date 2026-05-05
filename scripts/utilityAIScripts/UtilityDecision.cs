@@ -20,7 +20,9 @@ public partial class UtilityDecision : Node
             return 0.0f;
         }
 
-        if (Considerations == null || Considerations.Count == 0)
+        bool hasBlackboardConsiderations = Considerations != null && Considerations.Count > 0;
+        bool hasStatConsiderations = ConsiderationsFromStats != null && ConsiderationsFromStats.Count > 0;
+        if (!hasBlackboardConsiderations && !hasStatConsiderations)
         {
             return 0.0f;
         }

@@ -3,30 +3,40 @@ using Godot;
 [GlobalClass]
 public partial class ChaseAction : UtilityAction
 {
-    private NavigationAgent3D _navigationAgent;
-
     public override void Execute()
     {
-        if (_host == null || _host.Target == null || _navigationAgent == null)
+        if (_host == null || _host.Target == null)
         {
-            GD.PrintErr("Host, target, or navigation agent is null. Cannot execute action.");
+            GD.PrintErr("Host or target is null. Cannot execute action.");
             return;
         }
 
-        Node3D target = _host.Target;
-        if (_host.Self is CharacterBody3D body)
+        NavigationAgent3D navigationAgent = _host.NavigationAgent;
+        if (navigationAgent == null)
         {
-            _navigationAgent.TargetPosition = target.GlobalPosition;
-            Vector3 nextPosition = _navigationAgent.GetNextPathPosition();
-            Vector3 direction = (nextPosition - body.GlobalPosition).Normalized();
-            if (body.GlobalPosition.DistanceTo(nextPosition) > 0.1f)
-            {
-                body.Velocity = direction * _host.GetStat(StatsID.MovementSpeed);
-            }
-            else
-            {
-                body.Velocity = Vector3.Zero;
-            }
+            GD.PrintErr("Host navigation agent is null. Cannot execute action.");
+            return;
         }
+
+        if (_host.Self is not CharacterBody3D body)
+        {
+            return;
+        }
+
+        navigationAgent.TargetPosition = _host.Target.GlobalPosition;
+        Vector3 nextPosition = navigationAgent.GetNextPathPosition();
+        Vector3 direction = nextPosition - body.GlobalPosition;
+        direction.Y = 0f;
+
+        if (direction.LengthSquared() > 0.0001f)
+        {
+            body.Velocity = direction.Normalized() * _host.GetStat(StatsID.MovementSpeed);
+        }
+        else
+        {
+            body.Velocity = Vector3.Zero;
+        }
+
+        _blackboard?.Set("LastActionName", "Chasing Target");
     }
 }

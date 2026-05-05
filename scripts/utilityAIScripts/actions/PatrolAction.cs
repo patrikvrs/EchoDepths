@@ -3,17 +3,27 @@ using Godot;
 [GlobalClass]
 public partial class PatrolAction : UtilityAction
 {
-    private NavigationAgent3D _navigationAgent;
-
     public override void Execute()
     {
-        if (_host == null || _navigationAgent == null)
+        if (_host == null)
         {
-            GD.PrintErr("Host or navigation agent is null. Cannot execute action.");
+            GD.PrintErr("Host is null. Cannot execute action.");
             return;
         }
 
-        if (_navigationAgent.IsNavigationFinished())
+        NavigationAgent3D navigationAgent = _host.NavigationAgent;
+        if (navigationAgent == null)
+        {
+            GD.PrintErr("Host navigation agent is null. Cannot execute action.");
+            return;
+        }
+
+        if (_host.Self is not CharacterBody3D body)
+        {
+            return;
+        }
+
+        if (navigationAgent.IsNavigationFinished())
         {
             Vector3 randomDirection = new Vector3(
                 (float)(GD.Randf() * 2 - 1),
@@ -23,21 +33,20 @@ public partial class PatrolAction : UtilityAction
 
             float patrolRadius = 10f;
             Vector3 patrolPoint = _host.Self.GlobalPosition + randomDirection * patrolRadius;
-            _navigationAgent.TargetPosition = patrolPoint;
+            navigationAgent.TargetPosition = patrolPoint;
         }
 
-        if (_host.Self is CharacterBody3D body)
+        Vector3 nextPosition = navigationAgent.GetNextPathPosition();
+        Vector3 direction = nextPosition - body.GlobalPosition;
+        direction.Y = 0f;
+
+        if (direction.LengthSquared() > 0.0001f)
         {
-            Vector3 nextPosition = _navigationAgent.GetNextPathPosition();
-            Vector3 direction = (nextPosition - body.GlobalPosition).Normalized();
-            if (body.GlobalPosition.DistanceTo(nextPosition) > 0.1f)
-            {
-                body.Velocity = direction * _host.GetStat(StatsID.MovementSpeed);
-            }
-            else
-            {
-                body.Velocity = Vector3.Zero;
-            }
+            body.Velocity = direction.Normalized() * _host.GetStat(StatsID.MovementSpeed);
+        }
+        else
+        {
+            body.Velocity = Vector3.Zero;
         }
 
         _blackboard?.Set("LastActionName", "Patrolling");

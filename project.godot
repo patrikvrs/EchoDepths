@@ -15,6 +15,11 @@ run/main_scene="uid://bsoe6uaalhhy5"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://assets/icon.svg"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="ignore"
+
 [dotnet]
 
 project/assembly_name="EchoDepths"
