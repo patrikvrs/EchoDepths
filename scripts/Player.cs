@@ -35,6 +35,15 @@ public partial class Player : CharacterBody3D, IDamageable
             AttackMelee();
         }
 
+        if (Input.IsActionJustPressed("sprint"))
+        {
+            playerStats.ModifyStat(StatsID.MovementSpeed, 2f);
+        }
+        else if (Input.IsActionJustReleased("sprint"))
+        {
+            playerStats.ModifyStat(StatsID.MovementSpeed, -2f);
+        }
+
         Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_up", "move_down");
         if (inputDir != Vector2.Zero && Camera != null)
         {
