@@ -15,6 +15,8 @@ public partial class Enemy : CharacterBody3D, IDamageable, IAIHost
     [Export]
     public float RotationLerpSpeed = 10.0f;
 
+    public Blackboard Blackboard { get; private set; }
+
     public Node3D Self => this;
     public NavigationAgent3D NavigationAgent => agent;
     public Node3D Target => target;
@@ -53,8 +55,13 @@ public partial class Enemy : CharacterBody3D, IDamageable, IAIHost
         if (stats.IsDead())
         {
             GD.Print("Enemy has been defeated!");
-            QueueFree();
+
         }
+    }
+
+    public void SetBlackboard(Blackboard blackboard)
+    {
+        Blackboard = blackboard;
     }
 
 }

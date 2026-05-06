@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 public partial class CharacterBase : Node
 {
-    public int Level { get; protected set; } = 1;
-
     private Dictionary<StatsID, float> Stats = new Dictionary<StatsID, float>();
 
     public override void _Ready()
@@ -16,12 +14,14 @@ public partial class CharacterBase : Node
     {
         GD.Print("Warning: CharacterBase InitStats not overridden in derived class. Using default stats.");
 
-        Stats[StatsID.MaxHealth] = 100 + (Level - 1) * 20;
+        Stats[StatsID.MaxHealth] = 100;
         Stats[StatsID.CurrentHealth] = Stats[StatsID.MaxHealth];
-        Stats[StatsID.AttackDamage] = 10 + (Level - 1) * 2;
+        Stats[StatsID.AttackDamage] = 10;
         Stats[StatsID.AttackRange] = 1.5f;
         Stats[StatsID.AttackSpeed] = 1.0f;
         Stats[StatsID.MovementSpeed] = 5.0f;
+        Stats[StatsID.MaxStamina] = 50;
+        Stats[StatsID.CurrentStamina] = Stats[StatsID.MaxStamina];
     }
 
     public float GetStat(StatsID statName)

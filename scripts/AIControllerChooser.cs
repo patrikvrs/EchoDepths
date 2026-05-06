@@ -34,6 +34,10 @@ public partial class AIControllerChooser : Node
         }
 
         _blackboard = new Blackboard();
+        if (_host is Enemy enemy)
+        {
+            enemy.SetBlackboard(_blackboard);
+        }
         SwitchMode(mode);
     }
 

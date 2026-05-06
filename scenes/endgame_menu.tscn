@@ -1,0 +1,149 @@
+[gd_scene load_steps=14 format=3 uid="uid://gvcqcm12b48u"]
+
+[ext_resource type="FontFile" uid="uid://dhqm1rf4r1ppn" path="res://assets/fonts/PublicPixel.ttf" id="1_b1neo"]
+[ext_resource type="Script" uid="uid://bkthvhlgpvxpy" path="res://scripts/GameOver.cs" id="1_gp03t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gp03t"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 2
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i2xv0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jg2dv"]
+bg_color = Color(0.66245234, 0.66245234, 0.6624523, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 2
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iqgpu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8squ"]
+bg_color = Color(0.7121294, 0.7121294, 0.71212935, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 2
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vqayh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3tmg0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dix18"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uk8m5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mlicc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o366g"]
+
+[node name="endgame_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gp03t")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -286.0
+offset_top = -222.0
+offset_right = 286.0
+offset_bottom = -117.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_b1neo")
+theme_override_font_sizes/font_size = 48
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverButtons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -19.0
+offset_right = 194.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="RestartButton" type="Button" parent="GameOverButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_b1neo")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_gp03t")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_i2xv0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jg2dv")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_iqgpu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c8squ")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vqayh")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_3tmg0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_dix18")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_uk8m5")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_mlicc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o366g")
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="GameOverButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_b1neo")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_gp03t")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_i2xv0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jg2dv")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_iqgpu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c8squ")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vqayh")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_3tmg0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_dix18")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_uk8m5")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_mlicc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o366g")
+text = "Quit to menu"

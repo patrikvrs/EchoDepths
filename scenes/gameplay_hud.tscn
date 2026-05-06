@@ -1,0 +1,112 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbfcudave6shy"]
+
+[ext_resource type="FontFile" uid="uid://dhqm1rf4r1ppn" path="res://assets/fonts/PublicPixel.ttf" id="1_8ji17"]
+[ext_resource type="Script" uid="uid://u2p4i0ubk6bx" path="res://scripts/InGameHUD.cs" id="1_np65w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ji17"]
+bg_color = Color(0.6588894, 0.05760227, 0.11879466, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_np65w"]
+bg_color = Color(0.67602843, 0.56565917, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="gameplay_hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_np65w")
+
+[node name="HP_Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 70.0
+offset_bottom = 45.0
+theme_override_fonts/font = ExtResource("1_8ji17")
+theme_override_font_sizes/font_size = 12
+text = "HP:"
+
+[node name="HP_bar" type="ProgressBar" parent="HP_Label"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = -5.0
+offset_right = 240.0
+offset_bottom = 20.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_8ji17")
+value = 100.0
+show_percentage = false
+
+[node name="HP_number" type="Label" parent="HP_Label"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 334.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource("1_8ji17")
+theme_override_font_sizes/font_size = 12
+text = "100/100"
+
+[node name="Stamina_Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 70.0
+offset_bottom = 85.0
+theme_override_fonts/font = ExtResource("1_8ji17")
+theme_override_font_sizes/font_size = 12
+text = "ST:"
+
+[node name="Stamina_bar" type="ProgressBar" parent="Stamina_Label"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = -5.0
+offset_right = 240.0
+offset_bottom = 20.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_np65w")
+max_value = 50.0
+value = 50.0
+show_percentage = false
+
+[node name="Stamina_number" type="Label" parent="Stamina_Label"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 360.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource("1_8ji17")
+theme_override_font_sizes/font_size = 12
+text = "50/50"
+
+[node name="Score_Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -202.0
+offset_top = 23.0
+offset_right = -106.0
+offset_bottom = 46.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("1_8ji17")
+text = "Score:"
+
+[node name="Score" type="Label" parent="Score_Label"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 104.0
+offset_bottom = 25.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("1_8ji17")
+text = "0"

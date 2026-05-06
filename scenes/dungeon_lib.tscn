@@ -2761,13 +2761,13 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_faitv")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mktgr"]
-size = Vector3(3.9765625, 0.5620117, 9.056747)
+size = Vector3(3.9765625, 0.5620117, 9.093004)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jkpuq"]
 size = Vector3(0.5720215, 0.8480835, 9.07472)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xcosq"]
-size = Vector3(5.024414, 4.0788574, 0.19921875)
+size = Vector3(4.9470215, 3.991333, 0.91741943)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4pt1b"]
 size = Vector3(0.5720215, 0.9974899, 8.0289955)
@@ -5086,133 +5086,90 @@ shadow_mesh = SubResource("ArrayMesh_be57d")
 [node name="Node3D" type="Node3D"]
 
 [node name="banner_blue2" parent="." instance=ExtResource("1_5e4mh")]
-visible = false
 
 [node name="banner_brown2" parent="." instance=ExtResource("2_gbh0b")]
-visible = false
 
 [node name="banner_green2" parent="." instance=ExtResource("3_a83d5")]
-visible = false
 
 [node name="banner_patternA_blue2" parent="." instance=ExtResource("4_doaot")]
-visible = false
 
 [node name="banner_patternA_brown2" parent="." instance=ExtResource("5_b08la")]
-visible = false
 
 [node name="banner_patternA_green2" parent="." instance=ExtResource("6_jd7qa")]
-visible = false
 
 [node name="banner_patternA_red2" parent="." instance=ExtResource("7_rs2bn")]
-visible = false
 
 [node name="banner_patternA_white2" parent="." instance=ExtResource("8_kgjjq")]
-visible = false
 
 [node name="banner_patternA_yellow2" parent="." instance=ExtResource("9_qasl7")]
-visible = false
 
 [node name="banner_patternB_blue2" parent="." instance=ExtResource("10_qljym")]
-visible = false
 
 [node name="banner_patternB_brown2" parent="." instance=ExtResource("11_hymjr")]
-visible = false
 
 [node name="banner_patternB_green2" parent="." instance=ExtResource("12_emo0d")]
-visible = false
 
 [node name="banner_patternB_red2" parent="." instance=ExtResource("13_7bc58")]
-visible = false
 
 [node name="banner_patternB_white2" parent="." instance=ExtResource("14_3ny75")]
-visible = false
 
 [node name="banner_patternB_yellow2" parent="." instance=ExtResource("15_l3ogr")]
-visible = false
 
 [node name="banner_patternC_blue2" parent="." instance=ExtResource("16_kiscs")]
-visible = false
 
 [node name="banner_patternC_brown2" parent="." instance=ExtResource("17_tlwnr")]
-visible = false
 
 [node name="banner_patternC_green2" parent="." instance=ExtResource("18_e5okf")]
-visible = false
 
 [node name="banner_patternC_red2" parent="." instance=ExtResource("19_wx2ik")]
-visible = false
 
 [node name="banner_patternC_white2" parent="." instance=ExtResource("20_gqk1v")]
-visible = false
 
 [node name="banner_patternC_yellow2" parent="." instance=ExtResource("21_niatd")]
-visible = false
 
 [node name="banner_red2" parent="." instance=ExtResource("22_vsu5i")]
-visible = false
 
 [node name="banner_shield_blue2" parent="." instance=ExtResource("23_spclb")]
-visible = false
 
 [node name="banner_shield_brown2" parent="." instance=ExtResource("24_gyl8s")]
-visible = false
 
 [node name="banner_shield_green2" parent="." instance=ExtResource("25_nfcaj")]
-visible = false
 
 [node name="banner_shield_red2" parent="." instance=ExtResource("26_f1rba")]
-visible = false
 
 [node name="banner_shield_white2" parent="." instance=ExtResource("27_hl1t8")]
-visible = false
 
 [node name="banner_shield_yellow2" parent="." instance=ExtResource("28_i1tq6")]
-visible = false
 
 [node name="banner_thin_blue2" parent="." instance=ExtResource("29_1sfhu")]
-visible = false
 
 [node name="banner_thin_brown2" parent="." instance=ExtResource("30_1kbxn")]
-visible = false
 
 [node name="banner_thin_green2" parent="." instance=ExtResource("31_qmglt")]
-visible = false
 
 [node name="banner_thin_red2" parent="." instance=ExtResource("32_y864u")]
-visible = false
 
 [node name="banner_thin_white2" parent="." instance=ExtResource("33_t7w5y")]
-visible = false
 
 [node name="banner_thin_yellow2" parent="." instance=ExtResource("34_v1ufc")]
-visible = false
 
 [node name="banner_triple_blue2" parent="." instance=ExtResource("35_ravjc")]
-visible = false
 
 [node name="banner_triple_brown2" parent="." instance=ExtResource("36_mn2a0")]
-visible = false
 
 [node name="banner_triple_green2" parent="." instance=ExtResource("37_8wcfx")]
-visible = false
 
 [node name="banner_triple_red2" parent="." instance=ExtResource("38_5npnx")]
-visible = false
 
 [node name="banner_triple_white2" parent="." instance=ExtResource("39_knur6")]
-visible = false
 
 [node name="banner_triple_yellow2" parent="." instance=ExtResource("40_ow213")]
-visible = false
 
 [node name="banner_white2" parent="." instance=ExtResource("41_5wq38")]
-visible = false
 
 [node name="banner_yellow2" parent="." instance=ExtResource("42_5grh3")]
-visible = false
 
 [node name="barrel_large2" type="Node3D" parent="."]
-visible = false
 
 [node name="barrel_large" type="MeshInstance3D" parent="barrel_large2"]
 mesh = SubResource("ArrayMesh_13e04")
@@ -5225,7 +5182,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1037598, 0.022277832)
 shape = SubResource("BoxShape3D_dfl6x")
 
 [node name="barrel_large_decorated2" type="Node3D" parent="."]
-visible = false
 
 [node name="barrel_large_decorated" type="MeshInstance3D" parent="barrel_large_decorated2"]
 mesh = SubResource("ArrayMesh_35api")
@@ -5238,7 +5194,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.276892, 0)
 shape = SubResource("BoxShape3D_krc7l")
 
 [node name="barrel_small2" type="Node3D" parent="."]
-visible = false
 
 [node name="barrel_small" type="MeshInstance3D" parent="barrel_small2"]
 mesh = SubResource("ArrayMesh_qib16")
@@ -5251,7 +5206,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5099497, 0)
 shape = SubResource("BoxShape3D_iu3um")
 
 [node name="barrel_small_stack2" type="Node3D" parent="."]
-visible = false
 
 [node name="barrel_small_stack" type="MeshInstance3D" parent="barrel_small_stack2"]
 mesh = SubResource("ArrayMesh_78ruc")
@@ -5264,7 +5218,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024230957, 0.9093479, -0.00
 shape = SubResource("BoxShape3D_41443")
 
 [node name="barrier2" type="Node3D" parent="."]
-visible = false
 
 [node name="barrier" type="MeshInstance3D" parent="barrier2"]
 mesh = SubResource("ArrayMesh_daxa3")
@@ -5277,7 +5230,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0028686523, 0.604246, 0.020
 shape = SubResource("BoxShape3D_f5vei")
 
 [node name="barrier_column2" type="Node3D" parent="."]
-visible = false
 
 [node name="barrier_column" type="MeshInstance3D" parent="barrier_column2"]
 mesh = SubResource("ArrayMesh_lnr05")
@@ -5295,7 +5247,6 @@ shape = SubResource("BoxShape3D_iewgb")
 debug_color = Color(0.9903907, 0, 0.28461158, 0.41960785)
 
 [node name="barrier_colum_half2" type="Node3D" parent="."]
-visible = false
 
 [node name="barrier_colum_half" type="MeshInstance3D" parent="barrier_colum_half2"]
 mesh = SubResource("ArrayMesh_g8ybi")
@@ -5308,7 +5259,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75335693, 0.7948407, 0)
 shape = SubResource("BoxShape3D_p117p")
 
 [node name="barrier_corner2" type="Node3D" parent="."]
-visible = false
 
 [node name="barrier_corner" type="MeshInstance3D" parent="barrier_corner2"]
 mesh = SubResource("ArrayMesh_nuvpk")
@@ -5325,7 +5275,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75061035, 0.7563286, 0.020
 shape = SubResource("BoxShape3D_7iff1")
 
 [node name="barrier_half2" type="Node3D" parent="."]
-visible = false
 
 [node name="barrier_half" type="MeshInstance3D" parent="barrier_half2"]
 mesh = SubResource("ArrayMesh_n6ckc")
@@ -5337,7 +5286,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_5s7vj")
 
 [node name="bed_decorated2" type="Node3D" parent="."]
-visible = false
 
 [node name="bed_decorated" type="MeshInstance3D" parent="bed_decorated2"]
 mesh = SubResource("ArrayMesh_uqacv")
@@ -5349,7 +5297,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_7ltl5")
 
 [node name="bed_floor2" type="Node3D" parent="."]
-visible = false
 
 [node name="bed_floor" type="MeshInstance3D" parent="bed_floor2"]
 mesh = SubResource("ArrayMesh_oooiy")
@@ -5361,7 +5308,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_m1s27")
 
 [node name="bed_frame2" type="Node3D" parent="."]
-visible = false
 
 [node name="bed_frame" type="MeshInstance3D" parent="bed_frame2"]
 mesh = SubResource("ArrayMesh_tsli0")
@@ -5374,31 +5320,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0234375, 0.46894157, 0.0036
 shape = SubResource("BoxShape3D_6xr14")
 
 [node name="bottle_A_brown2" parent="." instance=ExtResource("55_o18ae")]
-visible = false
 
 [node name="bottle_A_green2" parent="." instance=ExtResource("56_ij1t3")]
-visible = false
 
 [node name="bottle_A_labeled_brown2" parent="." instance=ExtResource("57_xb8k4")]
-visible = false
 
 [node name="bottle_A_labeled_green2" parent="." instance=ExtResource("58_3fpy8")]
-visible = false
 
 [node name="bottle_B_brown2" parent="." instance=ExtResource("59_r3ldc")]
-visible = false
 
 [node name="bottle_B_green2" parent="." instance=ExtResource("60_mykjj")]
-visible = false
 
 [node name="bottle_C_brown2" parent="." instance=ExtResource("61_njjly")]
-visible = false
 
 [node name="bottle_C_green2" parent="." instance=ExtResource("62_2uxqe")]
-visible = false
 
 [node name="box_large2" type="Node3D" parent="."]
-visible = false
 
 [node name="box_large" type="MeshInstance3D" parent="box_large2"]
 mesh = SubResource("ArrayMesh_41nkf")
@@ -5410,7 +5347,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_eyv07")
 
 [node name="box_small2" type="Node3D" parent="."]
-visible = false
 
 [node name="box_small" type="MeshInstance3D" parent="box_small2"]
 mesh = SubResource("ArrayMesh_iauhy")
@@ -5422,7 +5358,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_txpvk")
 
 [node name="box_small_decorated2" type="Node3D" parent="."]
-visible = false
 
 [node name="box_small_decorated" type="MeshInstance3D" parent="box_small_decorated2"]
 mesh = SubResource("ArrayMesh_bw0ur")
@@ -5435,7 +5370,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14819336, 0.78333116, 0.133
 shape = SubResource("BoxShape3D_ixoa6")
 
 [node name="box_stacked2" type="Node3D" parent="."]
-visible = false
 
 [node name="box_stacked" type="MeshInstance3D" parent="box_stacked2"]
 mesh = SubResource("ArrayMesh_kaeyq")
@@ -5447,25 +5381,18 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_cawhv")
 
 [node name="candle2" parent="." instance=ExtResource("67_e8vn8")]
-visible = false
 
 [node name="candle_lit2" parent="." instance=ExtResource("68_hos5i")]
-visible = false
 
 [node name="candle_melted2" parent="." instance=ExtResource("69_6mb0v")]
-visible = false
 
 [node name="candle_thin2" parent="." instance=ExtResource("70_gv1xy")]
-visible = false
 
 [node name="candle_thin_lit2" parent="." instance=ExtResource("71_5s324")]
-visible = false
 
 [node name="candle_triple2" parent="." instance=ExtResource("72_8nt65")]
-visible = false
 
 [node name="ceiling_tile2" type="Node3D" parent="."]
-visible = false
 
 [node name="ceiling_tile" type="MeshInstance3D" parent="ceiling_tile2"]
 visible = false
@@ -5480,7 +5407,6 @@ visible = false
 shape = SubResource("ConvexPolygonShape3D_efmt5")
 
 [node name="chair2" type="Node3D" parent="."]
-visible = false
 
 [node name="chair" type="MeshInstance3D" parent="chair2"]
 mesh = SubResource("ArrayMesh_avurs")
@@ -5493,7 +5419,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0033569336, 0.58604884, -0.
 shape = SubResource("BoxShape3D_d8ggq")
 
 [node name="chest2" type="Node3D" parent="."]
-visible = false
 
 [node name="chest" type="MeshInstance3D" parent="chest2"]
 mesh = SubResource("ArrayMesh_r78jt")
@@ -5515,7 +5440,6 @@ shape = SubResource("ConvexPolygonShape3D_4sib0")
 shape = SubResource("ConvexPolygonShape3D_ynj8l")
 
 [node name="chest_gold2" type="Node3D" parent="."]
-visible = false
 
 [node name="chest_gold" type="MeshInstance3D" parent="chest_gold2"]
 mesh = SubResource("ArrayMesh_mltbc")
@@ -5537,19 +5461,14 @@ shape = SubResource("ConvexPolygonShape3D_s1up1")
 shape = SubResource("ConvexPolygonShape3D_5e4mh")
 
 [node name="coin2" parent="." instance=ExtResource("77_iy0vw")]
-visible = false
 
 [node name="coin_stack_large2" parent="." instance=ExtResource("78_30qca")]
-visible = false
 
 [node name="coin_stack_medium2" parent="." instance=ExtResource("79_3mx6j")]
-visible = false
 
 [node name="coin_stack_small2" parent="." instance=ExtResource("80_a48qd")]
-visible = false
 
 [node name="column2" type="Node3D" parent="."]
-visible = false
 
 [node name="column" type="MeshInstance3D" parent="column2"]
 mesh = SubResource("ArrayMesh_0367b")
@@ -5561,7 +5480,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_gbh0b")
 
 [node name="crates_stacked2" type="Node3D" parent="."]
-visible = false
 
 [node name="crates_stacked" type="MeshInstance3D" parent="crates_stacked2"]
 mesh = SubResource("ArrayMesh_w68ct")
@@ -5574,7 +5492,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008605957, 1.1082001, -0.0
 shape = SubResource("BoxShape3D_a83d5")
 
 [node name="floor_dirt_large2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_dirt_large" type="MeshInstance3D" parent="floor_dirt_large2"]
 mesh = SubResource("ArrayMesh_svnan")
@@ -5587,7 +5504,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0014648438, -0.03741455, 0)
 shape = SubResource("BoxShape3D_doaot")
 
 [node name="floor_dirt_large_rocky2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_dirt_large_rocky" type="MeshInstance3D" parent="floor_dirt_large_rocky2"]
 mesh = SubResource("ArrayMesh_v38o8")
@@ -5600,7 +5516,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0014648438, -0.03741455, 0)
 shape = SubResource("BoxShape3D_doaot")
 
 [node name="floor_dirt_small_A2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_dirt_small_A" type="MeshInstance3D" parent="floor_dirt_small_A2"]
 mesh = SubResource("ArrayMesh_1rje2")
@@ -5613,7 +5528,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.040161133, 0)
 shape = SubResource("BoxShape3D_b08la")
 
 [node name="floor_dirt_small_B2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_dirt_small_B" type="MeshInstance3D" parent="floor_dirt_small_B2"]
 mesh = SubResource("ArrayMesh_w11i2")
@@ -5626,7 +5540,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.040161133, 0)
 shape = SubResource("BoxShape3D_b08la")
 
 [node name="floor_dirt_small_C2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_dirt_small_C" type="MeshInstance3D" parent="floor_dirt_small_C2"]
 mesh = SubResource("ArrayMesh_hwy8a")
@@ -5639,7 +5552,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.040161133, 0)
 shape = SubResource("BoxShape3D_b08la")
 
 [node name="floor_dirt_small_corner2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_dirt_small_corner" type="MeshInstance3D" parent="floor_dirt_small_corner2"]
 mesh = SubResource("ArrayMesh_0iacv")
@@ -5652,7 +5564,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.022216797, 0.0012207031
 shape = SubResource("BoxShape3D_b08la")
 
 [node name="floor_dirt_small_D2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_dirt_small_D" type="MeshInstance3D" parent="floor_dirt_small_D2"]
 mesh = SubResource("ArrayMesh_p6ie4")
@@ -5665,7 +5576,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.040161133, 0)
 shape = SubResource("BoxShape3D_b08la")
 
 [node name="floor_dirt_small_weeds2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_dirt_small_weeds" type="MeshInstance3D" parent="floor_dirt_small_weeds2"]
 mesh = SubResource("ArrayMesh_xmabr")
@@ -5678,7 +5588,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.040161133, 0)
 shape = SubResource("BoxShape3D_b08la")
 
 [node name="floor_foundation_allsides2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_foundation_allsides" type="MeshInstance3D" parent="floor_foundation_allsides2"]
 mesh = SubResource("ArrayMesh_jwnof")
@@ -5690,7 +5599,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_nb1dd")
 
 [node name="floor_foundation_corner2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_foundation_corner" type="MeshInstance3D" parent="floor_foundation_corner2"]
 mesh = SubResource("ArrayMesh_lnykw")
@@ -5702,7 +5610,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_mm32y")
 
 [node name="floor_foundation_diagonal_corner2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_foundation_diagonal_corner" type="MeshInstance3D" parent="floor_foundation_diagonal_corner2"]
 mesh = SubResource("ArrayMesh_qetl1")
@@ -5714,7 +5621,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_3miy2")
 
 [node name="floor_foundation_front2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_foundation_front" type="MeshInstance3D" parent="floor_foundation_front2"]
 mesh = SubResource("ArrayMesh_qsdr7")
@@ -5726,7 +5632,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_x1n8v")
 
 [node name="floor_foundation_front_and_back2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_foundation_front_and_back" type="MeshInstance3D" parent="floor_foundation_front_and_back2"]
 mesh = SubResource("ArrayMesh_orycm")
@@ -5738,7 +5643,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_37uym")
 
 [node name="floor_foundation_front_and_sides2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_foundation_front_and_sides" type="MeshInstance3D" parent="floor_foundation_front_and_sides2"]
 mesh = SubResource("ArrayMesh_q14a4")
@@ -5750,7 +5654,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_26jcc")
 
 [node name="floor_tile_big_grate2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_tile_big_grate" type="MeshInstance3D" parent="floor_tile_big_grate2"]
 mesh = SubResource("ArrayMesh_eaxls")
@@ -5762,7 +5665,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_ibc7y")
 
 [node name="floor_tile_big_grate_open2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_tile_big_grate_open" type="MeshInstance3D" parent="floor_tile_big_grate_open2"]
 mesh = SubResource("ArrayMesh_8vtdh")
@@ -5794,7 +5696,6 @@ shape = SubResource("ConvexPolygonShape3D_3h5q0")
 shape = SubResource("ConvexPolygonShape3D_4ym2u")
 
 [node name="floor_tile_extralarge_grates2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_tile_extralarge_grates" type="MeshInstance3D" parent="floor_tile_extralarge_grates2"]
 mesh = SubResource("ArrayMesh_7t1ee")
@@ -5806,7 +5707,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_kc2ky")
 
 [node name="floor_tile_extralarge_grates_open2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_tile_extralarge_grates_open" type="MeshInstance3D" parent="floor_tile_extralarge_grates_open2"]
 mesh = SubResource("ArrayMesh_fy1na")
@@ -5818,7 +5718,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_5u2fn")
 
 [node name="floor_tile_grate2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_tile_grate" type="MeshInstance3D" parent="floor_tile_grate2"]
 mesh = SubResource("ArrayMesh_uvb7m")
@@ -5830,7 +5729,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_2mr1a")
 
 [node name="floor_tile_grate_open2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_tile_grate_open" type="MeshInstance3D" parent="floor_tile_grate_open2"]
 mesh = SubResource("ArrayMesh_3sj2g")
@@ -5842,7 +5740,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_1ss3s")
 
 [node name="floor_tile_large2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_tile_large" type="MeshInstance3D" parent="floor_tile_large2"]
 mesh = SubResource("ArrayMesh_m1m1s")
@@ -5855,7 +5752,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01740241, 0)
 shape = SubResource("BoxShape3D_u17v1")
 
 [node name="floor_tile_large_rocks2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_tile_large_rocks" type="MeshInstance3D" parent="floor_tile_large_rocks2"]
 mesh = SubResource("ArrayMesh_o3xlp")
@@ -5868,7 +5764,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01740241, 0)
 shape = SubResource("BoxShape3D_u17v1")
 
 [node name="floor_tile_small2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_tile_small" type="MeshInstance3D" parent="floor_tile_small2"]
 mesh = SubResource("ArrayMesh_7foq1")
@@ -5880,7 +5775,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_jkpuq")
 
 [node name="floor_tile_small_broken_A2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_tile_small_broken_A" type="MeshInstance3D" parent="floor_tile_small_broken_A2"]
 mesh = SubResource("ArrayMesh_5cyld")
@@ -5892,7 +5786,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_jkpuq")
 
 [node name="floor_tile_small_broken_B2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_tile_small_broken_B" type="MeshInstance3D" parent="floor_tile_small_broken_B2"]
 mesh = SubResource("ArrayMesh_sdimu")
@@ -5904,7 +5797,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_jkpuq")
 
 [node name="floor_tile_small_corner2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_tile_small_corner" type="MeshInstance3D" parent="floor_tile_small_corner2"]
 mesh = SubResource("ArrayMesh_jwt0s")
@@ -5916,7 +5808,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_xcosq")
 
 [node name="floor_tile_small_decorated2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_tile_small_decorated" type="MeshInstance3D" parent="floor_tile_small_decorated2"]
 mesh = SubResource("ArrayMesh_xuqqu")
@@ -5928,7 +5819,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_jkpuq")
 
 [node name="floor_tile_small_weeds_A2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_tile_small_weeds_A" type="MeshInstance3D" parent="floor_tile_small_weeds_A2"]
 mesh = SubResource("ArrayMesh_wsqxq")
@@ -5940,7 +5830,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_jkpuq")
 
 [node name="floor_tile_small_weeds_B2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_tile_small_weeds_B" type="MeshInstance3D" parent="floor_tile_small_weeds_B2"]
 mesh = SubResource("ArrayMesh_c7ysn")
@@ -5952,7 +5841,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_jkpuq")
 
 [node name="floor_wood_large2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_wood_large" type="MeshInstance3D" parent="floor_wood_large2"]
 mesh = SubResource("ArrayMesh_nwqe6")
@@ -5965,7 +5853,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01740241, 0)
 shape = SubResource("BoxShape3D_u17v1")
 
 [node name="floor_wood_large_dark2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_wood_large_dark" type="MeshInstance3D" parent="floor_wood_large_dark2"]
 mesh = SubResource("ArrayMesh_luqbq")
@@ -5978,7 +5865,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01740241, 0)
 shape = SubResource("BoxShape3D_u17v1")
 
 [node name="floor_wood_small2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_wood_small" type="MeshInstance3D" parent="floor_wood_small2"]
 mesh = SubResource("ArrayMesh_yr5va")
@@ -5990,7 +5876,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_4pt1b")
 
 [node name="floor_wood_small_dark2" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_wood_small_dark" type="MeshInstance3D" parent="floor_wood_small_dark2"]
 mesh = SubResource("ArrayMesh_rftu3")
@@ -6002,7 +5887,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_ove2t")
 
 [node name="keg2" type="Node3D" parent="."]
-visible = false
 
 [node name="keg" type="MeshInstance3D" parent="keg2"]
 mesh = SubResource("ArrayMesh_42qsy")
@@ -6015,7 +5899,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0008163452, 1.0293016, 0.0
 shape = SubResource("BoxShape3D_10usw")
 
 [node name="keg_decorated2" type="Node3D" parent="."]
-visible = false
 
 [node name="keg_decorated" type="MeshInstance3D" parent="keg_decorated2"]
 mesh = SubResource("ArrayMesh_spgop")
@@ -6028,16 +5911,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.031188488, 1.0293016, 0.04
 shape = SubResource("BoxShape3D_10usw")
 
 [node name="key2" parent="." instance=ExtResource("119_dksof")]
-visible = false
 
 [node name="keyring2" parent="." instance=ExtResource("120_w100x")]
-visible = false
 
 [node name="keyring_hanging2" parent="." instance=ExtResource("121_u6f4v")]
-visible = false
 
 [node name="pillar2" type="Node3D" parent="."]
-visible = false
 
 [node name="pillar" type="MeshInstance3D" parent="pillar2"]
 mesh = SubResource("ArrayMesh_og6ly")
@@ -6049,7 +5928,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_5uxlw")
 
 [node name="pillar_decorated2" type="Node3D" parent="."]
-visible = false
 
 [node name="pillar_decorated" type="MeshInstance3D" parent="pillar_decorated2"]
 mesh = SubResource("ArrayMesh_t3vqb")
@@ -6061,22 +5939,16 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_5vm1y")
 
 [node name="plate2" parent="." instance=ExtResource("124_mnnfr")]
-visible = false
 
 [node name="plate_food_A2" parent="." instance=ExtResource("125_t261g")]
-visible = false
 
 [node name="plate_food_B2" parent="." instance=ExtResource("126_rt5h3")]
-visible = false
 
 [node name="plate_small2" parent="." instance=ExtResource("127_jneyf")]
-visible = false
 
 [node name="plate_stack2" parent="." instance=ExtResource("128_mq4jy")]
-visible = false
 
 [node name="rubble_half2" type="Node3D" parent="."]
-visible = false
 
 [node name="rubble_half" type="MeshInstance3D" parent="rubble_half2"]
 mesh = SubResource("ArrayMesh_rvg8a")
@@ -6089,7 +5961,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9896927, 1.7820435, -0.0116
 shape = SubResource("BoxShape3D_okw70")
 
 [node name="rubble_large2" type="Node3D" parent="."]
-visible = false
 
 [node name="rubble_large" type="MeshInstance3D" parent="rubble_large2"]
 mesh = SubResource("ArrayMesh_j2g4c")
@@ -6102,19 +5973,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019249916, 1.7547913, 0.00
 shape = SubResource("BoxShape3D_okw70")
 
 [node name="shelf_large2" parent="." instance=ExtResource("131_681a5")]
-visible = false
 
 [node name="shelf_small2" parent="." instance=ExtResource("132_ab407")]
-visible = false
 
 [node name="shelf_small_candles2" parent="." instance=ExtResource("133_7cse5")]
-visible = false
 
 [node name="shelves2" parent="." instance=ExtResource("134_e7j1v")]
-visible = false
 
 [node name="stairs2" type="Node3D" parent="."]
-visible = false
 
 [node name="stairs" type="MeshInstance3D" parent="stairs2"]
 mesh = SubResource("ArrayMesh_3kwd1")
@@ -6171,7 +6037,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06605029, 2.0857162, 0.023
 shape = SubResource("BoxShape3D_fwpjx")
 
 [node name="stairs_long2" type="Node3D" parent="."]
-visible = false
 
 [node name="stairs_long" type="MeshInstance3D" parent="stairs_long2"]
 mesh = SubResource("ArrayMesh_pvhdd")
@@ -6180,7 +6045,7 @@ skeleton = NodePath("")
 [node name="StaticBody3D" type="StaticBody3D" parent="stairs_long2/stairs_long"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="stairs_long2/stairs_long/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.90044785, -0.43496394, 0, 0.43496394, 0.90044785, 0, 2.1556602, 4.1265426)
+transform = Transform3D(1, 0, 0, 0, 0.90044785, -0.43496394, 0, 0.43496394, 0.90044785, 0, 1.8345783, 4.791235)
 shape = SubResource("BoxShape3D_mktgr")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="stairs_long2/stairs_long/StaticBody3D"]
@@ -6192,7 +6057,7 @@ transform = Transform3D(1, 0, 0, 0, 0.90044785, -0.43496394, 0, 0.43496394, 0.90
 shape = SubResource("BoxShape3D_jkpuq")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="stairs_long2/stairs_long/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0142817, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03869629, 2.0762181, 0.35910034)
 shape = SubResource("BoxShape3D_xcosq")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="stairs_long2/stairs_long/StaticBody3D"]
@@ -6236,7 +6101,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2503445, 3.6800957, 0.7583
 shape = SubResource("BoxShape3D_5l3s5")
 
 [node name="stairs_long_modular_center2" type="Node3D" parent="."]
-visible = false
 
 [node name="stairs_long_modular_center" type="MeshInstance3D" parent="stairs_long_modular_center2"]
 mesh = SubResource("ArrayMesh_ib6e6")
@@ -6248,7 +6112,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_vudys")
 
 [node name="stairs_long_modular_left2" type="Node3D" parent="."]
-visible = false
 
 [node name="stairs_long_modular_left" type="MeshInstance3D" parent="stairs_long_modular_left2"]
 mesh = SubResource("ArrayMesh_ejegs")
@@ -6289,7 +6152,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2503445, 3.6800957, 0.7583
 shape = SubResource("BoxShape3D_5l3s5")
 
 [node name="stairs_long_modular_right2" type="Node3D" parent="."]
-visible = false
 
 [node name="stairs_long_modular_right" type="MeshInstance3D" parent="stairs_long_modular_right2"]
 mesh = SubResource("ArrayMesh_olrwj")
@@ -6326,7 +6188,6 @@ transform = Transform3D(1, 0, 0, 0, 0.8937475, -0.4485704, 0, 0.4485704, 0.89374
 shape = SubResource("BoxShape3D_77orx")
 
 [node name="stairs_modular_center2" type="Node3D" parent="."]
-visible = false
 
 [node name="stairs_modular_center" type="MeshInstance3D" parent="stairs_modular_center2"]
 mesh = SubResource("ArrayMesh_13kfm")
@@ -6338,7 +6199,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_1xlwd")
 
 [node name="stairs_modular_left2" type="Node3D" parent="."]
-visible = false
 
 [node name="stairs_modular_left" type="MeshInstance3D" parent="stairs_modular_left2"]
 mesh = SubResource("ArrayMesh_vnbn5")
@@ -6375,7 +6235,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7669685, 2.0393682, 0.0220
 shape = SubResource("BoxShape3D_qdxpp")
 
 [node name="stairs_modular_right2" type="Node3D" parent="."]
-visible = false
 
 [node name="stairs_modular_right" type="MeshInstance3D" parent="stairs_modular_right2"]
 mesh = SubResource("ArrayMesh_nng4b")
@@ -6412,7 +6271,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7913768, 2.0393682, 0.02204
 shape = SubResource("BoxShape3D_qdxpp")
 
 [node name="stairs_narrow2" type="Node3D" parent="."]
-visible = false
 
 [node name="stairs_narrow" type="MeshInstance3D" parent="stairs_narrow2"]
 mesh = SubResource("ArrayMesh_jmmjc")
@@ -6469,7 +6327,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06605029, 2.0857162, 0.482
 shape = SubResource("BoxShape3D_vw0b6")
 
 [node name="stool2" type="Node3D" parent="."]
-visible = false
 
 [node name="stool" type="MeshInstance3D" parent="stool2"]
 mesh = SubResource("ArrayMesh_5yxfa")
@@ -6481,16 +6338,12 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_38a6c")
 
 [node name="sword_shield2" parent="." instance=ExtResource("151_a5on8")]
-visible = false
 
 [node name="sword_shield_broken2" parent="." instance=ExtResource("152_ere4n")]
-visible = false
 
 [node name="sword_shield_gold2" parent="." instance=ExtResource("153_jcb3y")]
-visible = false
 
 [node name="table_long2" type="Node3D" parent="."]
-visible = false
 
 [node name="table_long" type="MeshInstance3D" parent="table_long2"]
 mesh = SubResource("ArrayMesh_iak40")
@@ -6502,7 +6355,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_xlx5p")
 
 [node name="table_long_broken2" type="Node3D" parent="."]
-visible = false
 
 [node name="table_long_broken" type="MeshInstance3D" parent="table_long_broken2"]
 mesh = SubResource("ArrayMesh_to767")
@@ -6514,7 +6366,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_iryg7")
 
 [node name="table_long_decorated_A2" type="Node3D" parent="."]
-visible = false
 
 [node name="table_long_decorated_A" type="MeshInstance3D" parent="table_long_decorated_A2"]
 mesh = SubResource("ArrayMesh_hxvoy")
@@ -6527,7 +6378,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0073242188, 0.9402466, 0.0
 shape = SubResource("BoxShape3D_o0j80")
 
 [node name="table_long_decorated_C2" type="Node3D" parent="."]
-visible = false
 
 [node name="table_long_decorated_C" type="MeshInstance3D" parent="table_long_decorated_C2"]
 mesh = SubResource("ArrayMesh_b5s6c")
@@ -6540,7 +6390,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0073242188, 1.3965149, 0.0
 shape = SubResource("BoxShape3D_o0j80")
 
 [node name="table_long_tablecloth2" type="Node3D" parent="."]
-visible = false
 
 [node name="table_long_tablecloth" type="MeshInstance3D" parent="table_long_tablecloth2"]
 mesh = SubResource("ArrayMesh_qosb0")
@@ -6552,7 +6401,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_f6qdt")
 
 [node name="table_long_tablecloth_decorated_A2" type="Node3D" parent="."]
-visible = false
 
 [node name="table_long_tablecloth_decorated_A" type="MeshInstance3D" parent="table_long_tablecloth_decorated_A2"]
 mesh = SubResource("ArrayMesh_njdcv")
@@ -6565,16 +6413,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0073242188, 0.956398, 0.01
 shape = SubResource("BoxShape3D_o0j80")
 
 [node name="torch2" parent="." instance=ExtResource("168_w3h3x")]
-visible = false
 
 [node name="torch_lit2" parent="." instance=ExtResource("169_viw5q")]
-visible = false
 
 [node name="torch_mounted2" parent="." instance=ExtResource("170_5p6iy")]
-visible = false
 
 [node name="trunk_large_A2" type="Node3D" parent="."]
-visible = false
 
 [node name="trunk_large_A" type="MeshInstance3D" parent="trunk_large_A2"]
 mesh = SubResource("ArrayMesh_m13lu")
@@ -6587,7 +6431,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5105797, 0)
 shape = SubResource("BoxShape3D_p448e")
 
 [node name="trunk_large_B2" type="Node3D" parent="."]
-visible = false
 
 [node name="trunk_large_B" type="MeshInstance3D" parent="trunk_large_B2"]
 mesh = SubResource("ArrayMesh_petky")
@@ -6600,7 +6443,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5105797, 0)
 shape = SubResource("BoxShape3D_p448e")
 
 [node name="trunk_large_C2" type="Node3D" parent="."]
-visible = false
 
 [node name="trunk_large_C" type="MeshInstance3D" parent="trunk_large_C2"]
 mesh = SubResource("ArrayMesh_8ggm2")
@@ -6613,7 +6455,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5105797, 0)
 shape = SubResource("BoxShape3D_p448e")
 
 [node name="trunk_medium_A2" type="Node3D" parent="."]
-visible = false
 
 [node name="trunk_medium_A" type="MeshInstance3D" parent="trunk_medium_A2"]
 mesh = SubResource("ArrayMesh_7ysav")
@@ -6626,7 +6467,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36929578, 0)
 shape = SubResource("BoxShape3D_rd3pq")
 
 [node name="trunk_medium_B2" type="Node3D" parent="."]
-visible = false
 
 [node name="trunk_medium_B" type="MeshInstance3D" parent="trunk_medium_B2"]
 mesh = SubResource("ArrayMesh_lnkwl")
@@ -6639,7 +6479,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36929578, 0)
 shape = SubResource("BoxShape3D_rd3pq")
 
 [node name="trunk_medium_C2" type="Node3D" parent="."]
-visible = false
 
 [node name="trunk_medium_C" type="MeshInstance3D" parent="trunk_medium_C2"]
 mesh = SubResource("ArrayMesh_w0y6x")
@@ -6652,7 +6491,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36929578, 0)
 shape = SubResource("BoxShape3D_rd3pq")
 
 [node name="trunk_small_A2" type="Node3D" parent="."]
-visible = false
 
 [node name="trunk_small_A" type="MeshInstance3D" parent="trunk_small_A2"]
 mesh = SubResource("ArrayMesh_7rkrh")
@@ -6665,7 +6503,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24537659, 0)
 shape = SubResource("BoxShape3D_5sddu")
 
 [node name="trunk_small_B2" type="Node3D" parent="."]
-visible = false
 
 [node name="trunk_small_B" type="MeshInstance3D" parent="trunk_small_B2"]
 mesh = SubResource("ArrayMesh_yh6h0")
@@ -6678,7 +6515,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24537659, 0)
 shape = SubResource("BoxShape3D_5sddu")
 
 [node name="trunk_small_C2" type="Node3D" parent="."]
-visible = false
 
 [node name="trunk_small_C" type="MeshInstance3D" parent="trunk_small_C2"]
 mesh = SubResource("ArrayMesh_111ps")
@@ -6691,7 +6527,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24537659, 0)
 shape = SubResource("BoxShape3D_5sddu")
 
 [node name="wall2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall" type="MeshInstance3D" parent="wall2"]
 mesh = SubResource("ArrayMesh_6ha2x")
@@ -6703,7 +6538,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_x4pj4")
 
 [node name="wall_arched2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_arched" type="MeshInstance3D" parent="wall_arched2"]
 mesh = SubResource("ArrayMesh_5u36w")
@@ -6715,7 +6549,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_jpy3j")
 
 [node name="wall_archedwindow_gated2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_archedwindow_gated" type="MeshInstance3D" parent="wall_archedwindow_gated2"]
 mesh = SubResource("ArrayMesh_bermp")
@@ -6727,7 +6560,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_ahe56")
 
 [node name="wall_archedwindow_gated_scaffold2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_archedwindow_gated_scaffold" type="MeshInstance3D" parent="wall_archedwindow_gated_scaffold2"]
 mesh = SubResource("ArrayMesh_l4cf2")
@@ -6739,7 +6571,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_8sr40")
 
 [node name="wall_archedwindow_open2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_archedwindow_open" type="MeshInstance3D" parent="wall_archedwindow_open2"]
 mesh = SubResource("ArrayMesh_euq07")
@@ -6764,7 +6595,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4617488, 1.8927515, 0)
 shape = SubResource("BoxShape3D_6rc5q")
 
 [node name="wall_broken2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_broken" type="MeshInstance3D" parent="wall_broken2"]
 mesh = SubResource("ArrayMesh_m5csw")
@@ -6789,7 +6619,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4617488, 1.8927515, 0)
 shape = SubResource("BoxShape3D_6rc5q")
 
 [node name="wall_corner2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_corner" type="MeshInstance3D" parent="wall_corner2"]
 mesh = SubResource("ArrayMesh_gt0f2")
@@ -6806,7 +6635,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2376709, 1.9980503, 0.0312
 shape = SubResource("BoxShape3D_f7hqr")
 
 [node name="wall_corner_gated2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_corner_gated" type="MeshInstance3D" parent="wall_corner_gated2"]
 mesh = SubResource("ArrayMesh_okw0q")
@@ -6823,7 +6651,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2376709, 1.9980503, 0.0312
 shape = SubResource("BoxShape3D_f7hqr")
 
 [node name="wall_corner_scaffold2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_corner_scaffold" type="MeshInstance3D" parent="wall_corner_scaffold2"]
 mesh = SubResource("ArrayMesh_x08xu")
@@ -6840,7 +6667,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2376709, 1.9980503, 0.0312
 shape = SubResource("BoxShape3D_f7hqr")
 
 [node name="wall_corner_small2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_corner_small" type="MeshInstance3D" parent="wall_corner_small2"]
 mesh = SubResource("ArrayMesh_8j145")
@@ -6852,7 +6678,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_ogfs1")
 
 [node name="wall_cracked2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_cracked" type="MeshInstance3D" parent="wall_cracked2"]
 mesh = SubResource("ArrayMesh_jeevo")
@@ -6864,7 +6689,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_q425e")
 
 [node name="wall_crossing2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_crossing" type="MeshInstance3D" parent="wall_crossing2"]
 mesh = SubResource("ArrayMesh_ypkg7")
@@ -6881,7 +6705,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2
 shape = SubResource("BoxShape3D_u807o")
 
 [node name="wall_doorway2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_doorway" type="MeshInstance3D" parent="wall_doorway2"]
 mesh = SubResource("ArrayMesh_krd5k")
@@ -6898,7 +6721,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_3nfg6")
 
 [node name="wall_doorway_scaffold2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_doorway_scaffold" type="MeshInstance3D" parent="wall_doorway_scaffold2"]
 mesh = SubResource("ArrayMesh_jjux4")
@@ -6915,7 +6737,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_dsfbr")
 
 [node name="wall_doorway_sides2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_doorway_sides" type="MeshInstance3D" parent="wall_doorway_sides2"]
 mesh = SubResource("ArrayMesh_qm471")
@@ -6944,7 +6765,6 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -1.4
 shape = SubResource("BoxShape3D_a1nu4")
 
 [node name="wall_doorway_Tsplit2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_doorway_Tsplit" type="MeshInstance3D" parent="wall_doorway_Tsplit2"]
 mesh = SubResource("ArrayMesh_eydqj")
@@ -6973,7 +6793,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0012170076, 3.4049501, 0)
 shape = SubResource("BoxShape3D_wykjt")
 
 [node name="wall_endcap2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_endcap" type="MeshInstance3D" parent="wall_endcap2"]
 mesh = SubResource("ArrayMesh_kl5xv")
@@ -6985,7 +6804,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_xb3fv")
 
 [node name="wall_gated2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_gated" type="MeshInstance3D" parent="wall_gated2"]
 mesh = SubResource("ArrayMesh_b34jc")
@@ -6997,7 +6815,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_sehd7")
 
 [node name="wall_half2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_half" type="MeshInstance3D" parent="wall_half2"]
 mesh = SubResource("ArrayMesh_fxwr5")
@@ -7009,7 +6826,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_3d2sb")
 
 [node name="wall_half_endcap2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_half_endcap" type="MeshInstance3D" parent="wall_half_endcap2"]
 mesh = SubResource("ArrayMesh_asp53")
@@ -7021,7 +6837,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_piylw")
 
 [node name="wall_half_endcap_sloped2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_half_endcap_sloped" type="MeshInstance3D" parent="wall_half_endcap_sloped2"]
 mesh = SubResource("ArrayMesh_5jjcv")
@@ -7033,7 +6848,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_au4uk")
 
 [node name="wall_open_scaffold2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_open_scaffold" type="MeshInstance3D" parent="wall_open_scaffold2"]
 mesh = SubResource("ArrayMesh_haxlk")
@@ -7054,7 +6868,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.036340475, 3.6270485, 0)
 shape = SubResource("BoxShape3D_g2slo")
 
 [node name="wall_pillar2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_pillar" type="MeshInstance3D" parent="wall_pillar2"]
 mesh = SubResource("ArrayMesh_2itvq")
@@ -7066,7 +6879,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_63tca")
 
 [node name="wall_scaffold2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_scaffold" type="MeshInstance3D" parent="wall_scaffold2"]
 mesh = SubResource("ArrayMesh_5wrmk")
@@ -7078,7 +6890,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_lrrmo")
 
 [node name="wall_shelves2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_shelves" type="MeshInstance3D" parent="wall_shelves2"]
 mesh = SubResource("ArrayMesh_so7kw")
@@ -7090,7 +6901,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_pkkqa")
 
 [node name="wall_sloped2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_sloped" type="MeshInstance3D" parent="wall_sloped2"]
 mesh = SubResource("ArrayMesh_vres0")
@@ -7102,7 +6912,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_ybcla")
 
 [node name="wall_Tsplit2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_Tsplit" type="MeshInstance3D" parent="wall_Tsplit2"]
 mesh = SubResource("ArrayMesh_eb4qg")
@@ -7119,7 +6928,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9757385, 0.020233154)
 shape = SubResource("BoxShape3D_fk5m3")
 
 [node name="wall_Tsplit_sloped2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_Tsplit_sloped" type="MeshInstance3D" parent="wall_Tsplit_sloped2"]
 mesh = SubResource("ArrayMesh_0uiad")
@@ -7136,7 +6944,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9757385, 0.020233154)
 shape = SubResource("BoxShape3D_fk5m3")
 
 [node name="wall_window_closed2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_window_closed" type="MeshInstance3D" parent="wall_window_closed2"]
 mesh = SubResource("ArrayMesh_a4wro")
@@ -7148,7 +6955,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_0qdkc")
 
 [node name="wall_window_closed_scaffold2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_window_closed_scaffold" type="MeshInstance3D" parent="wall_window_closed_scaffold2"]
 mesh = SubResource("ArrayMesh_goxhw")
@@ -7160,7 +6966,6 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_x14es")
 
 [node name="wall_window_open2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_window_open" type="MeshInstance3D" parent="wall_window_open2"]
 mesh = SubResource("ArrayMesh_23puu")
@@ -7185,7 +6990,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3328569, 1.9903336, 0)
 shape = SubResource("BoxShape3D_38a6c")
 
 [node name="wall_window_open_scaffold2" type="Node3D" parent="."]
-visible = false
 
 [node name="wall_window_open_scaffold" type="MeshInstance3D" parent="wall_window_open_scaffold2"]
 mesh = SubResource("ArrayMesh_fipeo")

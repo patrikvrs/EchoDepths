@@ -1,4 +1,4 @@
-[gd_resource type="MeshLibrary" load_steps=1102 format=4 uid="uid://dlx1qjke6od57"]
+[gd_resource type="MeshLibrary" load_steps=1103 format=4 uid="uid://d16d76oqphcev"]
 
 [ext_resource type="Texture2D" uid="uid://b2hpfsq4h0lb5" path="res://assets/models/dungeon/dungeon_texture.png" id="1_kqowm"]
 
@@ -1126,7 +1126,7 @@ image = SubResource("Image_vyml0")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mnmk0"]
 resource_name = "texture"
-albedo_texture = SubResource("CompressedTexture2D_dx7ff")
+albedo_texture = ExtResource("1_kqowm")
 roughness = 0.45
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_18k0d"]
@@ -2159,13 +2159,13 @@ data = {
 image = SubResource("Image_dvb3t")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mktgr"]
-size = Vector3(3.9765625, 0.5620117, 9.056747)
+size = Vector3(3.9765625, 0.5620117, 9.093004)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jkpuq"]
 size = Vector3(0.5720215, 0.8480835, 9.07472)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xcosq"]
-size = Vector3(5.024414, 4.0788574, 0.19921875)
+size = Vector3(4.9470215, 3.991333, 0.91741943)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4pt1b"]
 size = Vector3(0.5720215, 0.9974899, 8.0289955)
@@ -2658,7 +2658,7 @@ points = PackedVector3Array(0.37629315, 0.47499022, -0.35628292, 0.33877847, 2.9
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arg41"]
 resource_name = "texture"
-albedo_texture = SubResource("CompressedTexture2D_dx7ff")
+albedo_texture = ExtResource("1_kqowm")
 roughness = 0.45
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4yqv3"]
@@ -2709,7 +2709,7 @@ image = SubResource("Image_41j63")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrhrj"]
 resource_name = "texture"
-albedo_texture = SubResource("CompressedTexture2D_dx7ff")
+albedo_texture = ExtResource("1_kqowm")
 roughness = 0.45
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_k075e"]
@@ -2760,7 +2760,7 @@ image = SubResource("Image_jwju2")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwnwl"]
 resource_name = "texture"
-albedo_texture = SubResource("CompressedTexture2D_dx7ff")
+albedo_texture = ExtResource("1_kqowm")
 roughness = 0.45
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ci2bi"]
@@ -3170,7 +3170,7 @@ image = SubResource("Image_3cqt2")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43ht5"]
 resource_name = "texture"
-albedo_texture = SubResource("CompressedTexture2D_dx7ff")
+albedo_texture = ExtResource("1_kqowm")
 roughness = 0.45
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_sm5mw"]
@@ -3221,7 +3221,7 @@ image = SubResource("Image_6c2th")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_atqcc"]
 resource_name = "texture"
-albedo_texture = SubResource("CompressedTexture2D_dx7ff")
+albedo_texture = ExtResource("1_kqowm")
 roughness = 0.45
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ghd0l"]
@@ -10019,9 +10019,12 @@ image = SubResource("Image_j86u6")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sbp15"]
 points = PackedVector3Array(-1.5870585, -1.0316342, -0.9522318, 2.0316966, 0.110999286, 2.0317461, -2.0317461, 0.110999286, 2.0317461, 2.0316966, 0.110999286, -2.0317461, 1.587009, -1.0316342, 0.9522318, -2.0317461, 0.110999286, -2.0317461, -0.95224506, -1.0316342, 1.5870531, 0.9517977, -1.0316342, -1.5870531, 2.0316966, -0.14303112, -2.0317461, 2.0316966, -0.14303112, 2.0317461, -2.0317461, -0.14303112, 2.0317461, -2.0317461, -0.14303112, -2.0317461, 1.587009, -1.0316342, -0.9522318, -1.5870585, -1.0316342, 0.9522318, 0.9517977, -1.0316342, 1.5870531, -0.95224506, -1.0316342, -1.5870531)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xb3fv"]
+load_path = "res://.godot/imported/dungeon_texture.png-f609778bed3a30d25da2fde1226af90b.s3tc.ctex"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ijwrg"]
 resource_name = "texture"
-albedo_texture = SubResource("CompressedTexture2D_dx7ff")
+albedo_texture = SubResource("CompressedTexture2D_xb3fv")
 roughness = 0.45
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_r6eq8"]
@@ -11208,7 +11211,7 @@ item/135/name = "stairs_long"
 item/135/mesh = SubResource("ArrayMesh_p8mpp")
 item/135/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/135/mesh_cast_shadow = 1
-item/135/shapes = [SubResource("BoxShape3D_mktgr"), Transform3D(1, 0, 0, 0, 0.90044785, -0.43496394, 0, 0.43496394, 0.90044785, 0, 2.1556602, 4.1265426), SubResource("BoxShape3D_jkpuq"), Transform3D(1, 0, 0, 0, 0.90044785, -0.43496394, 0, 0.43496394, 0.90044785, -2.0034285, 2.7822924, 3.84074), SubResource("BoxShape3D_jkpuq"), Transform3D(1, 0, 0, 0, 0.90044785, -0.43496394, 0, 0.43496394, 0.90044785, 1.9932778, 2.75734, 3.8923955), SubResource("BoxShape3D_xcosq"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0142817, 0), SubResource("BoxShape3D_4pt1b"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.282135, 0.4881475, 4.0039964), SubResource("BoxShape3D_ove2t"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.282135, 1.3565239, 3.3377159), SubResource("BoxShape3D_5uxlw"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.282135, 2.0772853, 2.6018395), SubResource("BoxShape3D_5vm1y"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.282135, 2.8064678, 1.8095851), SubResource("BoxShape3D_5l3s5"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.282135, 3.6800957, 0.7583935), SubResource("BoxShape3D_4pt1b"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2503445, 0.4881475, 4.0039964), SubResource("BoxShape3D_ove2t"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2503445, 1.3565239, 3.3377159), SubResource("BoxShape3D_5uxlw"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2503445, 2.0772853, 2.6018395), SubResource("BoxShape3D_5vm1y"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2503445, 2.8064678, 1.8095851), SubResource("BoxShape3D_5l3s5"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2503445, 3.6800957, 0.7583935)]
+item/135/shapes = [SubResource("BoxShape3D_mktgr"), Transform3D(1, 0, 0, 0, 0.90044785, -0.43496394, 0, 0.43496394, 0.90044785, 0, 1.8345783, 4.791235), SubResource("BoxShape3D_jkpuq"), Transform3D(1, 0, 0, 0, 0.90044785, -0.43496394, 0, 0.43496394, 0.90044785, -2.0034285, 2.7822924, 3.84074), SubResource("BoxShape3D_jkpuq"), Transform3D(1, 0, 0, 0, 0.90044785, -0.43496394, 0, 0.43496394, 0.90044785, 1.9932778, 2.75734, 3.8923955), SubResource("BoxShape3D_xcosq"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03869629, 2.0762181, 0.35910034), SubResource("BoxShape3D_4pt1b"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.282135, 0.4881475, 4.0039964), SubResource("BoxShape3D_ove2t"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.282135, 1.3565239, 3.3377159), SubResource("BoxShape3D_5uxlw"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.282135, 2.0772853, 2.6018395), SubResource("BoxShape3D_5vm1y"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.282135, 2.8064678, 1.8095851), SubResource("BoxShape3D_5l3s5"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.282135, 3.6800957, 0.7583935), SubResource("BoxShape3D_4pt1b"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2503445, 0.4881475, 4.0039964), SubResource("BoxShape3D_ove2t"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2503445, 1.3565239, 3.3377159), SubResource("BoxShape3D_5uxlw"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2503445, 2.0772853, 2.6018395), SubResource("BoxShape3D_5vm1y"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2503445, 2.8064678, 1.8095851), SubResource("BoxShape3D_5l3s5"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2503445, 3.6800957, 0.7583935)]
 item/135/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/135/navigation_layers = 1
 item/135/preview = SubResource("ImageTexture_87ilh")

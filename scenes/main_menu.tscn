@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://bsoe6uaalhhy5"]
+[gd_scene load_steps=21 format=3 uid="uid://bsoe6uaalhhy5"]
 
 [ext_resource type="Script" uid="uid://dx4xf6cr80btl" path="res://scripts/MainMenu.cs" id="1_ekxnf"]
 [ext_resource type="PackedScene" uid="uid://cmrg07u7o77iv" path="res://scenes/main.tscn" id="2_bqqt6"]
 [ext_resource type="FontFile" uid="uid://dhqm1rf4r1ppn" path="res://assets/fonts/PublicPixel.ttf" id="3_bqqt6"]
+[ext_resource type="PackedScene" uid="uid://biorvp4l12m26" path="res://scenes/tutorial_map.tscn" id="3_wu84c"]
 
 [sub_resource type="Gradient" id="Gradient_bqqt6"]
 offsets = PackedFloat32Array(0.13015874, 0.584127, 1)
@@ -79,6 +80,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ekxnf")
 _gameScene = ExtResource("2_bqqt6")
+_tutorialScene = ExtResource("3_wu84c")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
