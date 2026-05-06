@@ -56,15 +56,15 @@ public partial class SimpleEnemy_BT : BehaviourTree, IAIController
         if (_host == null)
             return;
 
-        var hasTarget = new HasTarget { Owner = _host.Self, BB = _blackboard, TargetKey = "Target" };
-        var isWithinChaseDistance = new IsWithinDistance { Owner = _host.Self, BB = _blackboard, TargetKey = "Target", Distance = 15f };
+        var hasTarget = new HasTarget { TargetKey = "Target" };
+        var isWithinChaseDistance = new IsWithinDistance { TargetKey = "Target", Distance = 15f };
 
-        var setNavToTarget = new SetNavigationTarget { Owner = _host.Self, BB = _blackboard, TargetKey = "Target", NavAgent = _agent };
-        var moveToTarget = new MoveAlongPath { Owner = _host, NavAgent = _agent, BB = _blackboard };
+        var setNavToTarget = new SetNavigationTarget { TargetKey = "Target" };
+        var moveToTarget = new MoveAlongPath();
 
-        var isWithinAttackRange = new IsWithinDistance { Owner = _host.Self, BB = _blackboard, TargetKey = "Target", Distance = _host.GetStat(StatsID.AttackRange) };
+        var isWithinAttackRange = new IsWithinDistance { TargetKey = "Target", Distance = _host.GetStat(StatsID.AttackRange) };
 
-        var attackTarget = new AttackTarget { Owner = _host, BB = _blackboard };
+        var attackTarget = new AttackTarget();
 
         var chaseSequence = new ReactiveSequence();
         chaseSequence.AddChild(hasTarget);
@@ -82,9 +82,9 @@ public partial class SimpleEnemy_BT : BehaviourTree, IAIController
         engageTarget.AddChild(chaseSequence);
 
         var patrolPoints = new List<Vector3>(_patrolPoints);
-        var setPatrolTarget = new SetPatrolTarget { Owner = _host, BB = _blackboard, NavAgent = _agent, PatrolPoints = patrolPoints };
-        var moveAlongPatrol = new MoveAlongPath { Owner = _host, NavAgent = _agent, BB = _blackboard };
-        var waitBetweenPoints = new Wait { WaitTime = 2.0f, BB = _blackboard };
+        var setPatrolTarget = new SetPatrolTarget { PatrolPoints = patrolPoints };
+        var moveAlongPatrol = new MoveAlongPath();
+        var waitBetweenPoints = new Wait { WaitTime = 2.0f };
 
         var patrolSequence = new Sequence();
         patrolSequence.AddChild(setPatrolTarget);
@@ -96,5 +96,6 @@ public partial class SimpleEnemy_BT : BehaviourTree, IAIController
         root.AddChild(patrolSequence);
 
         _root = root;
+        _root.SetContext(_host, _blackboard);
     }
 }

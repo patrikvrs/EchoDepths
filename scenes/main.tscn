@@ -59,7 +59,6 @@ target = NodePath("../Player")
 
 [node name="AIChooser" parent="Enemy" index="4" node_paths=PackedStringArray("debugLabel", "behaviorTreeControllerNode", "utilityAIControllerNode")]
 debugLabel = NodePath("../DebugLabel")
-mode = 1
 behaviorTreeControllerNode = NodePath("Brain")
 utilityAIControllerNode = NodePath("UtilityBrain")
 

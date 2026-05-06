@@ -6,6 +6,16 @@ public partial class ReactiveSequence : BehaviourTree
 
     public void AddChild(BehaviourTree child) => children.Add(child);
 
+    public override void SetContext(IAIHost host, Blackboard blackboard)
+    {
+        base.SetContext(host, blackboard);
+
+        foreach (var child in children)
+        {
+            child.SetContext(host, blackboard);
+        }
+    }
+
     public override NodeStatus Execute(double delta)
     {
         if (children.Count == 0)

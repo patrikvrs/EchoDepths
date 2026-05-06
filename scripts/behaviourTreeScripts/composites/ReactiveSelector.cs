@@ -9,6 +9,16 @@ public partial class ReactiveSelector : BehaviourTree
         _children.Add(child);
     }
 
+    public override void SetContext(IAIHost host, Blackboard blackboard)
+    {
+        base.SetContext(host, blackboard);
+
+        foreach (var child in _children)
+        {
+            child.SetContext(host, blackboard);
+        }
+    }
+
     public override NodeStatus Execute(double delta)
     {
         if (_children.Count == 0) return NodeStatus.Failure;

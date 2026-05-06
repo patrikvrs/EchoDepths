@@ -5,6 +5,16 @@ public partial class Selector : BehaviourTree
     protected List<BehaviourTree> children = new();
     private int _currentIndex = 0;
 
+    public override void SetContext(IAIHost host, Blackboard blackboard)
+    {
+        base.SetContext(host, blackboard);
+
+        foreach (var child in children)
+        {
+            child.SetContext(host, blackboard);
+        }
+    }
+
     public void AddChild(BehaviourTree child)
     {
         children.Add(child);

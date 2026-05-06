@@ -3,35 +3,32 @@ using System.Collections.Generic;
 
 public partial class SetPatrolTarget : BehaviourTree
 {
-    public new IAIHost Owner;
-    public Blackboard BB;
-    public NavigationAgent3D NavAgent;
     public List<Vector3> PatrolPoints;
     public string currentPatrolPointKey = "CurrentPatrolIndex";
 
     public override NodeStatus Execute(double delta)
     {
-        BB?.Set("LastActionName", "Setting Patrol Target");
+        _blackboard?.Set("LastActionName", "Setting Patrol Target");
 
-        if (Owner == null || BB == null || NavAgent == null || PatrolPoints == null || PatrolPoints.Count == 0)
+        if (_host?.Self == null || _blackboard == null || _host.NavigationAgent == null || PatrolPoints == null || PatrolPoints.Count == 0)
             return NodeStatus.Failure;
 
-        if (!BB.TryGet(currentPatrolPointKey, out int currentPatrolPoint))
+        if (!_blackboard.TryGet(currentPatrolPointKey, out int currentPatrolPoint))
         {
             currentPatrolPoint = 0;
-            BB.Set(currentPatrolPointKey, currentPatrolPoint);
+            _blackboard.Set(currentPatrolPointKey, currentPatrolPoint);
         }
 
         var targetPoint = PatrolPoints[currentPatrolPoint];
 
-        if (Owner.Self.GlobalPosition.DistanceTo(targetPoint) < 1.5f)
+        if (_host.Self.GlobalPosition.DistanceTo(targetPoint) < 1.5f)
         {
             currentPatrolPoint = (currentPatrolPoint + 1) % PatrolPoints.Count;
-            BB.Set(currentPatrolPointKey, currentPatrolPoint);
+            _blackboard.Set(currentPatrolPointKey, currentPatrolPoint);
             targetPoint = PatrolPoints[currentPatrolPoint];
         }
 
-        NavAgent.TargetPosition = targetPoint;
+        _host.NavigationAgent.TargetPosition = targetPoint;
         return NodeStatus.Success;
     }
 }

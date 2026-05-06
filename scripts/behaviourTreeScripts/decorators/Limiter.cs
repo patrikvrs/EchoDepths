@@ -6,6 +6,12 @@ public partial class Limiter : BehaviourTree
     public int MaxExecutions { get; set; } = 1;
     private int _executionCount = 0;
 
+    public override void SetContext(IAIHost host, Blackboard blackboard)
+    {
+        base.SetContext(host, blackboard);
+        Child?.SetContext(host, blackboard);
+    }
+
     public Limiter(int maxExecutions = 1)
     {
         MaxExecutions = maxExecutions;
