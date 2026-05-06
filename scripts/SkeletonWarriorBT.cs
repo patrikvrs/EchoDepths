@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Godot;
 
 public partial class SkeletonWarriorBT : BehaviourTree, IAIController
@@ -35,7 +33,7 @@ public partial class SkeletonWarriorBT : BehaviourTree, IAIController
 
     public void Tick(double delta)
     {
-        if (!_isActive || _root == null || _host == null)
+        if (!_isActive || _root == null || _host == null || _host.IsDead)
             return;
 
         _target = _host.Target;
@@ -71,7 +69,6 @@ public partial class SkeletonWarriorBT : BehaviourTree, IAIController
 
         var blockSequence = new ReactiveSequence();
         blockSequence.AddChild(hasTarget);
-        blockSequence.AddChild(isWithinAttackRange);
         blockSequence.AddChild(blockMeleeAttack);
 
         var chaseSequence = new ReactiveSequence();
@@ -112,12 +109,6 @@ public partial class SkeletonWarriorBT : BehaviourTree, IAIController
         if (_animationState == null || _blackboard == null || _host == null)
             return;
 
-        if (_host.IsDead)
-        {
-            SetAnimationState("SkeletonWarrior_Death_B");
-            return;
-        }
-
         if (_blackboard.TryGet("LastActionName", out string lastAction))
         {
             if (_blackboard.TryGet("IsBlocking", out bool isBlocking) && isBlocking)
@@ -146,7 +137,7 @@ public partial class SkeletonWarriorBT : BehaviourTree, IAIController
         }
         SetAnimationState("SkeletonWarrior_Idle_B");
     }
-    private void SetAnimationState(string state)
+    public void SetAnimationState(string state)
     {
         if (_animationState == null)
             return;

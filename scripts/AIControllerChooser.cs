@@ -68,6 +68,13 @@ public partial class AIControllerChooser : Node
         }
     }
 
+    public void StopController()
+    {
+        _activeController?.Stop();
+        _activeController = null;
+        SetPhysicsProcess(false);
+    }
+
     public void SwitchMode(AIMode newMode)
     {
         _activeController?.Stop();

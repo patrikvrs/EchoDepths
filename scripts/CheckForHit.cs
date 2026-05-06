@@ -23,7 +23,7 @@ public partial class CheckForHit : Area3D
                 GD.Print("Hit detected on: " + body.Name);
                 if (body is IDamageable damageable)
                 {
-                    if (IsBlockingFromFront(body))
+                    if (TryHandleFrontBlock(body))
                     {
                         GD.Print("Enemy blocked the hit from the front: " + body.Name);
                         continue;
@@ -38,12 +38,9 @@ public partial class CheckForHit : Area3D
         QueueFree();
     }
 
-    private bool IsBlockingFromFront(CharacterBody3D body)
+    private bool TryHandleFrontBlock(CharacterBody3D body)
     {
         if (body is not Enemy enemy || enemy.Blackboard == null)
-            return false;
-
-        if (!enemy.Blackboard.TryGet("IsBlocking", out bool isBlocking) || !isBlocking)
             return false;
 
         Vector3 attackDir = GlobalPosition - body.GlobalPosition;
@@ -58,6 +55,16 @@ public partial class CheckForHit : Area3D
         attackDir = attackDir.Normalized();
         forward = forward.Normalized();
 
-        return attackDir.Dot(forward) > 0.5f;
+        if (attackDir.Dot(forward) <= 0.5f)
+            return false;
+
+        if (enemy.Blackboard.TryGet("IsBlocking", out bool isBlocking) && isBlocking)
+            return true;
+
+        int hitCount = 0;
+        enemy.Blackboard.TryGet("FrontHitCount", out hitCount);
+        enemy.Blackboard.Set("FrontHitCount", hitCount + 1);
+
+        return false;
     }
 }
