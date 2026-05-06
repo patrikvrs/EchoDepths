@@ -6,7 +6,6 @@ public partial class AIControllerChooser : Node
     {
         BehaviorTree,
         UtilityAI,
-        Hybrid
     }
 
     [Export]
@@ -14,7 +13,7 @@ public partial class AIControllerChooser : Node
     [Export] private AIMode mode = AIMode.BehaviorTree;
     [Export] private Node behaviorTreeControllerNode;
     [Export] private Node utilityAIControllerNode;
-    [Export] private Node hybridAIControllerNode;
+
 
     private IAIHost _host;
     private IAIController _activeController;
@@ -97,7 +96,6 @@ public partial class AIControllerChooser : Node
         {
             AIMode.BehaviorTree => ValidateController(behaviorTreeControllerNode, nameof(behaviorTreeControllerNode)),
             AIMode.UtilityAI => ValidateController(utilityAIControllerNode, nameof(utilityAIControllerNode)),
-            AIMode.Hybrid => ValidateController(hybridAIControllerNode, nameof(hybridAIControllerNode)),
             _ => null
         };
     }

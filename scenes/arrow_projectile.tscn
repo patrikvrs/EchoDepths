@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://61tpd7gpxp4e"]
+
+[ext_resource type="PackedScene" uid="uid://dmbuvvw3wmt2s" path="res://assets/models/weapons/arrow_bow.gltf" id="1_sbn1r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wlwin"]
+size = Vector3(0.23046875, 0.14355469, 1.3085938)
+
+[node name="ArrowProjectile" type="Node3D"]
+
+[node name="Hitbox" type="Node3D" parent="."]
+
+[node name="Detector" type="Area3D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Detector"]
+shape = SubResource("BoxShape3D_wlwin")
+
+[node name="arrow_bow2" parent="." instance=ExtResource("1_sbn1r")]
+
+[editable path="arrow_bow2"]
