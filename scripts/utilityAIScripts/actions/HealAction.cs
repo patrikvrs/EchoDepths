@@ -11,7 +11,7 @@ public partial class HealAction : UtilityAction
     public float HealAmount = 15f;
 
     [Export]
-    public float HealthThreshold = 0.6f; // Only heal if ally health is below 60%
+    public float HealthThreshold = 0.6f;
 
     public override void Execute()
     {
@@ -23,7 +23,6 @@ public partial class HealAction : UtilityAction
 
         StopMovementAndClearNavigation();
 
-        // Find nearby allies
         var alliesToHeal = FindLowHealthAllies();
 
         if (alliesToHeal.Count == 0)
@@ -32,11 +31,16 @@ public partial class HealAction : UtilityAction
             return;
         }
 
-        // Heal the most injured ally
         var mostInjuredAlly = alliesToHeal[0];
         if (mostInjuredAlly is Enemy allyEnemy && allyEnemy.stats != null)
         {
             allyEnemy.stats.ModifyStat(StatsID.CurrentHealth, HealAmount);
+
+            // Play heal sound from the healer (host)
+            if (_host?.Self is Enemy healer)
+            {
+                healer.PlayHealSound();
+            }
 
             if (_blackboard != null)
             {
@@ -58,12 +62,10 @@ public partial class HealAction : UtilityAction
             if (node is not Enemy enemy || enemy == _host.Self)
                 continue;
 
-            // Skip if too far away
             float distance = _host.Self.GlobalPosition.DistanceTo(enemy.GlobalPosition);
             if (distance > HealRadius)
                 continue;
 
-            // Check if ally is low on health
             if (enemy.stats != null)
             {
                 float currentHealth = enemy.stats.GetStat(StatsID.CurrentHealth);
@@ -77,7 +79,6 @@ public partial class HealAction : UtilityAction
             }
         }
 
-        // Sort by health (most injured first)
         allies.Sort((a, b) =>
         {
             if (a is Enemy enemyA && b is Enemy enemyB)

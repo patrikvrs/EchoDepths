@@ -18,6 +18,8 @@ public partial class HasLineOfSight : BehaviourTree
         PhysicsRayQueryParameters3D ray = PhysicsRayQueryParameters3D.Create(from, to);
         ray.CollideWithAreas = false;
         ray.CollideWithBodies = true;
+        ray.CollisionMask = 1 << 0;
+
 
         var space = _host.Self.GetWorld3D().DirectSpaceState;
         var result = space.IntersectRay(ray);

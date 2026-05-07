@@ -239,6 +239,7 @@ public partial class SkeletonMageAI : Node, IAIController
     {
         var decision = new UtilityDecision { DecisionName = "Heal Allies", Action = new HealAction { ActionName = "Healing" } };
         decision.Considerations.Add(CreateConsideration("HealNeedScore", new Vector2(0.0f, 0.0f), new Vector2(1.0f, 1.0f)));
+        decision.Considerations.Add(CreateConsideration("CanHealAgain", new Vector2(0.0f, 0.0f), new Vector2(1.0f, 1.0f)));
         return decision;
     }
 

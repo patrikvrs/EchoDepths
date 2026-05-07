@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://c68gpryf7fq2d"]
+
+[ext_resource type="FontFile" uid="uid://dhqm1rf4r1ppn" path="res://assets/fonts/PublicPixel.ttf" id="1_oi6as"]
+
+[node name="Tutorial_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tutorial_Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -46.0
+offset_right = 329.0
+offset_bottom = 46.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_oi6as")
+theme_override_font_sizes/font_size = 12
+text = "Movement controls:
+Press [W] to move upwards
+Press [S] to move downwards
+Press [A] to move left
+Press [D] to move right
+
+You can move diagonally
+by holding two directions"

@@ -36,6 +36,7 @@ public partial class Player : CharacterBody3D, IDamageable
     private PlayerStats _playerStats;
     private Control _gameOverMenu;
     private Control _gameplayHud;
+    public int Score = 0;
     private Control _pauseMenu;
     private AnimationTree _animationTree;
     private AnimationNodeStateMachinePlayback _animationState;
@@ -139,6 +140,18 @@ public partial class Player : CharacterBody3D, IDamageable
         }
 
         PlaySound(PlayerSound.Hurt);
+    }
+
+    public void AddScore(int points)
+    {
+        Score += points;
+        // Update HUD immediately if assigned
+        if (_gameplayHud != null)
+        {
+            var scoreLabel = _gameplayHud.GetNodeOrNull<Label>("Score_Label/Score_number");
+            if (scoreLabel != null)
+                scoreLabel.Text = Score.ToString();
+        }
     }
 
     private void OnDeathTimerTimeout()

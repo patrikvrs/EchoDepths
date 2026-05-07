@@ -22,7 +22,7 @@ public partial class BlockMeleeAttack : BehaviourTree
         if (_blackboard.TryGet("IsBlockOnCooldown", out bool isOnCooldown) && isOnCooldown)
             return NodeStatus.Failure;
 
-        if (!_blackboard.TryGet("FrontHitCount", out int frontHitCount) || frontHitCount < BlockThreshold)
+        if (!_blackboard.TryGet("HitCount", out int hitCount) || hitCount < BlockThreshold)
             return NodeStatus.Failure;
 
         if (_host.Self is CharacterBody3D body)
@@ -30,7 +30,19 @@ public partial class BlockMeleeAttack : BehaviourTree
 
         _blackboard.Set("IsBlockOnCooldown", true);
         _blackboard.Set("IsBlocking", true);
-        _blackboard.Set("FrontHitCount", 0);
+        _blackboard.Set("HitCount", 0);
+
+        if (_host.Target != null && _host.Self is Enemy enemy)
+        {
+            var target = _host.Target;
+            Vector3 dirToTarget = (target.GlobalPosition - enemy.GlobalPosition);
+            dirToTarget.Y = 0;
+            if (dirToTarget.LengthSquared() > 0.0001f)
+            {
+                float desiredYaw = Mathf.Atan2(dirToTarget.X, dirToTarget.Z);
+                enemy.Rotation = new Vector3(enemy.Rotation.X, desiredYaw, enemy.Rotation.Z);
+            }
+        }
 
         if (_host.Self is Node hostNode)
         {

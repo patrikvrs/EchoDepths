@@ -14,7 +14,15 @@ public partial class SetNavigationTarget : BehaviourTree
         if (!_blackboard.TryGet(TargetKey, out Node3D target) || target == null)
             return NodeStatus.Failure;
 
-        _host.NavigationAgent.TargetPosition = target.GlobalPosition;
+        Vector3 desiredTarget = target.GlobalPosition;
+
+        Rid navMap = _host.NavigationAgent.GetNavigationMap();
+        if (navMap.IsValid)
+        {
+            desiredTarget = NavigationServer3D.MapGetClosestPoint(navMap, desiredTarget);
+        }
+
+        _host.NavigationAgent.TargetPosition = desiredTarget;
 
         return NodeStatus.Success;
     }

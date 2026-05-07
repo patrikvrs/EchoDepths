@@ -39,6 +39,7 @@ public partial class AttackTargetWithProjectile : BehaviourTree
 
         if (_host.Self is Enemy self)
         {
+            self.PlayAttackSound();
             Vector3 directionToTarget = (target.GlobalPosition - self.GlobalPosition).Normalized();
             float desiredYaw = Mathf.Atan2(directionToTarget.X, directionToTarget.Z);
             float currentYaw = self.Rotation.Y;

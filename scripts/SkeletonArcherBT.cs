@@ -70,12 +70,22 @@ public partial class SkeletonArcherBT : BehaviourTree, IAIController
 
         var isWithinAttackRange = new IsWithinDistance { TargetKey = "Target", Distance = attackRange };
         var isWithinCloseRange = new IsWithinDistance { TargetKey = "Target", Distance = closeRange };
-        var retreatFromTarget = new MoveAwayFromTarget { TargetKey = "Target", RetreatDistance = retreatDistance };
+        var retreatAndShoot = new RetreatAndShoot
+        {
+            TargetKey = "Target",
+            ProjectileScenePath = "res://scenes/arrow_projectile.tscn",
+            ProjectileSpeed = 20f,
+            ProjectileLifetime = 5f,
+            SpawnForwardOffset = 1.2f,
+            SpawnUpOffset = 0.6f,
+            AimHeightOffset = 1.2f,
+            RetreatDistance = retreatDistance
+        };
 
         var retreatSequence = new ReactiveSequence();
         retreatSequence.AddChild(hasTarget);
         retreatSequence.AddChild(isWithinCloseRange);
-        retreatSequence.AddChild(retreatFromTarget);
+        retreatSequence.AddChild(retreatAndShoot);
 
         var attackSequence = new ReactiveSequence();
         attackSequence.AddChild(hasTarget);

@@ -25,4 +25,4 @@ skeleton = NodePath("")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_fpo5l")
-volume_db = -10.55
+volume_db = -21.603

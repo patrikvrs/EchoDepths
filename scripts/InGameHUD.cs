@@ -8,6 +8,10 @@ public partial class InGameHUD : Control
     private Label _staminaInNumber;
     private ProgressBar _staminaBar;
     private PlayerStats _playerStats;
+    private Label _scoreLabel;
+
+    [Export]
+    private Player _player;
 
     public override void _Ready()
     {
@@ -16,15 +20,9 @@ public partial class InGameHUD : Control
         _staminaInNumber = GetNode<Label>("Stamina_Label/Stamina_number");
         _staminaBar = GetNode<ProgressBar>("Stamina_Label/Stamina_bar");
 
-        Player player = GetTree().CurrentScene?.FindChild("Player", true, false) as Player;
-        if (player != null)
-        {
-            _playerStats = player.GetNode<PlayerStats>("PlayerStats");
-        }
-        else
-        {
-            GD.PrintErr("Player node not found in the current scene.");
-        }
+        _playerStats = _player.GetNode<PlayerStats>("PlayerStats");
+        _scoreLabel = GetNode<Label>("Score_Label/Score");
+
     }
 
     public override void _Process(double delta)
@@ -35,6 +33,10 @@ public partial class InGameHUD : Control
             _healthBar.Value = _playerStats.GetStat(StatsID.CurrentHealth);
             _staminaInNumber.Text = $"{(int)_playerStats.GetStat(StatsID.CurrentStamina)}/{(int)_playerStats.GetStat(StatsID.MaxStamina)}";
             _staminaBar.Value = _playerStats.GetStat(StatsID.CurrentStamina);
+            if (_scoreLabel != null && _player != null)
+            {
+                _scoreLabel.Text = _player.Score.ToString();
+            }
         }
     }
 }
