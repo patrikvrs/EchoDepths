@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://3ylicbxell7"]
+
+[ext_resource type="Script" uid="uid://caqpxibr4vx7b" path="res://scripts/EnemyHealthBarUI.cs" id="1_eps3m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ji17"]
+bg_color = Color(0.6588894, 0.05760227, 0.11879466, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="Enemy_HP_bar" type="ProgressBar"]
+visible = false
+offset_right = 75.0
+offset_bottom = 10.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_8ji17")
+value = 100.0
+show_percentage = false
+script = ExtResource("1_eps3m")

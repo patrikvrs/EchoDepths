@@ -30,11 +30,14 @@ public partial class Enemy : CharacterBody3D, IDamageable, IAIHost
     public AudioStream AttackSound;
     [Export]
     public AudioStream HealSound;
+    [Export]
+    public PackedScene healtbarScene;
     public Blackboard Blackboard { get; private set; }
     public Node3D Self => this;
     public NavigationAgent3D NavigationAgent => agent;
     public Node3D Target => target;
     private AIControllerChooser chooser;
+    private EnemyHealthBarUI _healthBarUI;
     private AnimationNodeStateMachinePlayback _animationState;
     public bool IsDead => stats == null || stats.IsDead();
     private bool _deathStateApplied;
@@ -54,6 +57,22 @@ public partial class Enemy : CharacterBody3D, IDamageable, IAIHost
         {
             _animationState = (AnimationNodeStateMachinePlayback)animationTree.Get("parameters/StateMachine/playback");
         }
+
+        if (healtbarScene != null)
+        {
+            _healthBarUI = healtbarScene.Instantiate<EnemyHealthBarUI>();
+            _healthBarUI.TargetEnemy = this;
+
+            Node ingameHud = GetTree().CurrentScene?.FindChild("gameplay_hud", true, false);
+            if (ingameHud != null)
+            {
+                ingameHud.AddChild(_healthBarUI);
+                _healthBarUI.UpdateHealth(stats.GetStat(StatsID.CurrentHealth), stats.GetStat(StatsID.MaxHealth));
+
+            }
+        }
+
+
     }
 
     public override void _PhysicsProcess(double delta)
@@ -62,6 +81,21 @@ public partial class Enemy : CharacterBody3D, IDamageable, IAIHost
         {
             ApplyDeathState();
             return;
+        }
+
+        float deltaTime = (float)delta;
+
+        if (!IsOnFloor())
+        {
+            Velocity += GetGravity() * deltaTime;
+            if (Position.Y < -50f)
+            {
+                // fall out of the world -> die
+                stats?.ApplyDamage(9999);
+                ApplyDeathState();
+                chooser?.StopController();
+                return;
+            }
         }
 
         var planarVelocity = new Vector3(Velocity.X, 0f, Velocity.Z);
@@ -89,6 +123,11 @@ public partial class Enemy : CharacterBody3D, IDamageable, IAIHost
             _animationState.Travel(DeathAnimationState);
         }
 
+        if (_healthBarUI != null)
+        {
+            _healthBarUI.QueueFree();
+        }
+
         DisableCollision();
         chooser?.StopController();
     }
@@ -105,6 +144,14 @@ public partial class Enemy : CharacterBody3D, IDamageable, IAIHost
         return stats?.GetStat(stat) ?? 0f;
     }
 
+    public void RefreshHealthBar()
+    {
+        if (_healthBarUI != null && stats != null)
+        {
+            _healthBarUI.UpdateHealth(stats.GetStat(StatsID.CurrentHealth), stats.GetStat(StatsID.MaxHealth));
+        }
+    }
+
     public void TakeDamage(float damage)
     {
         if (stats == null)
@@ -114,6 +161,8 @@ public partial class Enemy : CharacterBody3D, IDamageable, IAIHost
         }
 
         stats.ApplyDamage(damage);
+
+        RefreshHealthBar();
 
         if (!stats.IsDead())
         {

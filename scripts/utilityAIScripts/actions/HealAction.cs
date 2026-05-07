@@ -35,8 +35,8 @@ public partial class HealAction : UtilityAction
         if (mostInjuredAlly is Enemy allyEnemy && allyEnemy.stats != null)
         {
             allyEnemy.stats.ModifyStat(StatsID.CurrentHealth, HealAmount);
+            allyEnemy.RefreshHealthBar();
 
-            // Play heal sound from the healer (host)
             if (_host?.Self is Enemy healer)
             {
                 healer.PlayHealSound();
