@@ -2,6 +2,13 @@ using Godot;
 
 public partial class Player : CharacterBody3D, IDamageable
 {
+    private enum PlayerSound
+    {
+        Hurt,
+        Death,
+        Pickup
+    }
+
     private const float SprintBonusSpeed = 4f;
     private const float StaminaRegenPerSecond = 10f;
     private const float StaminaDrainPerSecond = 15f;
@@ -11,6 +18,12 @@ public partial class Player : CharacterBody3D, IDamageable
     public PackedScene MeleeAttackArea;
     [Export]
     public CameraFollow Camera;
+    [Export]
+    public AudioStream HurtSound;
+    [Export]
+    public AudioStream DeathSound;
+    [Export]
+    public AudioStream PickupSound;
 
     public float Speed => _playerStats.GetStat(StatsID.MovementSpeed);
     private float CurrentSpeed => Speed + (_isSprinting ? SprintBonusSpeed : 0f);
@@ -18,9 +31,12 @@ public partial class Player : CharacterBody3D, IDamageable
     private const float _jumpVelocity = 4.5f;
     private float _deceleration = 16f;
     private bool _isSprinting = false;
+    private bool _isAttacking = false;
+    private float _attackCooldownRemaining = 0f;
     private PlayerStats _playerStats;
     private Control _gameOverMenu;
     private Control _gameplayHud;
+    private Control _pauseMenu;
     private AnimationTree _animationTree;
     private AnimationNodeStateMachinePlayback _animationState;
 
@@ -34,6 +50,7 @@ public partial class Player : CharacterBody3D, IDamageable
         _playerStats = GetNode<PlayerStats>("PlayerStats");
         _gameOverMenu = GetTree().CurrentScene?.FindChild("endgame_menu", true, false) as Control;
         _gameplayHud = GetTree().CurrentScene?.FindChild("gameplay_hud", true, false) as Control;
+        _pauseMenu = GetTree().CurrentScene?.FindChild("pause_menu", true, false) as Control;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -41,9 +58,22 @@ public partial class Player : CharacterBody3D, IDamageable
         float deltaTime = (float)delta;
         Vector3 newVelocity = Velocity;
 
+        if (_attackCooldownRemaining > 0f)
+        {
+            _attackCooldownRemaining = Mathf.Max(0f, _attackCooldownRemaining - deltaTime);
+            if (_attackCooldownRemaining <= 0f && _isAttacking)
+            {
+                _isAttacking = false;
+            }
+        }
+
         if (!IsOnFloor())
         {
             newVelocity += GetGravity() * deltaTime;
+            if (Position.Y < -50f)
+            {
+                TakeDamage(9999);
+            }
         }
 
         if (Input.IsActionJustPressed("jump") && IsOnFloor())
@@ -53,13 +83,25 @@ public partial class Player : CharacterBody3D, IDamageable
 
         if (Input.IsActionJustPressed("attack"))
         {
-            SetAnimationState("Player_Attack");
-            AttackMelee();
+            TryAttack();
+        }
+
+        if (Input.IsActionJustReleased("ui_cancel"))
+        {
+            if (_pauseMenu != null)
+            {
+                GetTree().Paused = true;
+                _pauseMenu.Show();
+            }
         }
 
         Sprint(deltaTime);
         Movement(ref newVelocity, deltaTime);
-        HandleFacing(newVelocity);
+
+        if (!_isAttacking)
+        {
+            HandleFacing(newVelocity);
+        }
 
         Velocity = newVelocity;
         MoveAndSlide();
@@ -77,8 +119,15 @@ public partial class Player : CharacterBody3D, IDamageable
 
         if (_playerStats.IsDead())
         {
+            PlaySound(PlayerSound.Death);
             SetAnimationState("Player_Death_A");
             SetPhysicsProcess(false);
+
+            var hurtbox = GetNodeOrNull<CollisionShape3D>("Hurtbox");
+            if (hurtbox != null)
+            {
+                hurtbox.Disabled = true;
+            }
 
             Timer deathTimer = new Timer();
             deathTimer.WaitTime = 1.5f;
@@ -86,7 +135,10 @@ public partial class Player : CharacterBody3D, IDamageable
             deathTimer.Timeout += OnDeathTimerTimeout;
             AddChild(deathTimer);
             deathTimer.Start();
+            return;
         }
+
+        PlaySound(PlayerSound.Hurt);
     }
 
     private void OnDeathTimerTimeout()
@@ -100,12 +152,36 @@ public partial class Player : CharacterBody3D, IDamageable
         }
     }
 
+    private void PlaySound(PlayerSound soundType)
+    {
+        AudioStream stream = soundType switch
+        {
+            PlayerSound.Hurt => HurtSound,
+            PlayerSound.Death => DeathSound,
+            PlayerSound.Pickup => PickupSound,
+            _ => null
+        };
+
+        if (stream == null)
+            return;
+
+        var soundPlayer = new AudioStreamPlayer3D
+        {
+            Stream = stream,
+        };
+
+        AddChild(soundPlayer);
+        soundPlayer.GlobalPosition = GlobalPosition;
+        soundPlayer.Finished += soundPlayer.QueueFree;
+        soundPlayer.Play();
+    }
+
     private void Sprint(float deltaTime)
     {
         bool sprintHeld = Input.IsActionPressed("sprint");
         float currentStamina = _playerStats.GetStat(StatsID.CurrentStamina);
 
-        _isSprinting = sprintHeld && currentStamina > 0;
+        _isSprinting = sprintHeld && currentStamina > 0 && Velocity.LengthSquared() > 0.0001f;
 
         if (_isSprinting)
         {
@@ -131,14 +207,20 @@ public partial class Player : CharacterBody3D, IDamageable
             Vector3 direction = GetMoveDirection(inputDir);
             velocity.X = direction.X * CurrentSpeed;
             velocity.Z = direction.Z * CurrentSpeed;
-            SetAnimationState(_isSprinting ? "Player_Running_A" : "Player_Walking_A");
+            if (!_isAttacking)
+            {
+                SetAnimationState(_isSprinting ? "Player_Running_A" : "Player_Walking_A");
+            }
             return;
         }
 
         float decel = _deceleration * deltaTime;
         velocity.X = Mathf.MoveToward(velocity.X, 0, decel);
         velocity.Z = Mathf.MoveToward(velocity.Z, 0, decel);
-        SetAnimationState("Idle");
+        if (!_isAttacking)
+        {
+            SetAnimationState("Idle");
+        }
     }
 
     private Vector3 GetMoveDirection(Vector2 inputDir)
@@ -194,6 +276,9 @@ public partial class Player : CharacterBody3D, IDamageable
 
         attackDir = attackDir.Normalized();
 
+        Vector3 target = GlobalPosition + attackDir;
+        LookAt(target, Vector3.Up);
+
         CheckForHit meleeAreaInstance = MeleeAttackArea.Instantiate<CheckForHit>();
         meleeAreaInstance.DamageAmount = _playerStats.GetStat(StatsID.AttackDamage);
         AddChild(meleeAreaInstance);
@@ -206,6 +291,25 @@ public partial class Player : CharacterBody3D, IDamageable
         meleeAreaInstance.GlobalRotation = new Vector3(0, Mathf.Atan2(attackDir.X, attackDir.Z), 0);
     }
 
+    private void TryAttack()
+    {
+        if (_isAttacking || _attackCooldownRemaining > 0f)
+        {
+            return;
+        }
+
+        float attackSpeed = _playerStats != null ? _playerStats.GetStat(StatsID.AttackSpeed) : 0f;
+        if (attackSpeed <= 0f)
+        {
+            return;
+        }
+
+        _isAttacking = true;
+        _attackCooldownRemaining = 1f / attackSpeed;
+        SetAnimationState("Player_Attack");
+        AttackMelee();
+    }
+
     private void SetAnimationState(string state)
     {
         if (_animationState == null)
@@ -215,5 +319,9 @@ public partial class Player : CharacterBody3D, IDamageable
             return;
 
         _animationState.Travel(state);
+    }
+    public void OnAttackFinished()
+    {
+        _isAttacking = false;
     }
 }

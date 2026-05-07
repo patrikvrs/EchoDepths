@@ -23,6 +23,8 @@ public partial class Enemy : CharacterBody3D, IDamageable, IAIHost
 
     public override void _Ready()
     {
+        AddToGroup("enemies");
+
         chooser = GetNodeOrNull<AIControllerChooser>("AIChooser");
         if (chooser == null)
         {

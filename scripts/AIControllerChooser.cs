@@ -63,7 +63,14 @@ public partial class AIControllerChooser : Node
                 ? decision
                 : "None";
 
-            debugLabel.Text = $"Mode: {mode}\nActive Controller: {_activeController?.GetType().Name ?? "None"}\nAction: {(_blackboard.TryGet("LastActionName", out string lastAction) ? lastAction : "None")}\nUtility Score: {utilityScore}\nBest Decision: {bestDecision}\nBT Status: {btStatus}";
+            string allDecisionScores = string.Empty;
+            if (_blackboard.TryGet("DecisionScores", out string ds) && !string.IsNullOrEmpty(ds))
+            {
+                allDecisionScores = ds;
+            }
+
+            debugLabel.Text = $"Mode: {mode}\nActive Controller: {_activeController?.GetType().Name ?? "None"}\nAction: {(_blackboard.TryGet("LastActionName", out string lastAction) ? lastAction : "None")}\nBest Decision: {bestDecision}\n" +
+                              (string.IsNullOrEmpty(allDecisionScores) ? $"BT Status: {btStatus}" : $"Decision Scores:\n{allDecisionScores}");
         }
     }
 

@@ -8,17 +8,17 @@ public partial class AttackTargetWithProjectile : BehaviourTree
     public float ProjectileLifetime = 5f;
     public float SpawnForwardOffset = 1.2f;
     public float SpawnUpOffset = 0.6f;
-    public string DetectorName = "Detector";
+    public float AimHeightOffset = 1.2f;
 
     public override NodeStatus Execute(double delta)
     {
-        _blackboard?.Set("LastActionName", "Attacking Target");
-
         if (_blackboard == null || _host?.Self == null)
             return NodeStatus.Failure;
 
         if (_blackboard.TryGet(AttackStateKey, out bool isAttacking) && isAttacking)
         {
+            _blackboard.Set("LastActionName", "Waiting For Attack Cooldown");
+
             if (_host.Self is CharacterBody3D attackingBody)
                 attackingBody.Velocity = Vector3.Zero;
 
@@ -26,7 +26,10 @@ public partial class AttackTargetWithProjectile : BehaviourTree
         }
 
         if (_blackboard.TryGet("IsAttackOnCooldown", out bool isOnCooldown) && isOnCooldown)
+        {
+            _blackboard.Set("LastActionName", "Waiting For Attack Cooldown");
             return NodeStatus.Failure;
+        }
 
         if (!_blackboard.TryGet("Target", out Node3D target) || target == null)
             return NodeStatus.Failure;
@@ -56,19 +59,20 @@ public partial class AttackTargetWithProjectile : BehaviourTree
         Node parent = _host.Self.GetParent() ?? _host.Self;
         parent.AddChild(arrowRoot);
 
-        // Now node is in the scene tree — safe to set global transform and orient
-        arrowRoot.GlobalPosition = spawnPos;
-        arrowRoot.LookAt(target.GlobalPosition, Vector3.Up);
+        Vector3 aimPoint = target.GlobalPosition + Vector3.Up * AimHeightOffset;
 
-        // Use scripted projectile movement instead of physics to avoid knocking targets
-        Vector3 velocity = (target.GlobalPosition - arrowRoot.GlobalPosition).Normalized() * ProjectileSpeed;
+        arrowRoot.GlobalPosition = spawnPos;
+        arrowRoot.LookAt(aimPoint, Vector3.Up);
+
+        Vector3 velocity = (aimPoint - arrowRoot.GlobalPosition).Normalized() * ProjectileSpeed;
         var controller = new ProjectileController();
         controller.Damage = _host.GetStat(StatsID.AttackDamage);
         controller.ShooterId = _host.Self.GetInstanceId();
         controller.Lifetime = ProjectileLifetime;
-        controller.DetectorName = DetectorName;
         controller.Velocity = velocity;
         arrowRoot.AddChild(controller);
+
+        _blackboard.Set("LastActionName", "Attacking Target");
 
         float attackSpeed = _host.GetStat(StatsID.AttackSpeed);
         float cooldown = attackSpeed > 0f ? 1f / attackSpeed : 1f;

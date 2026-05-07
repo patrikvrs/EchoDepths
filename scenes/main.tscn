@@ -1,13 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmrg07u7o77iv"]
+[gd_scene load_steps=11 format=3 uid="uid://cmrg07u7o77iv"]
 
 [ext_resource type="PackedScene" uid="uid://cbfcudave6shy" path="res://scenes/gameplay_hud.tscn" id="1_85g3d"]
 [ext_resource type="PackedScene" uid="uid://bhm2jdmks8a7i" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://u7dwpxk44kty" path="res://scripts/CameraFollow.cs" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://gvcqcm12b48u" path="res://scenes/endgame_menu.tscn" id="1_tipki"]
-[ext_resource type="PackedScene" uid="uid://dm3nvf65lc74g" path="res://scenes/skeleton_warrior.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://bpra74oxdnsma" path="res://scenes/melee_attack.tscn" id="4_jyhfs"]
-[ext_resource type="Script" uid="uid://8cnggllpaqum" path="res://scripts/SimpleEnemy_BT.cs" id="5_tbgi4"]
-[ext_resource type="Script" uid="uid://dfeab3n5ufoks" path="res://scripts/utilityAIScripts/UtilityAI.cs" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://ul6bdcd1qwvo" path="res://assets/models/dungeon/wall_broken.gltf" id="7_o6xl0"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_sgp6g"]
@@ -60,29 +57,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 MeleeAttackArea = ExtResource("4_jyhfs")
 Camera = NodePath("../Camera3D")
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_0wfyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.555441, 0.50030303, -10.4559555)
-target = NodePath("../Player")
-
-[node name="AIChooser" parent="Enemy" index="4" node_paths=PackedStringArray("debugLabel", "behaviorTreeControllerNode", "utilityAIControllerNode")]
-debugLabel = NodePath("../DebugLabel")
-mode = 1
-behaviorTreeControllerNode = NodePath("Brain")
-utilityAIControllerNode = NodePath("UtilityBrain")
-
-[node name="Brain" type="Node" parent="Enemy/AIChooser" index="0"]
-script = ExtResource("5_tbgi4")
-
-[node name="UtilityBrain" type="Node" parent="Enemy/AIChooser" index="1"]
-script = ExtResource("6_tefeu")
-
-[node name="DebugLabel" type="Label3D" parent="Enemy"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4787464, 0)
-billboard = 1
-text = "Igen"
-font_size = 128
-
 [node name="wall_broken2" parent="." instance=ExtResource("7_o6xl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.451284, 0.99089503, 25.240234)
-
-[editable path="Enemy"]

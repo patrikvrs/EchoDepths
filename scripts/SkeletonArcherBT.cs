@@ -64,15 +64,12 @@ public partial class SkeletonArcherBT : BehaviourTree, IAIController
         attackTarget.ProjectileLifetime = 5f;
         attackTarget.SpawnForwardOffset = 1.2f;
         attackTarget.SpawnUpOffset = 0.6f;
-        attackTarget.DetectorName = "Detector";
         float attackRange = _host.GetStat(StatsID.AttackRange);
-        float retreatDistance = Mathf.Max(attackRange + 6f, 10f);
-        float closeRange = Mathf.Max(attackRange * 0.75f, 1.5f);
+        float retreatDistance = 10f;
+        float closeRange = Mathf.Max(attackRange * 0.25f, 1.5f);
 
         var isWithinAttackRange = new IsWithinDistance { TargetKey = "Target", Distance = attackRange };
         var isWithinCloseRange = new IsWithinDistance { TargetKey = "Target", Distance = closeRange };
-        var setNavToTarget = new SetNavigationTarget { TargetKey = "Target" };
-        var moveToTarget = new MoveAlongPath();
         var retreatFromTarget = new MoveAwayFromTarget { TargetKey = "Target", RetreatDistance = retreatDistance };
 
         var retreatSequence = new ReactiveSequence();

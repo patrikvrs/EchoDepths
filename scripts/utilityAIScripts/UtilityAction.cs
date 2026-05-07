@@ -21,4 +21,18 @@ public partial class UtilityAction : Resource
     {
         GD.Print($"Executing action: {ActionName}. Utility Score: {UtilityScore}");
     }
+
+    protected void StopMovementAndClearNavigation()
+    {
+        if (_host?.Self is not CharacterBody3D body)
+            return;
+
+        body.Velocity = Vector3.Zero;
+
+        var navigationAgent = _host.NavigationAgent ?? body.GetNodeOrNull<NavigationAgent3D>("NavigationAgent3D");
+        if (navigationAgent != null)
+        {
+            navigationAgent.TargetPosition = body.GlobalPosition;
+        }
+    }
 }

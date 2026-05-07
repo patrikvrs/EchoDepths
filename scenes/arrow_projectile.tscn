@@ -10,7 +10,8 @@ size = Vector3(0.23046875, 0.14355469, 1.3085938)
 [node name="Hitbox" type="Node3D" parent="."]
 
 [node name="Detector" type="Area3D" parent="."]
-collision_mask = 4
+collision_layer = 16
+collision_mask = 7
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Detector"]
 shape = SubResource("BoxShape3D_wlwin")

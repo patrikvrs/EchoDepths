@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1king0kei34v"]
+
+[ext_resource type="AudioStream" uid="uid://cxang3hp1o3yh" path="res://assets/sounds/explosion.wav" id="1_fpo5l"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_n45xq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fpo5l"]
+albedo_color = Color(0.8481451, 0.33960754, 0.029385941, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_fpo5l"]
+material = SubResource("StandardMaterial3D_fpo5l")
+
+[node name="FireballProjectile" type="Node3D"]
+
+[node name="Detector" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 3
+
+[node name="DetectionShape" type="CollisionShape3D" parent="Detector"]
+shape = SubResource("SphereShape3D_n45xq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_fpo5l")
+skeleton = NodePath("")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_fpo5l")
+volume_db = -10.55

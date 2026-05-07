@@ -18,27 +18,20 @@ public partial class CameraFollow : Camera3D
 
     public Vector3 GetMousePositionInWorld()
     {
-        float rayCastLength = 1000f;
-        Vector3 from = ProjectRayOrigin(GetViewport().GetMousePosition());
-        Vector3 to = from + ProjectRayNormal(GetViewport().GetMousePosition()) * rayCastLength;
+        Vector2 mousePos2D = GetViewport().GetMousePosition();
+        Vector3 rayOrigin = ProjectRayOrigin(mousePos2D);
+        Vector3 rayNormal = ProjectRayNormal(mousePos2D);
 
-        PhysicsRayQueryParameters3D rayParams = PhysicsRayQueryParameters3D.Create(from, to);
-        rayParams.CollideWithAreas = false;
-        rayParams.CollideWithBodies = true;
-        var spaceState = GetWorld3D().DirectSpaceState;
-        var result = spaceState.IntersectRay(rayParams);
+        float targetHeight = Target != null ? Target.GlobalPosition.Y : 0f;
+        Plane groundPlane = new Plane(Vector3.Up, targetHeight);
 
-        if (result.Count > 0)
+        Vector3? result = groundPlane.IntersectsRay(rayOrigin, rayNormal);
+
+        if (result.HasValue)
         {
-            Vector3 position = (Vector3)result["position"];
-            return position;
+            return result.Value;
         }
 
-        if (Target != null)
-        {
-            return Target.GlobalPosition + Offset;
-        }
-
-        return Vector3.Zero;
+        return Target != null ? Target.GlobalPosition : Vector3.Zero;
     }
 }

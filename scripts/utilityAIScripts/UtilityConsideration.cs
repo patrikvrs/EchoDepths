@@ -7,8 +7,6 @@ public partial class UtilityConsideration : Resource
     public ResponseCurve ResponseCurve { get; set; } = new ResponseCurve();
     [Export]
     public string BlackboardKey { get; set; } = string.Empty;
-    [Export]
-    public float Weight { get; set; } = 1.0f;
 
     public float Evaluate(string blackboardKey, Blackboard blackboard)
     {

@@ -1,7 +1,7 @@
 using Godot;
 
 [GlobalClass]
-public partial class ChaseAction : UtilityAction
+public partial class MoveAction : UtilityAction
 {
     public override void Execute()
     {
@@ -23,7 +23,35 @@ public partial class ChaseAction : UtilityAction
             return;
         }
 
-        navigationAgent.TargetPosition = _host.Target.GlobalPosition;
+        Vector3 originalTarget = _host.Target.GlobalPosition;
+        Vector3 desiredTarget = originalTarget;
+
+        Rid navMap = navigationAgent.GetNavigationMap();
+        if (navMap.IsValid)
+        {
+            desiredTarget = NavigationServer3D.MapGetClosestPoint(navMap, desiredTarget);
+        }
+
+        navigationAgent.TargetPosition = desiredTarget;
+
+        Vector3 finalPathPosition = navigationAgent.GetFinalPosition();
+
+        float distanceToOriginalTarget = finalPathPosition.DistanceTo(originalTarget);
+
+        if (distanceToOriginalTarget > 1.5f)
+        {
+            body.Velocity = Vector3.Zero;
+            _blackboard?.Set("LastActionName", "Target Unreachable");
+            return;
+        }
+
+        if (navigationAgent.IsNavigationFinished())
+        {
+            body.Velocity = Vector3.Zero;
+            _blackboard?.Set("LastActionName", "Reached Destination");
+            return;
+        }
+
         Vector3 nextPosition = navigationAgent.GetNextPathPosition();
         Vector3 direction = nextPosition - body.GlobalPosition;
         direction.Y = 0f;

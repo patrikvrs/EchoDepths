@@ -27,19 +27,15 @@ public partial class UtilityDecision : Node
             return 0.0f;
         }
 
-        float weightedSum = 0.0f;
-        float totalWeight = 0.0f;
+        float result = 1.0f;
 
         foreach (UtilityConsideration consideration in Considerations)
         {
             if (consideration == null)
                 continue;
 
-            float weight = Mathf.Max(consideration.Weight, 0.0f);
             float score = consideration.Evaluate(consideration.BlackboardKey, blackboard);
-
-            weightedSum += score * weight;
-            totalWeight += weight;
+            result *= score;
         }
 
         foreach (UtilityConsiderationFromStat consideration in ConsiderationsFromStats)
@@ -47,18 +43,10 @@ public partial class UtilityDecision : Node
             if (consideration == null)
                 continue;
 
-            float weight = Mathf.Max(consideration.Weight, 0.0f);
             float score = consideration.Evaluate(host);
-
-            weightedSum += score * weight;
-            totalWeight += weight;
+            result *= score;
         }
 
-        if (totalWeight <= 0.0f)
-        {
-            return 0.0f;
-        }
-
-        return weightedSum / totalWeight;
+        return result;
     }
 }
