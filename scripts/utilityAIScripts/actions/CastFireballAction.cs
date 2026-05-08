@@ -19,10 +19,10 @@ public partial class CastFireballAction : UtilityAction
     public float SpawnForwardOffset = 1.5f;
 
     [Export]
-    private float AimHeightOffset = 1.2f;
+    private float _aimHeightOffset = 1.2f;
 
     [Export]
-    private float TargetAimHeightOffset = 1.2f;
+    private float _targetAimHeightOffset = 1.2f;
 
     public override void Execute()
     {
@@ -64,8 +64,8 @@ public partial class CastFireballAction : UtilityAction
             return;
         }
 
-        var spawnPosition = _host.Self.GlobalPosition + _host.Self.GlobalTransform.Basis.Z * SpawnForwardOffset + _host.Self.GlobalTransform.Basis.Y * AimHeightOffset;
-        var aimPoint = _host.Target.GlobalPosition + Vector3.Up * TargetAimHeightOffset;
+        var spawnPosition = _host.Self.GlobalPosition + _host.Self.GlobalTransform.Basis.Z * SpawnForwardOffset + _host.Self.GlobalTransform.Basis.Y * _aimHeightOffset;
+        var aimPoint = _host.Target.GlobalPosition + Vector3.Up * _targetAimHeightOffset;
         var directionToTarget = (aimPoint - spawnPosition).Normalized();
 
         parent.AddChild(fireball);

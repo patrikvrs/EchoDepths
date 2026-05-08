@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public partial class CharacterBase : Node
 {
-    private Dictionary<StatsID, float> Stats = new Dictionary<StatsID, float>();
+    private Dictionary<StatsID, float> _stats = new Dictionary<StatsID, float>();
 
     public override void _Ready()
     {
@@ -14,30 +14,30 @@ public partial class CharacterBase : Node
     {
         GD.Print("Warning: CharacterBase InitStats not overridden in derived class. Using default stats.");
 
-        Stats[StatsID.MaxHealth] = 100;
-        Stats[StatsID.CurrentHealth] = Stats[StatsID.MaxHealth];
-        Stats[StatsID.AttackDamage] = 10;
-        Stats[StatsID.AttackRange] = 1.5f;
-        Stats[StatsID.AttackSpeed] = 1.0f;
-        Stats[StatsID.MovementSpeed] = 5.0f;
-        Stats[StatsID.MaxStamina] = 50;
-        Stats[StatsID.CurrentStamina] = Stats[StatsID.MaxStamina];
+        _stats[StatsID.MaxHealth] = 100;
+        _stats[StatsID.CurrentHealth] = _stats[StatsID.MaxHealth];
+        _stats[StatsID.AttackDamage] = 10;
+        _stats[StatsID.AttackRange] = 1.5f;
+        _stats[StatsID.AttackSpeed] = 1.0f;
+        _stats[StatsID.MovementSpeed] = 5.0f;
+        _stats[StatsID.MaxStamina] = 50;
+        _stats[StatsID.CurrentStamina] = _stats[StatsID.MaxStamina];
     }
 
     public float GetStat(StatsID statName)
     {
-        return Stats.TryGetValue(statName, out float value) ? value : 0f;
+        return _stats.TryGetValue(statName, out float value) ? value : 0f;
     }
 
     public void SetStat(StatsID statName, float value)
     {
         if (!(statName == StatsID.CurrentHealth))
         {
-            Stats[statName] = value;
+            _stats[statName] = value;
         }
         else
         {
-            Stats[StatsID.CurrentHealth] = Mathf.Clamp(value, 0, Stats[StatsID.MaxHealth]);
+            _stats[StatsID.CurrentHealth] = Mathf.Clamp(value, 0, _stats[StatsID.MaxHealth]);
         }
 
 
@@ -45,13 +45,13 @@ public partial class CharacterBase : Node
 
     public void ModifyStat(StatsID statName, float delta)
     {
-        if (Stats.TryGetValue(statName, out float value))
+        if (_stats.TryGetValue(statName, out float value))
         {
-            Stats[statName] = Mathf.Max(value + delta, 0);
+            _stats[statName] = Mathf.Max(value + delta, 0);
 
             if (statName == StatsID.MaxHealth || statName == StatsID.CurrentHealth)
             {
-                Stats[StatsID.CurrentHealth] = Mathf.Clamp(Stats[StatsID.CurrentHealth], 0, Stats[StatsID.MaxHealth]);
+                _stats[StatsID.CurrentHealth] = Mathf.Clamp(_stats[StatsID.CurrentHealth], 0, _stats[StatsID.MaxHealth]);
             }
         }
     }

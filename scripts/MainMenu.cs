@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Godot;
 
 public partial class MainMenu : Control
@@ -15,6 +14,9 @@ public partial class MainMenu : Control
     private Button _backButton;
     private Panel _optionsPanel;
     private CheckButton _fullScreenSwitch;
+    private HSlider _masterVolSlider;
+    private Label _masterVolLabel;
+    private AudioStreamPlayer _previewPlayer;
 
     public override void _Ready()
     {
@@ -26,6 +28,8 @@ public partial class MainMenu : Control
         _mainButtonsContainer = GetNode<BoxContainer>("MainMenuButtons");
         _optionsPanel = GetNode<Panel>("OptionsPanel");
         _fullScreenSwitch = GetNode<CheckButton>("OptionsPanel/FullScreenSwitch");
+        _masterVolSlider = GetNode<HSlider>("OptionsPanel/MasterVolSlider");
+        _masterVolLabel = GetNode<Label>("OptionsPanel/MasterVolSlider/MasterVolLabel");
 
         _startButton.Pressed += OnStartButtonPressed;
         _tutorialButton.Pressed += OnTutorialButtonPressed;
@@ -33,6 +37,28 @@ public partial class MainMenu : Control
         _quitButton.Pressed += OnQuitButtonPressed;
         _backButton.Pressed += OnOptionsButtonPressed;
         _fullScreenSwitch.Pressed += OnFullScreenSwitchToggled;
+        if (_masterVolSlider != null)
+        {
+            var bus = AudioServer.GetBusIndex("Master");
+            if (bus >= 0)
+            {
+                var db = AudioServer.GetBusVolumeDb(bus);
+                _masterVolSlider.Value = Mathf.DbToLinear(db) * 100f;
+            }
+            _masterVolSlider.ValueChanged += OnMasterVolChanged;
+            _masterVolSlider.GuiInput += OnMasterSliderGuiInput;
+        }
+        _previewPlayer = new AudioStreamPlayer();
+        var stream = GD.Load<AudioStream>("res://assets/sounds/pickupCoin.wav");
+        if (stream != null)
+        {
+            _previewPlayer.Stream = stream;
+            AddChild(_previewPlayer);
+        }
+        if (_masterVolLabel != null)
+        {
+            _masterVolLabel.Text = ((int)_masterVolSlider.Value).ToString() + "%";
+        }
         _optionsPanel.Visible = false;
     }
 
@@ -75,6 +101,32 @@ public partial class MainMenu : Control
     private void OnQuitButtonPressed()
     {
         GetTree().Quit();
+    }
+
+    private void OnMasterVolChanged(double value)
+    {
+        var bus = AudioServer.GetBusIndex("Master");
+        if (bus < 0)
+        {
+            GD.PrintErr("Master audio bus not found.");
+            return;
+        }
+        float linear = (float)value / 100f;
+        float db = Mathf.LinearToDb(linear);
+        AudioServer.SetBusVolumeDb(bus, db);
+        if (_masterVolLabel != null) _masterVolLabel.Text = ((int)value).ToString() + "%";
+    }
+
+    private void OnMasterSliderGuiInput(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton mb && !mb.Pressed)
+        {
+            if (_previewPlayer != null) _previewPlayer.Play();
+        }
+        else if (@event is InputEventScreenTouch st && !st.Pressed)
+        {
+            if (_previewPlayer != null) _previewPlayer.Play();
+        }
     }
 
 }

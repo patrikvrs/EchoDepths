@@ -2,7 +2,7 @@ using Godot;
 
 public partial class TutorialTextChange : Area3D
 {
-    private Control _turorialUI;
+    private Control _tutorialUI;
     private Label _tutorialLabel;
 
     [Export(PropertyHint.MultilineText)]
@@ -10,8 +10,8 @@ public partial class TutorialTextChange : Area3D
 
     public override void _Ready()
     {
-        _turorialUI = GetNode<Control>("/root/TutorialMap/tutorial_UI");
-        _tutorialLabel = _turorialUI.GetNode<Label>("Tutorial_Label");
+        _tutorialUI = GetNode<Control>("/root/TutorialMap/tutorial_UI");
+        _tutorialLabel = _tutorialUI.GetNode<Label>("Tutorial_Label");
         BodyEntered += OnBodyEntered;
     }
 

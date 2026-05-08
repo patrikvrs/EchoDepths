@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://835yo6gccxgv"]
+
+[ext_resource type="PackedScene" uid="uid://culyrqelvfkwq" path="res://assets/models/dungeon/bottle_C_green.gltf" id="1_3p6mu"]
+[ext_resource type="Script" uid="uid://14rxpm3y5qt2" path="res://scripts/HealthPickup.cs" id="1_i662h"]
+[ext_resource type="AudioStream" uid="uid://u2v3psn1g47y" path="res://assets/sounds/heal.wav" id="2_i662h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ubx2t"]
+size = Vector3(1.7578125, 1.8669434, 1.9748535)
+
+[node name="HealthPickup" type="Area3D"]
+script = ExtResource("1_i662h")
+
+[node name="bottle_C_green2" parent="." instance=ExtResource("1_3p6mu")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59657204, 0)
+shape = SubResource("BoxShape3D_ubx2t")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_i662h")

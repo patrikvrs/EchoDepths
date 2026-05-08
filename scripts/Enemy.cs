@@ -31,11 +31,12 @@ public partial class Enemy : CharacterBody3D, IDamageable, IAIHost
     [Export]
     public AudioStream HealSound;
     [Export]
-    public PackedScene healtbarScene;
+    public PackedScene healthBarScene;
     public Blackboard Blackboard { get; private set; }
     public Node3D Self => this;
     public NavigationAgent3D NavigationAgent => agent;
     public Node3D Target => target;
+    public Vector3 LogicalForward;
     private AIControllerChooser chooser;
     private EnemyHealthBarUI _healthBarUI;
     private AnimationNodeStateMachinePlayback _animationState;
@@ -58,9 +59,9 @@ public partial class Enemy : CharacterBody3D, IDamageable, IAIHost
             _animationState = (AnimationNodeStateMachinePlayback)animationTree.Get("parameters/StateMachine/playback");
         }
 
-        if (healtbarScene != null)
+        if (healthBarScene != null)
         {
-            _healthBarUI = healtbarScene.Instantiate<EnemyHealthBarUI>();
+            _healthBarUI = healthBarScene.Instantiate<EnemyHealthBarUI>();
             _healthBarUI.TargetEnemy = this;
 
             Node ingameHud = GetTree().CurrentScene?.FindChild("gameplay_hud", true, false);
@@ -90,7 +91,6 @@ public partial class Enemy : CharacterBody3D, IDamageable, IAIHost
             Velocity += GetGravity() * deltaTime;
             if (Position.Y < -50f)
             {
-                // fall out of the world -> die
                 stats?.ApplyDamage(9999);
                 ApplyDeathState();
                 chooser?.StopController();
@@ -130,6 +130,8 @@ public partial class Enemy : CharacterBody3D, IDamageable, IAIHost
 
         DisableCollision();
         chooser?.StopController();
+
+        GetTree().CreateTimer(2.0).Timeout += QueueFree;
     }
 
     private void DisableCollision()

@@ -42,31 +42,28 @@ public partial class CheckForHit : Area3D
     {
         if (body is not Enemy enemy || enemy.Blackboard == null)
             return false;
-        if (enemy.Blackboard.TryGet("IsBlocking", out bool isBlocking) && isBlocking)
+
+        if (!enemy.Blackboard.TryGet("IsBlocking", out bool isBlocking) || !isBlocking)
         {
-            Vector3 attackDir = GlobalPosition - body.GlobalPosition;
-            attackDir.Y = 0;
-
-            Vector3 forward = -body.GlobalTransform.Basis.Z;
-            forward.Y = 0;
-
-            if (attackDir.LengthSquared() <= 0.0001f || forward.LengthSquared() <= 0.0001f)
-                return false;
-
-            attackDir = attackDir.Normalized();
-            forward = forward.Normalized();
-
-            if (attackDir.Dot(forward) < 0f)
-                forward = -forward;
-
-            float dot = attackDir.Dot(forward);
-            return dot > 0.5f;
+            enemy.Blackboard.TryGet("HitCount", out int count);
+            enemy.Blackboard.Set("HitCount", count + 1);
+            return false;
         }
 
-        int hitCount = 0;
-        enemy.Blackboard.TryGet("HitCount", out hitCount);
-        enemy.Blackboard.Set("HitCount", hitCount + 1);
+        Vector3 attackDir = GlobalPosition - body.GlobalPosition;
+        attackDir.Y = 0;
+        if (attackDir.LengthSquared() < 0.001f) return false;
+        attackDir = attackDir.Normalized();
 
+
+        Vector3 forward = enemy.LogicalForward;
+
+        float dot = attackDir.Dot(forward);
+
+        if (dot > 0.7f)
+        {
+            return true;
+        }
         return false;
     }
 }

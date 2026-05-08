@@ -8,8 +8,6 @@ public partial class UtilityConsiderationFromStat : Resource
     [Export]
     public StatsID StatID { get; set; }
     [Export]
-    public float Weight { get; set; } = 1.0f;
-    [Export]
     public float MaxValue { get; set; } = 50f;
 
     public float Evaluate(IAIHost host)

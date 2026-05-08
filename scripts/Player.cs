@@ -251,7 +251,7 @@ public partial class Player : CharacterBody3D, IDamageable
 
     private void HandleFacing(Vector3 velocity)
     {
-        if (velocity.X == 0 && velocity.Z == 0)
+        if (velocity.X == 0 && velocity.Z == 0 || _isAttacking)
         {
             return;
         }

@@ -288,9 +288,9 @@ text = "Back"
 [node name="MasterVolSlider" type="HSlider" parent="OptionsPanel"]
 layout_mode = 0
 offset_left = 265.0
-offset_top = 80.0
+offset_top = 119.0
 offset_right = 477.0
-offset_bottom = 110.0
+offset_bottom = 149.0
 theme_override_styles/slider = SubResource("StyleBoxLine_ekxnf")
 theme_override_styles/grabber_area = SubResource("StyleBoxLine_bqqt6")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_bqqt6")
@@ -308,68 +308,12 @@ text = "Master Volume:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="SFXVolSlider" type="HSlider" parent="OptionsPanel"]
-layout_mode = 0
-offset_left = 265.0
-offset_top = 120.0
-offset_right = 477.0
-offset_bottom = 150.0
-theme_override_styles/slider = SubResource("StyleBoxLine_ekxnf")
-theme_override_styles/grabber_area = SubResource("StyleBoxLine_bqqt6")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_bqqt6")
-value = 50.0
-
-[node name="SFXVolLabel" type="Label" parent="OptionsPanel/SFXVolSlider"]
-layout_mode = 0
-offset_left = -225.0
-offset_top = -2.0
-offset_right = -1.0
-offset_bottom = 26.0
-theme_override_fonts/font = ExtResource("3_bqqt6")
-theme_override_font_sizes/font_size = 16
-text = "Sound Effects:"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="MusicVolSlider" type="HSlider" parent="OptionsPanel"]
-layout_mode = 0
-offset_left = 265.0
-offset_top = 160.0
-offset_right = 477.0
-offset_bottom = 190.0
-theme_override_styles/slider = SubResource("StyleBoxLine_ekxnf")
-theme_override_styles/grabber_area = SubResource("StyleBoxLine_bqqt6")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_bqqt6")
-value = 50.0
-
-[node name="MusicVolSlider" type="Label" parent="OptionsPanel/MusicVolSlider"]
-layout_mode = 0
-offset_left = -155.0
-offset_top = -2.0
-offset_right = -2.0
-offset_bottom = 26.0
-theme_override_fonts/font = ExtResource("3_bqqt6")
-theme_override_font_sizes/font_size = 16
-text = "Music:"
-horizontal_alignment = 2
-vertical_alignment = 1
-
 [node name="FullScreenSwitch" type="CheckButton" parent="OptionsPanel"]
 layout_mode = 0
-offset_left = 25.0
-offset_top = 200.0
-offset_right = 265.0
-offset_bottom = 236.0
+offset_left = 154.0
+offset_top = 166.0
+offset_right = 394.0
+offset_bottom = 202.0
 theme_override_fonts/font = ExtResource("3_bqqt6")
 theme_override_font_sizes/font_size = 16
 text = "Full Screen:"
-
-[node name="DebugSwitch" type="CheckButton" parent="OptionsPanel"]
-layout_mode = 0
-offset_left = 280.0
-offset_top = 200.0
-offset_right = 504.0
-offset_bottom = 236.0
-theme_override_fonts/font = ExtResource("3_bqqt6")
-theme_override_font_sizes/font_size = 16
-text = "Debug mode:"
