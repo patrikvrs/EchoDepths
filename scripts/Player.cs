@@ -145,7 +145,6 @@ public partial class Player : CharacterBody3D, IDamageable
     public void AddScore(int points)
     {
         Score += points;
-        // Update HUD immediately if assigned
         if (_gameplayHud != null)
         {
             var scoreLabel = _gameplayHud.GetNodeOrNull<Label>("Score_Label/Score_number");
