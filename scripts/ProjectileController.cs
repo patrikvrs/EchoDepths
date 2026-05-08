@@ -14,7 +14,7 @@ public partial class ProjectileController : Node3D
         if (projectileRoot == null)
             return;
 
-        var audioPlayer = projectileRoot.GetNodeOrNull<AudioStreamPlayer>("AudioStreamPlayer");
+        var audioPlayer = projectileRoot.GetNodeOrNull<AudioStreamPlayer3D>("AudioStreamPlayer");
         if (audioPlayer == null || audioPlayer.Stream == null)
             return;
 
