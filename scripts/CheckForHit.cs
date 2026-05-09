@@ -3,6 +3,7 @@ using Godot;
 public partial class CheckForHit : Area3D
 {
     public float DamageAmount { get; set; }
+    public Vector3 AttackOrigin { get; set; }
 
     public async override void _Ready()
     {
@@ -50,14 +51,12 @@ public partial class CheckForHit : Area3D
             return false;
         }
 
-        Vector3 attackDir = GlobalPosition - body.GlobalPosition;
+        Vector3 attackDir = AttackOrigin - body.GlobalPosition;
         attackDir.Y = 0;
         if (attackDir.LengthSquared() < 0.001f) return false;
         attackDir = attackDir.Normalized();
 
-
         Vector3 forward = enemy.LogicalForward;
-
         float dot = attackDir.Dot(forward);
 
         if (dot > 0.7f)

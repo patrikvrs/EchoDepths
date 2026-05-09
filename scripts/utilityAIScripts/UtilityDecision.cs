@@ -8,8 +8,6 @@ public partial class UtilityDecision : Node
     [Export]
     public Godot.Collections.Array<UtilityConsideration> Considerations { get; set; } = new();
     [Export]
-    public Godot.Collections.Array<UtilityConsiderationFromStat> ConsiderationsFromStats { get; set; } = new();
-    [Export]
     public UtilityAction Action { get; set; }
 
     public float Evaluate(IAIHost host, Blackboard blackboard)
@@ -21,8 +19,7 @@ public partial class UtilityDecision : Node
         }
 
         bool hasBlackboardConsiderations = Considerations != null && Considerations.Count > 0;
-        bool hasStatConsiderations = ConsiderationsFromStats != null && ConsiderationsFromStats.Count > 0;
-        if (!hasBlackboardConsiderations && !hasStatConsiderations)
+        if (!hasBlackboardConsiderations)
         {
             return 0.0f;
         }
@@ -35,15 +32,6 @@ public partial class UtilityDecision : Node
                 continue;
 
             float score = consideration.Evaluate(consideration.BlackboardKey, blackboard);
-            result *= score;
-        }
-
-        foreach (UtilityConsiderationFromStat consideration in ConsiderationsFromStats)
-        {
-            if (consideration == null)
-                continue;
-
-            float score = consideration.Evaluate(host);
             result *= score;
         }
 

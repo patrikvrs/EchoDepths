@@ -124,10 +124,10 @@ public partial class Player : CharacterBody3D, IDamageable
             SetAnimationState("Player_Death_A");
             SetPhysicsProcess(false);
 
-            var hurtbox = GetNodeOrNull<CollisionShape3D>("Hurtbox");
-            if (hurtbox != null)
+            var hitbox = GetNodeOrNull<CollisionShape3D>("Hitbox");
+            if (hitbox != null)
             {
-                hurtbox.Disabled = true;
+                hitbox.Disabled = true;
             }
 
             Timer deathTimer = new Timer();
@@ -293,6 +293,7 @@ public partial class Player : CharacterBody3D, IDamageable
 
         CheckForHit meleeAreaInstance = MeleeAttackArea.Instantiate<CheckForHit>();
         meleeAreaInstance.DamageAmount = _playerStats.GetStat(StatsID.AttackDamage);
+        meleeAreaInstance.AttackOrigin = GlobalPosition;
         AddChild(meleeAreaInstance);
 
         float attackRange = _playerStats.GetStat(StatsID.AttackRange);
