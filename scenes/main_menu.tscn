@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://bsoe6uaalhhy5"]
 
 [ext_resource type="Script" uid="uid://dx4xf6cr80btl" path="res://scripts/MainMenu.cs" id="1_ekxnf"]
-[ext_resource type="PackedScene" uid="uid://cmrg07u7o77iv" path="res://scenes/main.tscn" id="2_bqqt6"]
+[ext_resource type="PackedScene" uid="uid://c7ebq51ko5sam" path="res://scenes/level_1.tscn" id="2_wu84c"]
 [ext_resource type="FontFile" uid="uid://dhqm1rf4r1ppn" path="res://assets/fonts/PublicPixel.ttf" id="3_bqqt6"]
 [ext_resource type="PackedScene" uid="uid://biorvp4l12m26" path="res://scenes/tutorial_map.tscn" id="3_wu84c"]
 
@@ -79,7 +79,7 @@ offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ekxnf")
-_gameScene = ExtResource("2_bqqt6")
+_gameScene = ExtResource("2_wu84c")
 _tutorialScene = ExtResource("3_wu84c")
 
 [node name="Background" type="Panel" parent="."]
@@ -227,7 +227,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_oa1go")
 text = "Quit"
 
 [node name="OptionsPanel" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -287,9 +286,9 @@ text = "Back"
 
 [node name="MasterVolSlider" type="HSlider" parent="OptionsPanel"]
 layout_mode = 0
-offset_left = 265.0
+offset_left = 221.0
 offset_top = 119.0
-offset_right = 477.0
+offset_right = 433.0
 offset_bottom = 149.0
 theme_override_styles/slider = SubResource("StyleBoxLine_ekxnf")
 theme_override_styles/grabber_area = SubResource("StyleBoxLine_bqqt6")
@@ -298,13 +297,25 @@ value = 50.0
 
 [node name="MasterVolLabel" type="Label" parent="OptionsPanel/MasterVolSlider"]
 layout_mode = 0
-offset_left = -225.0
+offset_left = 216.0
 offset_top = -2.0
-offset_right = -1.0
+offset_right = 283.0
 offset_bottom = 26.0
 theme_override_fonts/font = ExtResource("3_bqqt6")
 theme_override_font_sizes/font_size = 16
-text = "Master Volume:"
+text = "100%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MasterVolNameLabel" type="Label" parent="OptionsPanel/MasterVolSlider"]
+layout_mode = 0
+offset_left = -121.0
+offset_top = -2.0
+offset_right = -9.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("3_bqqt6")
+theme_override_font_sizes/font_size = 16
+text = "Volume:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
