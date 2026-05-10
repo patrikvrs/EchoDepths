@@ -16,7 +16,7 @@ public partial class CastFireballAction : UtilityAction
     public float FireballLifetime = 3f;
 
     [Export]
-    public float SpawnForwardOffset = 1.5f;
+    public float SpawnForwardOffset = 0.5f;
 
     [Export]
     private float _aimHeightOffset = 1.2f;

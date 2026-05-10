@@ -95,6 +95,9 @@ affect_navigation_mesh = true
 [node name="wall_doorway" parent="." instance=ExtResource("9_6dial")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.490526, 4.5048366, 39.462364)
 
+[node name="wall_doorway3" parent="." instance=ExtResource("9_6dial")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16.463861, 4.5048366, 23.49512)
+
 [node name="wall_doorway2" parent="." instance=ExtResource("9_6dial")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.514874, 4.5048366, 57.520878)
 
@@ -108,21 +111,12 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.564451, 4.6386833, 39.466846)
 target = NodePath("../Player")
 
-[node name="SkeletonMage2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_2aecg")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -47.73771, 4.6386833, 90.15271)
-target = NodePath("../Player")
-
 [node name="SkeletonMage3" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_2aecg")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -38.692078, 4.6386833, 90.15271)
 target = NodePath("../Player")
 
 [node name="SkeletonWarrior" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_e3sih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5193424, 4.683749, 26.218805)
-target = NodePath("../Player")
-DeathAnimationState = "SkeletonWarrior_Death_B"
-
-[node name="SkeletonWarrior2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_e3sih")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.729797, 4.683749, 84.35351)
 target = NodePath("../Player")
 DeathAnimationState = "SkeletonWarrior_Death_B"
 
@@ -137,10 +131,6 @@ target = NodePath("../Player")
 
 [node name="SkeletonArcher2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("9_2y5yt")]
 transform = Transform3D(-0.021762485, 0, 0.9997632, 0, 1, 0, -0.9997632, 0, -0.021762485, -37.522728, 4.6858397, 76.55779)
-target = NodePath("../Player")
-
-[node name="SkeletonArcher3" parent="." node_paths=PackedStringArray("target") instance=ExtResource("9_2y5yt")]
-transform = Transform3D(-0.021762485, 0, 0.9997632, 0, 1, 0, -0.9997632, 0, -0.021762485, -48.786255, 4.6858397, 76.55779)
 target = NodePath("../Player")
 
 [node name="CoinPickup" parent="." instance=ExtResource("11_go7sj")]
